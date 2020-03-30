@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import Logout from '../components/Logout';
 import Contact from '../components/ContactButton';
 import Services from '../components/ServicesButton';
-import logo from '../logo.svg';
+// import logo from '../logo.svg';
 import logo from '../resources/logo.jpg';
 
 
