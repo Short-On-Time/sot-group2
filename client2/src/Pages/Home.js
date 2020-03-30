@@ -105,14 +105,11 @@ const Home = () => {
       <div className="img-bg-1" style={{backgroundImage: "url('images/img_4.jpg')"}} data-aos="fade"></div>
       <div className="container">
         <div className="row no-gutters align-items-stretch">
-          <div className="col-lg-5 ml-lg-auto py-5">
-            <span className="caption d-block mb-2 font-secondary font-weight-bold">Outstanding Services</span>
-            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Clean Design</h2>
-            <p>Welcome to my site. My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>
-            <p>HUMAN BODY</p>
-            <p>You are looking at an amazing tool called HOW (Herbs, Oils, Wellbeing) that was developed out of the desire and a passion to simplify one of the many paths to self-love and self-care through natural means using our plant friends. This is by no means the say-all-be-all. Many of us who are further along in our journey, let's not forget our humble beginnings. Do you remember the not knowing but having a need and wanting a healthier less side effect ridden solution, the apprehension and information overload that came with an internet search for user well-seasoned individual who remember these things called books on the subject that was hard to find or nonexistent.</p>
-            <p>This path can and will lead to you discovering and respecting the world of natural healing in its many forms. So feel free to explore!</p>
-            <p>Whole Body Wellness</p>
+          <div className="col-lg-5 ml-lg-auto py-5 text-justify">
+            <span className="caption d-block mb-2 font-secondary font-weight-bold">Welcome to my site</span>
+            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Information in a fun, inviting, and easily digestible format</h2>
+            <p>My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>
+
           </div>
         </div>
       </div>
@@ -122,13 +119,12 @@ const Home = () => {
       <div className="img-bg-1 right" style={{backgroundImage: "url('images/img_5.jpg')"}} data-aos="fade"></div>
       <div className="container">
         <div className="row no-gutters align-items-stretch">
-          <div className="col-lg-5 mr-lg-auto py-5">
-            <span className="caption d-block mb-2 font-secondary font-weight-bold">Easy To Use Templates</span>
-            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Free HTML5 Templates</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid eius facilis voluptatem eligendi magnam accusamus vel commodi asperiores sint rem reprehenderit nobis nesciunt veniam qui fugit doloremque numquam quod.</p>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora distinctio ipsam nesciunt recusandae repellendus asperiores amet.</p>
-          </div>
+          <div className="col-lg-5 mr-lg-auto py-5 text-justify">
+            <span className="caption d-block mb-2 font-secondary font-weight-bold">Human Body</span>
+            <h2 className="site-section-heading text-uppercase font-secondary mb-5">HOW (Herbs, Oils, Wellbeing)</h2>
+              <p>You are looking at an amazing tool called <b>HOW</b> that was developed out of the desire and a passion to simplify one of the many paths to self-love and self-care through natural means using our plant friends. This is by no means the say-all-be-all. Many of us who are further along in our journey, let's not forget our humble beginnings. Do you remember the not knowing but having a need and wanting a healthier less side effect ridden solution, the apprehension and information overload that came with an internet search for user well-seasoned individual who remember these things called books on the subject that was hard to find or nonexistent.</p>
+              <p>This path can and will lead to you discovering and respecting the world of natural healing in its many forms. So feel free to explore!</p>
+            </div>
         </div>
       </div>
     </div>
