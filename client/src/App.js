@@ -10,8 +10,9 @@ import editGlossary from './components/editGlossary'
 import addGlossary from './components/addGlossary'
 import Login from "./components/LoginPage"
 import Admin from "./components/AdminPanel"
-import './App.css';
 import AdminGlossary from './components/AdminGlossary';
+import './App.css';
+
 
 function App() {
     return (

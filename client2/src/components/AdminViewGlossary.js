@@ -1,61 +1,83 @@
-import React from 'react';
-import axios from 'axios';
-import config from '../config.js';
-import Table from 'react-bootstrap/Table'
-export default class AdminViewGlossary extends React.Component {
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import config from "../config.js";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import AdminEditGlossary from "./AdminEditGlossary";
+import { FaRegTrashAlt } from "react-icons/fa";
+import {TiDocumentAdd} from "react-icons/ti";
 
-  state = {
-      glossary: []
-    }
+const AdminViewGlossary = props => {
+  const [glossary, setGlossary] = useState([]); 
+  const [selectedItem, setSelectedItem] = useState([]);  
 
-  componentDidMount() {
-    axios.get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
       .then(res => {
-        const glossary = res.data;
-        this.setState({ glossary });
-      })
-  }
+        setGlossary(res.data);
+      });
+  }, []);
 
-  deleteGloss(e) {
+  const deleteGloss = e => {
     const title = e.target.value;
-    axios.delete(`http://localhost:${config.server_port}/api/admin/delete_glossary/${title}`)
+    axios
+      .delete(
+        `http://localhost:${config.server_port}/api/admin/delete_glossary/${title}`
+      )
       .then(res => {
-        console.log(`Deleted ${res.data.title}!`)
+        console.log(`Deleted ${res.data.title}!`);
       });
-    axios.get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+    axios
+      .get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
       .then(res => {
-        const glossary = res.data;
-        this.setState({ glossary });
+        setGlossary(res.data);
       });
-  }
+  };
 
-  render() {
-    return (
-      <Table striped bordered >
+  return (
+    <div>
+      <Table striped bordered>
         <thead>
-        <tr>
-          <th>Title</th>
-          <th>Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-          {
-            this.state.glossary.filter(glossary => glossary.title.toLowerCase().includes(this.props.query.toLowerCase())).map(glossary => {
-              return(
-                
+          <tr>
+            <th>Title</th>
+            <th>Definition</th>
+            <th>Usage</th>
+            <th><a><TiDocumentAdd size={32}/></a></th>
+          </tr>
+        </thead>
+        <tbody>
+          {glossary
+            .filter(glossary =>
+              glossary.title.toLowerCase().includes(props.query.toLowerCase())
+            )
+            .map(glossary => {
+              return (
                 <tr key={glossary._id} name={glossary.title}>
-                  <td>{glossary.title}</td>
+                  <td class="align-middle">{glossary.title}</td>
+                  <td>{glossary.definition}</td>
                   <td>{glossary.usage}</td>
-                  <a class="btn btn-primary text-white px-4" href={`/admin/edit_glossary?key=${glossary._id}`}>EDIT</a>
-                  {/*https://stackoverflow.com/questions/34875557/creating-custom-function-in-react-component*/}
-                  <button class="btn btn-primary text-white px-4" onClick={this.deleteGloss.bind(this)} value={glossary.title}>DELETE</button>
+                  <td class="align-middle">
+                    <ButtonGroup>
+                    <AdminEditGlossary                     
+                      item={glossary}/>
+                    <Button
+                      variant="danger"
+                      onclick={deleteGloss}
+                      value={glossary.title}
+                    >
+                      <FaRegTrashAlt color="white" />
+                    </Button>
+                  </ButtonGroup>
+                  </td>
                 </tr>
-              )
-            })
-          }
-          </tbody>
+              );
+            })}
+        </tbody>
       </Table>
-    )
-  }
+    </div>
+  );
 };
-// export default ViewProducts;
+
+export default AdminViewGlossary;

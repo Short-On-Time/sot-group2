@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 import ViewGlossaryItem from './ViewGlossaryItem.js';
+import Error from './Error.js';
 
 const ViewGlossary = (props) => {
     //TODO: find a way to eliminate setGlossaryJSX
@@ -9,7 +10,7 @@ const ViewGlossary = (props) => {
     const [glossaryJSX, setGlossaryJSX] = useState([]);
 
     const glossaryItem = (item, letter) => {
-        if(! (item.title.toUpperCase()[0] == letter.letter)){
+        if(! (item.title.toUpperCase()[0] === letter.letter)){
             letter.letter = item.title.toUpperCase()[0];
             console.log("new letter:" + item.title);
             return(
@@ -55,7 +56,6 @@ const ViewGlossary = (props) => {
       axios.get(`http://localhost:${config.server_port}/api/users/get_glossary`)
         .then(res => {
             const items = res.data;
-
             const compare = (a,b) => {
                 if(a.title.toLowerCase()<b.title.toLowerCase()){
                     return -1
@@ -72,6 +72,13 @@ const ViewGlossary = (props) => {
             setGlossary(items);
             setGlossaryJSX(items.map(item => glossaryItem(item, lastLetter)));
         })
+        .catch(function (e) {
+            console.log(e.response)
+            if (e){
+                setGlossaryJSX(<Error error={e} returnURL="/"/>)
+                setGlossary([])
+            }
+        });
     }, []);
 
     return getItem();

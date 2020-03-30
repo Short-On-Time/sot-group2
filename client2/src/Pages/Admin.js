@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 
 
 const Admin = () => {
+  
   return (
     <div className="App">
       <div className="mb-5">
