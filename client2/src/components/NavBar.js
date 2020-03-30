@@ -27,6 +27,8 @@ const NavBar = (props) => {
     const logged = () => {
       if (token) {
         return <Logout loginData={logout_user} />
+        // admin logged
+        <a href="/">Admin</a>
       } else {
         return <LoginButton />
       }
