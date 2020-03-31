@@ -25,7 +25,7 @@ const ViewGlossaryItem = (props) => {
     }, []);
 
     return (
-      <div style={{backgroundColor: "white"}}>
+      <div style={{backgroundColor: "white"}} className="glossary-item">
         { createGlossaryItem(glossaryItem) }
       </div>
     );

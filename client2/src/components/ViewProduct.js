@@ -26,7 +26,7 @@ const ViewProduct = (props) => {
     }, []);
 
     return (
-      <div style={{backgroundColor: "white"}}>
+      <div style={{backgroundColor: "white"}} className="glossary-item">
         { createProduct(product) }
       </div>
     );
