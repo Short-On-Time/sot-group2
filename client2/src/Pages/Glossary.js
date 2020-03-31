@@ -26,11 +26,19 @@ const Glossary = (props) => {
 
                 <NavBar page="Glossary"/>
 
-                <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
+                <div className=" inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
                     <div className="row align-items-center justify-content-center">
                         <div className="text-center" data-aos="fade">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                             <h1 className="text-uppercase">Glossary</h1>
                             <ViewGlossary title = {props.match.params.title}/>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                         </div>
                     </div>
                 </div>

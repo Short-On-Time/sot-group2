@@ -26,11 +26,19 @@ const Products = (props) => {
 
                 <NavBar page="Products"/>
 
-                <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
+                <div className=" inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
                     <div className="row align-items-center justify-content-center">
                         <div className="text-center" data-aos="fade">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                             <h1 className="text-uppercase">Products</h1>
                             <ViewProducts name = {props.match.params.name}/>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                         </div>
                     </div>
                 </div>

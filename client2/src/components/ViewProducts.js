@@ -10,17 +10,31 @@ const ViewProducts = (props) => {
     const [productsJSX, setProductsJSX] = useState([]);
 
     const Product = (product, letter) => {
-        if(! (product.name.toUpperCase()[0] === letter.letter)){
-            letter.letter = product.name.toUpperCase()[0];
+        const getFirstLetter = (str) => {
+            return str.toUpperCase()[0];
+        }
+
+
+        if(getFirstLetter(product.name) === letter.letter || (!isNaN(getFirstLetter(product.name)) && letter.letter==="#")){
+            return(<div><a href = {"/products/" + product.name} className="text-secondary">{product.name}</a></div>);
+        }
+        else if(!isNaN(getFirstLetter(product.name)) && letter.letter!="#"){
+            letter.letter = "#";
             return(
                 <div className="glossary-letter card">
-                    <h5>{letter.letter}</h5>
+                    <h5 id={letter.letter}>{letter.letter}</h5>
                     <a href = {"/products/" + product.name} className="text-secondary">{product.name}</a>
                 </div>
             );
         }
-        else{
-            return(<div><a href = {"/products/" + product.name} className="text-secondary">{product.name}</a></div>);
+        else if(! (getFirstLetter(product.name) === letter.letter)){
+            letter.letter = getFirstLetter(product.name);
+            return(
+                <div className="glossary-letter card">
+                    <h5 id={letter.letter}>{letter.letter}</h5>
+                    <a href = {"/products/" + product.name} className="text-secondary">{product.name}</a>
+                </div>
+            );
         }
     }
 
@@ -47,7 +61,7 @@ const ViewProducts = (props) => {
             return (<div><h3>Product not found</h3><p>Redirecting..</p></div>);
         }
         else{
-            return <ViewProduct name = {props.name}/>;
+            return <ViewProduct name = {props.name}  className="glossary-item"/>;
         }
     }
 
