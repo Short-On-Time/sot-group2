@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const SearchField = () => {
     const [searchText, setSearchText] = useState("");
@@ -14,14 +17,13 @@ const SearchField = () => {
 
     if (url === "products" || url === "glossary") {
       return (
-          <form  target="_blank" onSubmit={() => goToPage(searchText)}>
-              <input 
-                style={{borderRadius: '30px', boxShadow: '2px 2px'}}
-                type="text"
-                placeholder="Search for any products"
-                value = {searchText}
-                onChange={(val) => {setSearchText(val.target.value)}}/>
-          </form>
+        <Form target="_blank" onSubmit={() => goToPage(searchText)}>
+          <Row>
+            <Col>
+              <Form.Control type="text" placeholder="Search for any products" value = {searchText} onChange={(val) => {setSearchText(val.target.value)}} />
+            </Col>
+          </Row>
+        </Form>
       );
     } else {
       return (

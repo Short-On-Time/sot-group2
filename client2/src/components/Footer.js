@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-4 mb-md-0 text-justify">
-            <h3 className="footer-heading mb-4 text-white">About</h3>
-            <p>Disclaimer: The information presented herein by Consider Herbs is intended for educational purposes only.
+            <h3 className="footer-heading mb-4 text-white">Disclaimer</h3>
+            <p>The information presented herein by Consider Herbs is intended for educational purposes only.
             These statements have not been evaluated by the FDA and are not intended to diagnose, cure, treat or prevent disease.
             Individual results may vary, and before using any supplements, it is always advisable to consult with your own healthcare provider.</p>
           {/*<p><a href="/abour" className="btn btn-primary text-white px-4">Read More</a></p>*/}
@@ -40,7 +40,7 @@ const Footer = () => {
 
 
           <div className="row">
-          <div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Social Icons</h3></div>
+          <div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Facebook</h3></div>
             <div className="col-md-12">
               <p>
                 <a href="https://www.facebook.com/pages/category/Health---Wellness-Website/Consider-Herbs-276933896476422/" className="pb-2 pr-2 pl-0"><span className="icon-facebook"></span></a>
