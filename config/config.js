@@ -5,6 +5,7 @@
 export default {
   db: {
     uri: 'mongodb://heroku_n06qj498:kpu278rin79edf41h8khskgd93@ds351628.mlab.com:51628/heroku_n06qj498'//place the URI of your mongo database here.
+    // uri: 'mongodb+srv://vinao:vinao777@bootcamp-chu9f.mongodb.net/test?retryWrites=true&w=majority'//place the URI of your mongo database here.
   },
   port: 5000
 };
