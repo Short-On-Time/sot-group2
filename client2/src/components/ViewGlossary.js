@@ -22,7 +22,7 @@ const ViewGlossary = (props) => {
             letter.letter = "#";
             return(
                 <div className="glossary-letter card">
-                    <h5>{letter.letter}</h5>
+                    <h5 id={letter.letter}>{letter.letter}</h5>
                     <a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a>
                 </div>
             );
@@ -31,7 +31,7 @@ const ViewGlossary = (props) => {
             letter.letter = getFirstLetter(item.title);
             return(
                 <div className="glossary-letter card">
-                    <h5>{letter.letter}</h5>
+                    <h5 id={letter.letter}>{letter.letter}</h5>
                     <a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a>
                 </div>
             );
@@ -61,7 +61,7 @@ const ViewGlossary = (props) => {
             return (<div><h3>Item not found</h3><p>Redirecting..</p></div>);
         }
         else{
-            return <ViewGlossaryItem title= {props.title}/>;
+            return <ViewGlossaryItem title= {props.title} className="glossary-item"/>;
         }
     }
 

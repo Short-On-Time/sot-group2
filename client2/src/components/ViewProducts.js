@@ -22,7 +22,7 @@ const ViewProducts = (props) => {
             letter.letter = "#";
             return(
                 <div className="glossary-letter card">
-                    <h5>{letter.letter}</h5>
+                    <h5 id={letter.letter}>{letter.letter}</h5>
                     <a href = {"/products/" + product.name} className="text-secondary">{product.name}</a>
                 </div>
             );
@@ -31,7 +31,7 @@ const ViewProducts = (props) => {
             letter.letter = getFirstLetter(product.name);
             return(
                 <div className="glossary-letter card">
-                    <h5>{letter.letter}</h5>
+                    <h5 id={letter.letter}>{letter.letter}</h5>
                     <a href = {"/products/" + product.name} className="text-secondary">{product.name}</a>
                 </div>
             );
@@ -61,7 +61,7 @@ const ViewProducts = (props) => {
             return (<div><h3>Product not found</h3><p>Redirecting..</p></div>);
         }
         else{
-            return <ViewProduct name = {props.name}/>;
+            return <ViewProduct name = {props.name}  className="glossary-item"/>;
         }
     }
 
