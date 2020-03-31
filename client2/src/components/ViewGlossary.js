@@ -10,9 +10,16 @@ const ViewGlossary = (props) => {
     const [glossaryJSX, setGlossaryJSX] = useState([]);
 
     const glossaryItem = (item, letter) => {
-        if(! (item.title.toUpperCase()[0] === letter.letter)){
-            letter.letter = item.title.toUpperCase()[0];
-            console.log("new letter:" + item.title);
+        const getFirstLetter = (str) => {
+            return str.toUpperCase()[0];
+        }
+
+
+        if(getFirstLetter(item.title) === letter.letter || (!isNaN(getFirstLetter(item.title)) && letter.letter==="#")){
+            return(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>);
+        }
+        else if(!isNaN(getFirstLetter(item.title)) && letter.letter!="#"){
+            letter.letter = "#";
             return(
                 <div className="glossary-letter card">
                     <h5>{letter.letter}</h5>
@@ -20,8 +27,14 @@ const ViewGlossary = (props) => {
                 </div>
             );
         }
-        else{
-            return(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>);
+        else if(! (getFirstLetter(item.title) === letter.letter)){
+            letter.letter = getFirstLetter(item.title);
+            return(
+                <div className="glossary-letter card">
+                    <h5>{letter.letter}</h5>
+                    <a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a>
+                </div>
+            );
         }
     }
 

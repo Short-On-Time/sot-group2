@@ -68,13 +68,10 @@
   margin-top: 1rem;
 }
 
-.card {
+.card-columns .glossary-letter {
   border: none;
-  padding-top: 10px;
-}
-
-.glossary-letter card {
-    padding-bottom: 0rem;
+  margin-bottom: 0rem;
+  margin-top: 1rem;
 }
 
 .glossary {

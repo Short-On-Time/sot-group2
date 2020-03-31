@@ -12,7 +12,7 @@ const SearchField = () => {
         }
     }
 
-    if (url == "products" || url == "glossary") {
+    if (url === "products" || url === "glossary") {
       return (
           <form  target="_blank" onSubmit={() => goToPage(searchText)}>
               <input 
