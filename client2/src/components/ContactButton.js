@@ -14,7 +14,7 @@ const LoginButton = () => {
 
 return (
   <>
-  <a href="#" onClick={handleShow}>Contact</a>
+  <a style={{cursor: "pointer"}} onClick={handleShow}>Contact</a>
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Contact</Modal.Title>

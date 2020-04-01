@@ -14,7 +14,7 @@ const ServicesButton = () => {
 
   return (
     <>
-      <a href="#" onClick={() => setLgShow(true)}>Services</a>
+      <a style={{cursor: "pointer"}} onClick={() => setLgShow(true)}>Services</a>
       <Modal
         size="lg"
         show={lgShow}
