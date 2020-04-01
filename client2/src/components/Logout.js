@@ -24,9 +24,10 @@ class Logout extends React.Component {
 
     if (nav) {
       return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16}/></ListGroupItem>
+    } else {
+      return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16}/></ListGroupItem>
     }
 
-    return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16}/></ListGroupItem>
   }
 }
 

@@ -32,7 +32,6 @@ const LoginButton = () => {
       "password": pw,
       "username": username
     }
-    console.log("username ===>" + !username);
     if (!username) {
       axios.post(`/api/users/signin`, data)
         .then(res => {
@@ -117,15 +116,6 @@ const LoginButton = () => {
             </Form.Group>
 
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close

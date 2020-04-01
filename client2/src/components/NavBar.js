@@ -56,7 +56,7 @@ const NavBar = (props) => {
                       <li className={setActivePageHighlight("Contact")}><Contact /></li>
                       <li>{ logged() }</li>
                       <li><Search /></li>
-                      <li className={setActivePageHighlight("User")}><UserButton /></li>
+                      {/*<li className={setActivePageHighlight("User")}><UserButton /></li>*/}
                     </ul>
                   </div>
                 </nav>
