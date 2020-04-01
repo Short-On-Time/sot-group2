@@ -34,7 +34,7 @@ const LoginButton = () => {
     }
     console.log("username ===>" + !username);
     if (!username) {
-      axios.post(`http://localhost:${config.server_port}/api/users/signin`, data)
+      axios.post(`/api/users/signin`, data)
         .then(res => {
           const token = res.data.token;
           var decoded = jwt_decode(token);
@@ -54,7 +54,7 @@ const LoginButton = () => {
         });
     } else {
       console.log(data);
-      axios.post(`http://localhost:${config.server_port}/api/users/signup`, data)
+      axios.post(`/api/users/signup`, data)
         .then(res => {
           const token = res.data.token;
           var decoded = jwt_decode(token);

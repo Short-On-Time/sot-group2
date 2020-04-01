@@ -9,12 +9,12 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import {TiDocumentAdd} from "react-icons/ti";
 
 const AdminViewGlossary = props => {
-  const [glossary, setGlossary] = useState([]); 
-  const [selectedItem, setSelectedItem] = useState([]);  
+  const [glossary, setGlossary] = useState([]);
+  const [selectedItem, setSelectedItem] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+      .get(`/api/admin/get_glossary`)
       .then(res => {
         setGlossary(res.data);
       });
@@ -24,13 +24,13 @@ const AdminViewGlossary = props => {
     const title = e.target.value;
     axios
       .delete(
-        `http://localhost:${config.server_port}/api/admin/delete_glossary/${title}`
+        `/api/admin/delete_glossary/${title}`
       )
       .then(res => {
         console.log(`Deleted ${res.data.title}!`);
       });
     axios
-      .get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+      .get(`/api/admin/get_glossary`)
       .then(res => {
         setGlossary(res.data);
       });
@@ -60,7 +60,7 @@ const AdminViewGlossary = props => {
                   <td>{glossary.usage}</td>
                   <td class="align-middle">
                     <ButtonGroup>
-                    <AdminEditGlossary                     
+                    <AdminEditGlossary
                       item={glossary}/>
                     <Button
                       variant="danger"
