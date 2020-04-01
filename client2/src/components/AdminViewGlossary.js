@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../config.js";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Container from "react-bootstrap/Container";
 import AdminEditGlossary from "./AdminEditGlossary";
-import { FaRegTrashAlt } from "react-icons/fa";
-import {TiDocumentAdd} from "react-icons/ti";
+import AdminDeleteGlossary from "./AdminDeleteGlossary";
+import AdminAddGlossary from "./AdminAddGlossary";
 
 const AdminViewGlossary = props => {
   const [glossary, setGlossary] = useState([]);
-  const [selectedItem, setSelectedItem] = useState([]);
+  const [viewDrafts, setViewDrafts] = useState({
+    onlyDrafts: false,
+    toggleText: "Published"
+  });
 
   useEffect(() => {
     axios
@@ -20,31 +24,39 @@ const AdminViewGlossary = props => {
       });
   }, []);
 
-  const deleteGloss = e => {
-    const title = e.target.value;
-    axios
-      .delete(
-        `/api/admin/delete_glossary/${title}`
-      )
-      .then(res => {
-        console.log(`Deleted ${res.data.title}!`);
-      });
-    axios
-      .get(`/api/admin/get_glossary`)
-      .then(res => {
-        setGlossary(res.data);
-      });
+
+  const changeView = (e) => {
+      if (e.target.checked){
+        setViewDrafts({
+        onlyDrafts: e.target.checked,
+        toggleText: "Drafts" });
+      }
+      else{
+        setViewDrafts({
+          onlyDrafts: e.target.checked,
+          toggleText: "Published" });
+      }
+
   };
 
   return (
     <div>
+      <div class="admin-toggle">
+      <Form.Check
+    type="switch"
+    id="custom-switch"
+    label={"Currently viewing: " + viewDrafts.toggleText}
+    onChange={e => changeView(e)}/>
+      </div>
       <Table striped bordered>
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Definition</th>
-            <th>Usage</th>
-            <th><a><TiDocumentAdd size={32}/></a></th>
+            <th class="align-middle">Title</th>
+            <th class="align-middle">Definition</th>
+            <th class="align-middle">Usage</th>
+            <th class="align-middle">
+              <AdminAddGlossary />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -52,28 +64,24 @@ const AdminViewGlossary = props => {
             .filter(glossary =>
               glossary.title.toLowerCase().includes(props.query.toLowerCase())
             )
-            .map(glossary => {
+            .map(glossary => {if(glossary.is_published === !viewDrafts.onlyDrafts) {
               return (
                 <tr key={glossary._id} name={glossary.title}>
                   <td class="align-middle">{glossary.title}</td>
-                  <td>{glossary.definition}</td>
-                  <td>{glossary.usage}</td>
+                  <td class="align-middle">{glossary.definition}</td>
+                  <td class="align-middle">{glossary.usage}</td>
                   <td class="align-middle">
                     <ButtonGroup>
-                    <AdminEditGlossary
-                      item={glossary}/>
-                    <Button
-                      variant="danger"
-                      onclick={deleteGloss}
-                      value={glossary.title}
-                    >
-                      <FaRegTrashAlt color="white" />
-                    </Button>
-                  </ButtonGroup>
+                      <AdminEditGlossary item={glossary} />
+                      <AdminDeleteGlossary
+                        glossary={glossary}
+                        setGlossary={setGlossary}
+                      />
+                    </ButtonGroup>
                   </td>
                 </tr>
               );
-            })}
+}})}
         </tbody>
       </Table>
     </div>

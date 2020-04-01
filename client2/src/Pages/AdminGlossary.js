@@ -10,9 +10,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
-
-
-
 const AdminGlossary = () => {
   const [query, setQuery] = useState("");
   
@@ -23,7 +20,7 @@ const AdminGlossary = () => {
   return (
     <div className="App">
       <div className="site-wrap">
-        <AdminNavBar isDashboard={false} />
+        <AdminNavBar isDashboard={false} page=": Glossary"/>
         <Container>
         <div class="adglossary-content">
           <InputGroup className="mb-3">
@@ -35,13 +32,6 @@ const AdminGlossary = () => {
               onChange={setFilter.bind(this)}/>
             
           </InputGroup>
-
-        {/* <a
-          className="btn btn-primary text-white px-4"
-          href="/admin/add_glossary?new=true"
-        >
-          Add
-        </a> */}
 
         <AdminViewGlossary query={query} />
         </div>

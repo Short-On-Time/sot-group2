@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import config from './config.js';
 import Logout from '../components/Logout';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
@@ -71,7 +71,6 @@ const LoginButton = () => {
           registrationError()
         });
     }
-
   };
 
   // render() {
@@ -127,13 +126,20 @@ const LoginButton = () => {
             Submit
           </Button>
 
-        </Modal.Footer>
-      </Modal>
-    </Form>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
 
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Login
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Form>
     </>
-);
-// }
+  );
+  // }
 }
 
 export default LoginButton;

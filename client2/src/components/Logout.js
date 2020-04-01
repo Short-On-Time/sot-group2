@@ -1,7 +1,7 @@
 import React from "react";
-import  { Redirect } from 'react-router-dom'
 import "../App.css";
-import Button from "react-bootstrap/Button";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+import { MdExitToApp } from "react-icons/md";
 
 class Logout extends React.Component {
   state = {
@@ -23,10 +23,10 @@ class Logout extends React.Component {
     }
 
     if (nav) {
-      return <a href="/" onClick={this.logout}>Logout</a>
+      return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16}/></ListGroupItem>
     }
 
-    return <a href="/" onClick={this.logout}>Logout</a>
+    return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16}/></ListGroupItem>
   }
 }
 
