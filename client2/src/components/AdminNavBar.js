@@ -20,7 +20,7 @@ const logOutPopover = (
 
       <ListGroup variant="flush">
         <ListGroupItem action href="/">View site! <FiEye size={16}/></ListGroupItem>
-        <ListGroupItem><Logout /><MdExitToApp size={16}/></ListGroupItem>
+        <Logout/>
      </ListGroup>
 
     </Popover>
@@ -32,10 +32,10 @@ const AdminNavBar = (props) => {
 
     <Navbar bg="success" className="mb-5">
       <Navbar.Brand>
-          <Image src="images/logo.jpg" width="250" height="55" rounded />
+          <Image src="images/logo.jpg" href="/" width="250" height="55" rounded />
       </Navbar.Brand>
       <Navbar.Brand>
-          <h2 className="text-light">Admin Panel</h2>
+          <h2 className="text-light">Admin Panel{props.page}</h2>
         </Navbar.Brand>
       <Nav className="mr-auto">
 
