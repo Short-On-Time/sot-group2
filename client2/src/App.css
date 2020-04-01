@@ -82,18 +82,30 @@
   margin-top: 1rem;
 }
 
- .card {
-  border: none;
-  padding-top: 10px;
+.glossary-item{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
-.glossary-letter card {
-  padding-bottom: 0rem;
+.card-columns .glossary-letter {
+    border: none;
+    margin-bottom: 0rem;
+    margin-top: 1rem;
 }
 
 .glossary {
-  column-count: 1;
-  opacity: 1;
+    column-count: 1;
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -117,9 +129,9 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .glossary {
-    column-count: 5;
-    opacity: 0.95;
-  }
+@media (min-width: 1200px) { 
+    .glossary {
+        column-count: 5;
+        opacity: 0.95;
+    }
 }
