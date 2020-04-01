@@ -1,5 +1,5 @@
 .site-wrap {
-  max-width: 100%
+  max-width: 100%;
 }
 
 .App {
@@ -11,13 +11,16 @@
   border-color: green;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:visited, .btn-primary:active   {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:visited,
+.btn-primary:active {
   background-color: forestgreen;
   border-color: green;
 }
 
 .text-primary {
-    color: forestgreen!important;
+  color: forestgreen !important;
 }
 
 .App-logo {
@@ -55,57 +58,68 @@
   }
 }
 
-.hover-card {
-  transition: box-shadow .3s;
+.admin-toggle {
+  margin-bottom: 1rem;
+}
 
+/* .bg-success {
+  background-color: forestgreen !important;
+}
+
+.btn-success {
+  background-color: forestgreen !important;
+} */
+
+.hover-card {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important; 
+  transition: box-shadow 0.3s;
 }
 .hover-card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2);
-
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
 .adglossary-content {
   margin-top: 1rem;
 }
 
-.card {
+ .card {
   border: none;
   padding-top: 10px;
 }
 
 .glossary-letter card {
-    padding-bottom: 0rem;
+  padding-bottom: 0rem;
 }
 
 .glossary {
-    column-count: 1;
+  column-count: 1;
+  opacity: 1;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .glossary {
+    column-count: 2;
     opacity: 1;
+  }
 }
 
-@media (min-width: 576px) and (max-width: 767px) { 
-    .glossary {
-        column-count: 2;
-        opacity: 1;
-    }
+@media (min-width: 768px) and (max-width: 991px) {
+  .glossary {
+    column-count: 3;
+    opacity: 0.95;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 991px) { 
-    .glossary {
-        column-count: 3;
-        opacity: 0.95;
-    }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .glossary {
+    column-count: 4;
+    opacity: 0.95;
+  }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) { 
-    .glossary {
-        column-count: 4;
-        opacity: 0.95;
-    }
-}
-
-@media (min-width: 1200px) { 
-    .glossary {
-        column-count: 5;
-        opacity: 0.95;
-    }
+@media (min-width: 1200px) {
+  .glossary {
+    column-count: 5;
+    opacity: 0.95;
+  }
 }

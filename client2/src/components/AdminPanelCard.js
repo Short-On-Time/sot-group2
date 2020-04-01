@@ -10,7 +10,6 @@ const AdminPanelCard = props => {
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Card.Text>{props.description}</Card.Text>
-
           <a href={props.link} className="btn btn-primary text-white px-4">
             GO
           </a>
