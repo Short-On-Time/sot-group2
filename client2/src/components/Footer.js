@@ -4,37 +4,22 @@ const Footer = () => {
   return(
     <footer className="site-footer bg-dark">
       <div className="container">
-
-
-
         <div className="row">
-          <div className="col-md-4 mb-4 mb-md-0">
-            <h3 className="footer-heading mb-4 text-white">About</h3>
-            <p>Disclaimer: The information presented herein by Consider Herbs is intended for educational purposes only.
+          <div className="col-md-4 mb-4 mb-md-0 text-justify">
+            <h3 className="footer-heading mb-4 text-white">Disclaimer</h3>
+            <p>The information presented herein by Consider Herbs is intended for educational purposes only.
             These statements have not been evaluated by the FDA and are not intended to diagnose, cure, treat or prevent disease.
             Individual results may vary, and before using any supplements, it is always advisable to consult with your own healthcare provider.</p>
-            <p><a href="/abour" className="btn btn-primary text-white px-4">Read More</a></p>
+          {/*<p><a href="/abour" className="btn btn-primary text-white px-4">Read More</a></p>*/}
           </div>
           <div className="col-md-5 mb-4 mb-md-0 ml-auto">
             <div className="row mb-4">
-              <div className="col-md-6">
+              <div className="col-md-6 text-justify">
                 <h3 className="footer-heading mb-4 text-white">Quick Menu</h3>
 
                 <ul className="list-unstyled">
                   <li><a href="/">Home</a></li>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/blog">Blog</a></li>
-                  <li><a href="/contacts">Contacts</a></li>
-                  <li><a href="/privacy">Privacy</a></li>
-                </ul>
-              </div>
-              <div className="col-md-6">
-                <h3 className="footer-heading mb-4 text-white">Free Templates</h3>
-                <ul className="list-unstyled">
-                  <li><a href="/">HTML5 / CSS3</a></li>
-                  <li><a href="/">Clean Design</a></li>
-                  <li><a href="/">Responsive</a></li>
-                  <li><a href="/">Multi Purpose Template</a></li>
+                  <li><a href="/glossary">Glossary</a></li>
                 </ul>
               </div>
             </div>
@@ -55,14 +40,10 @@ const Footer = () => {
 
 
           <div className="row">
-          <div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Social Icons</h3></div>
+          <div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Facebook</h3></div>
             <div className="col-md-12">
               <p>
                 <a href="https://www.facebook.com/pages/category/Health---Wellness-Website/Consider-Herbs-276933896476422/" className="pb-2 pr-2 pl-0"><span className="icon-facebook"></span></a>
-                <a href="twitter.com" className="p-2"><span className="icon-twitter"></span></a>
-                <a href="instagram.com" className="p-2"><span className="icon-instagram"></span></a>
-                <a href="youtube.com" className="p-2"><span className="icon-youtube"></span></a>
-
                 </p>
               </div>
             </div>

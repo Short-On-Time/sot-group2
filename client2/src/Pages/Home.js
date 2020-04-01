@@ -38,19 +38,6 @@ const Home = () => {
             <div className="row align-items-center justify-content-center">
               <div className="col-md-6 text-center" data-aos="fade">
                 <h1 className="font-secondary  font-weight-bold text-uppercase">Welcome to Consider Herbs</h1>
-                <a href="/about" style={{backgroundColor: "black"}}>ROUTING IN REACT2</a><br/>
-                <Link to="/about">ROUTING IN REACT</Link>
-                <ViewProducts/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_1.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
-          <div className="container">
-            <div className="row align-items-center justify-content-center">
-              <div className="col-md-7 text-center" data-aos="fade">
-                <h1 className="font-secondary font-weight-bold text-uppercase">Benefits of Herbs Treatment</h1>
               </div>
             </div>
           </div>
@@ -102,33 +89,29 @@ const Home = () => {
 
 
     <div className="site-half">
-      <div className="img-bg-1" style={{backgroundImage: "url('images/img_4.jpg')"}} data-aos="fade"></div>
+      <div className="img-bg-1 shadow p-3 mb-5 bg-white rounded" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade"></div>
       <div className="container">
         <div className="row no-gutters align-items-stretch">
-          <div className="col-lg-5 ml-lg-auto py-5">
-            <span className="caption d-block mb-2 font-secondary font-weight-bold">Outstanding Services</span>
-            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Clean Design</h2>
-            <p>Welcome to my site. My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>
-            <p>HUMAN BODY</p>
-            <p>You are looking at an amazing tool called HOW (Herbs, Oils, Wellbeing) that was developed out of the desire and a passion to simplify one of the many paths to self-love and self-care through natural means using our plant friends. This is by no means the say-all-be-all. Many of us who are further along in our journey, let's not forget our humble beginnings. Do you remember the not knowing but having a need and wanting a healthier less side effect ridden solution, the apprehension and information overload that came with an internet search for user well-seasoned individual who remember these things called books on the subject that was hard to find or nonexistent.</p>
-            <p>This path can and will lead to you discovering and respecting the world of natural healing in its many forms. So feel free to explore!</p>
-            <p>Whole Body Wellness</p>
+          <div className="col-lg-5 ml-lg-auto py-5 text-justify">
+            <span className="caption d-block mb-2 font-secondary font-weight-bold">Welcome to my site</span>
+            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Information in a fun, inviting, and easily digestible format</h2>
+            <p>My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>
+
           </div>
         </div>
       </div>
     </div>
 
     <div className="site-half block">
-      <div className="img-bg-1 right" style={{backgroundImage: "url('images/img_5.jpg')"}} data-aos="fade"></div>
+      <div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" style={{backgroundImage: "url('images/hero_1.jpg')"}} data-aos="fade"></div>
       <div className="container">
         <div className="row no-gutters align-items-stretch">
-          <div className="col-lg-5 mr-lg-auto py-5">
-            <span className="caption d-block mb-2 font-secondary font-weight-bold">Easy To Use Templates</span>
-            <h2 className="site-section-heading text-uppercase font-secondary mb-5">Free HTML5 Templates</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid eius facilis voluptatem eligendi magnam accusamus vel commodi asperiores sint rem reprehenderit nobis nesciunt veniam qui fugit doloremque numquam quod.</p>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur tempora distinctio ipsam nesciunt recusandae repellendus asperiores amet.</p>
-          </div>
+          <div className="col-lg-5 mr-lg-auto py-5 text-justify">
+            <span className="caption d-block mb-2 font-secondary font-weight-bold">Human Body</span>
+            <h2 className="site-section-heading text-uppercase font-secondary mb-5">HOW (Herbs, Oils, Wellbeing)</h2>
+              <p>You are looking at an amazing tool called <b>HOW</b> that was developed out of the desire and a passion to simplify one of the many paths to self-love and self-care through natural means using our plant friends. This is by no means the say-all-be-all. Many of us who are further along in our journey, let's not forget our humble beginnings. Do you remember the not knowing but having a need and wanting a healthier less side effect ridden solution, the apprehension and information overload that came with an internet search for user well-seasoned individual who remember these things called books on the subject that was hard to find or nonexistent.</p>
+              <p>This path can and will lead to you discovering and respecting the world of natural healing in its many forms. So feel free to explore!</p>
+            </div>
         </div>
       </div>
     </div>
@@ -138,59 +121,35 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <span className="caption d-block mb-2 font-secondary font-weight-bold">Products &amp; Services</span>
-              <h2 className="site-section-heading text-uppercase text-center font-secondary">Share Before You Download</h2>
+              <span className="caption d-block mb-2 font-secondary font-weight-bold">Glossary</span>
+              <h2 className="site-section-heading text-uppercase text-center font-secondary">Information available for Free users</h2>
             </div>
           </div>
           <div className="row">
             <div className="col-md-12 block-13 nav-direction-white">
               <div className="nonloop-block-13 owl-carousel">
                 <div className="media-image">
-                  <img src="images/img_1.jpg" alt="Image" className="img-fluid"/>
-                  <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">Pixel Perfect</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
+                  <img src="images/hero_2.jpg" alt="Image" className="img-fluid"/>
+                  <div className="media-image-body text-justify">
+                    <h2 className="font-secondary text-uppercase">Garlic</h2>
+                    <p>Currently, garlic is used as a dietary supplement for many purposes, including high blood cholesterol and other diseases.</p>
+                    <p><a href="/glossary/Garlic" className="btn btn-primary text-white px-4">Learn More</a></p>
                   </div>
                 </div>
                 <div className="media-image">
-                  <img src="images/img_2.jpg" alt="Image" className="img-fluid"/>
+                  <img src="images/hero_1.jpg" alt="Image" className="img-fluid"/>
                   <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">Template Under CCA 3.0 Unported</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
+                    <h2 className="font-secondary text-uppercase">Green Tea</h2>
+                    <p>To produce green tea, fresh leaves from the plant are lightly steamed.</p>
+                    <p><a href="/glossary/Green%20Tea" className="btn btn-primary text-white px-4">Learn More</a></p>
                   </div>
                 </div>
                 <div className="media-image">
-                  <img src="images/img_3.jpg" alt="Image" className="img-fluid"/>
-                  <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">Useful Web Templates</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
-                  </div>
-                </div>
-                <div className="media-image">
-                  <img src="images/img_1.jpg" alt="Image" className="img-fluid"/>
-                  <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">HTML5 / CSS3</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
-                  </div>
-                </div>
-                <div className="media-image">
-                  <img src="images/img_4.jpg" alt="Image" className="img-fluid"/>
-                  <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">Bootstrap 4</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
-                  </div>
-                </div>
-                <div className="media-image">
-                  <img src="images/img_5.jpg" alt="Image" className="img-fluid"/>
-                  <div className="media-image-body">
-                    <h2 className="font-secondary text-uppercase">SCSS</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                    <p><a href="#" className="btn btn-primary text-white px-4">Learn More</a></p>
+                  <img src="images/hero_2.jpg" alt="Image" className="img-fluid"/>
+                  <div className="media-image-body text-justify">
+                    <h2 className="font-secondary text-uppercase">Neroli Oil</h2>
+                    <p>Lowers inflammation & pain, reduces stress and improve symptoms of menopause, decreases blood pressure levels.</p>
+                    <p><a href="/glossary/Neroli%20Oil" className="btn btn-primary text-white px-4">Learn More</a></p>
                   </div>
                 </div>
               </div>
@@ -207,23 +166,23 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <p className="mb-5"><img src="images/img_1.jpg" alt="Image" className="img-fluid"/></p>
+              <p className="mb-5"><img src="images/hero_2.jpg" alt="Image" className="img-fluid shadow p-3 mb-5 bg-white rounded"/></p>
             </div>
             <div className="col-lg-5 ml-auto">
-              <h2 className="site-section-heading mb-3 font-secondary text-uppercase">Free Templates By Colorlib</h2>
-              <p className="mb-5">Ullam ut modi cum voluptatibus atque nulla quidem maxime enim animi cupiditate, mollitia. </p>
+              <h2 className="site-section-heading mb-3 font-secondary text-uppercase">Vast number of options</h2>
+              <p className="mb-5">Become a premium user to gain access to all products</p>
 
               <div className="row">
                 <div className="col-lg-6">
                   <div className="counter">
-                    <span className="caption">Current Downloads</span>
-                    <span className="number" data-number="49020">0</span>
+                    <span className="caption">Current products</span>
+                    <span className="number" data-number="207">0</span>
                   </div>
                 </div>
                 <div className="col-lg-6">
                   <div className="counter">
-                    <span className="caption">Number of Templates</span>
-                    <span className="number" data-number="275">0</span>
+                    <span className="caption">Number of users</span>
+                    <span className="number" data-number="50">0</span>
                   </div>
                 </div>
               </div>
@@ -293,61 +252,6 @@ const Home = () => {
 
       </div>
 
-      <div className="site-section">
-        <div className="container">
-          <div className="row mb-5">
-            <div className="col-md-12" data-aos="fade">
-              <h2 className="site-section-heading text-center text-uppercase">Recent Blog Posts</h2>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
-              <div className="media-image">
-                <a href="single.html"><img src="images/img_1.jpg" alt="Image" className="img-fluid"/></a>
-                <div className="media-image-body">
-                  <h2 className="font-secondary text-uppercase"><a href="single.html">Where Do You Learn HTML & CSS in 2019?</a></h2>
-                  <span className="d-block mb-3">By James &mdash; Jan. 20, 2019</span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-              <div className="media-image">
-                <a href="single.html"><img src="images/img_2.jpg" alt="Image" className="img-fluid"/></a>
-                <div className="media-image-body">
-                  <h2 className="font-secondary text-uppercase"><a href="single.html">Where Do You Learn HTML & CSS in 2019?</a></h2>
-                  <span className="d-block mb-3">By James &mdash; Jan. 20, 2019</span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-              <div className="media-image">
-                <a href="single.html"><img src="images/img_3.jpg" alt="Image" className="img-fluid"/></a>
-                <div className="media-image-body">
-                  <h2 className="font-secondary text-uppercase"><a href="single.html">Where Do You Learn HTML & CSS in 2019?</a></h2>
-                  <span className="d-block mb-3">By James &mdash; Jan. 20, 2019</span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, voluptate.</p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="py-5 bg-primary">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-md-6 text-center mb-3 mb-md-0">
-              <h2 className="text-uppercase text-white mb-4" data-aos="fade-up">Try For Your Next Project</h2>
-              <a href="#" className="btn btn-bg-primary font-secondary text-uppercase" data-aos="fade-up" data-aos-delay="100">Contact Us</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <Footer />
 

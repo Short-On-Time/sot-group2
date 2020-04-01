@@ -38,7 +38,7 @@ const ViewProducts = (props) => {
         }
     }
 
-    
+
     const doesContain = (name, products) => {
         let contains = false;
         products.forEach( (product) => {
@@ -96,8 +96,6 @@ const ViewProducts = (props) => {
     }, []);
 
     return getProduct();
-    
+
 };
 export default ViewProducts;
-
-

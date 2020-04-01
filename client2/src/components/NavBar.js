@@ -4,7 +4,6 @@ import Search from '../components/Search';
 import Logout from '../components/Logout';
 import Contact from '../components/ContactButton';
 import Services from '../components/ServicesButton';
-//import logo from '../logo.svg';
 import logo from '../resources/logo.jpg';
 import UserButton from './User';
 
@@ -24,6 +23,7 @@ const NavBar = (props) => {
     const logged = () => {
       if (token) {
         return <Logout loginData={logout_user} />
+        // admin logged
       } else {
         return <LoginButton />
       }
@@ -51,16 +51,6 @@ const NavBar = (props) => {
 
                     <ul className="site-menu js-clone-nav d-none d-lg-block">
                       <li className={setActivePageHighlight("Home")}><a href="/">Home</a></li>
-                      <li className={"has-children " + setActivePageHighlight("About")}>
-                        <a href="about">About</a>
-                        <ul className="dropdown arrow-top">
-                          <li><a href="testimonials.html">Testimonials</a></li>
-                          <li><a href="products" className={setActivePageHighlight("Products")}>Products</a></li>
-                          <li><a href="gallery.html">Gallery</a></li>
-                          <li><a href="faq.html">Forum</a></li>
-                          <li><a href="why-choose-us.html">Why Choose Us</a></li>
-                        </ul>
-                      </li>
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
                       <li className={setActivePageHighlight("Services")}><Services/></li>
                       <li className={setActivePageHighlight("Contact")}><Contact /></li>

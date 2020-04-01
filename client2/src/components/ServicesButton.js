@@ -33,7 +33,7 @@ const ServicesButton = () => {
           <Card>
             <Card.Header>Professional consulting</Card.Header>
             <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
+              <Card.Title>Consulting with Dr. Dee</Card.Title>
               <Card.Text>
                 Personal consulting with Dr. Dee at scheduled time, for only $50.00.
               </Card.Text>

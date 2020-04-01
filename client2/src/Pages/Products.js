@@ -5,7 +5,7 @@ import ViewProducts from '../components/ViewProducts';
 import Footer from '../components/Footer';
 
 const Products = (props) => {
-    
+
     return (
         <div className="AboutPage">
             <div id="overlayer"></div>

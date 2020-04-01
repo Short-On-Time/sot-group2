@@ -30,8 +30,8 @@ function buildPayload(user) {
   return {
     user: {
       id: user.id,
-      "is_premium": user.is_premium,
-      "is_admin": user.is_admin,
+      "is_premium": false,
+      "is_admin": false
     }
   }
 }
@@ -43,13 +43,15 @@ export const signup = async (req, res) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
+    is_admin: false,
+    is_premium: false
   });
 
   const salt = await bcrypt.genSalt(10);
   save_user.password = await bcrypt.hash(req.body.password, salt);
-
   save_user.save(function (err, save_user) {
     console.log('saved =>', save_user);
+    console.log('err =>', err);
   });
 
   const payload = buildPayload(save_user)
