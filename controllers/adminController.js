@@ -252,6 +252,11 @@ export const addUser = async (req, res) => {
     is_admin: req.body.is_admin,
     is_premium: req.body.is_premium,
   });
+
+  //actually salt the password LOL
+  const salt = await bcrypt.genSalt(10);
+  save_user.password = await bcrypt.hash(req.body.password, salt);
+
   save_user.save(function (err, save_user) {
     if(err) {
       return res.status(400).json(err);
@@ -265,6 +270,13 @@ export const addUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   initMongoose()
   const username = req.params.username;
+
+  //check to see if password was changed
+  if(req.body.password) {
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
+  }
+
   User.findOneAndUpdate({username: username}, req.body, {new: true}, (err, data) => {
     if(err) {
       res.status(400).json({err});
