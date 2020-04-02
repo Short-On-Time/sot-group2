@@ -10,8 +10,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd client2 && rm -rf node_modules && npm install && npm run build",
-    "start-dev": "concurrently \"nodemon server\" \"cd client2 && npm start\"",
+    "heroku-postbuild": "cd client && rm -rf node_modules && npm install && npm run build",
+    "start-dev": "concurrently \"nodemon server\" \"cd client && npm start\"",
     "prepDB": "cd prepDB && node emptyGlossary.js && node emptyRecipes.js && node populateGlossary.js && node populateRecipes.js"
   },
   "authors": [
