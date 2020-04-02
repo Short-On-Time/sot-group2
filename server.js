@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 /* serve static files - see http://expressjs.com/en/starter/static-files.html */
-app.use('/', express.static('./client2/build'));
-app.use(express.static('./client2/build'))
+app.use('/', express.static('./client/build'));
+app.use(express.static('./client/build'))
 
 //https://enable-cors.org/server_expressjs.html
 app.use(function(req, res, next) {
@@ -45,7 +45,7 @@ app.use('/api/stripe/', chargesRouter);
 
 app.all('/*', (req, res) => {
     // res.status(201).json({message: "nothing here!"});
-    res.sendFile(path.resolve("./client2/build/index.html"));
+    res.sendFile(path.resolve("./client/build/index.html"));
 });
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));

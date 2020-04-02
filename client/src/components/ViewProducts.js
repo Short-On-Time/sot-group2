@@ -66,7 +66,7 @@ const ViewProducts = (props) => {
     }
 
     useEffect( () => {
-      axios.get(`http://localhost:${config.server_port}/api/users/get_product`)
+      axios.get(`/api/users/get_product`)
         .then(res => {
             const products = res.data;
 

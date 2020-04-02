@@ -8,7 +8,7 @@ export default class AdminViewUsers extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:${config.server_port}/api/admin/get_user`)
+    axios.get(`/api/admin/get_user`)
       .then(res => {
         const users = res.data;
         this.setState({ users });
@@ -17,11 +17,11 @@ export default class AdminViewUsers extends React.Component {
 
   deleteUser(e) {
     const username = e.target.value;
-    axios.delete(`http://localhost:${config.server_port}/api/admin/delete_user/${username}`)
+    axios.delete(`/api/admin/delete_user/${username}`)
       .then(res => {
         console.log(`Deleted ${res.data.title}!`)
       });
-    axios.get(`http://localhost:${config.server_port}/api/admin/get_user`)
+    axios.get(`/api/admin/get_user`)
       .then(res => {
         const users = res.data;
         this.setState({ users });

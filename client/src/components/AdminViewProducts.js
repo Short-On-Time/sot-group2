@@ -9,24 +9,24 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import {TiDocumentAdd} from "react-icons/ti";
 
   const AdminViewProducts = props => {
-    const [products, setProducts] = useState([]); 
-    const [selectedItem, setSelectedItem] = useState([]);  
-  
+    const [products, setProducts] = useState([]);
+    const [selectedItem, setSelectedItem] = useState([]);
+
     useEffect(() => {
       axios
-        .get(`http://localhost:${config.server_port}/api/admin/get_product`)
+        .get(`/api/admin/get_product`)
         .then(res => {
           setProducts(res.data);
         });
     }, []);
-  
+
     const deleteGloss = e => {
       const name = e.target.value;
-    axios.delete(`http://localhost:${config.server_port}/api/admin/delete_product/${name}`) //this
+    axios.delete(`/api/admin/delete_product/${name}`) //this
       .then(res => {
         console.log(`Deleted ${res.data.name}!`)
       });
-    axios.get(`http://localhost:${config.server_port}/api/admin/get_product`)
+    axios.get(`/api/admin/get_product`)
       .then(res => {
         setProducts(res.data);
       });
@@ -58,7 +58,7 @@ import {TiDocumentAdd} from "react-icons/ti";
                   <td>{products.description}</td>
                   <td class="align-middle">
                     <ButtonGroup>
-                    <AdminEditProducts                     
+                    <AdminEditProducts
                       item={products}/>
                     <Button
                       variant="danger"

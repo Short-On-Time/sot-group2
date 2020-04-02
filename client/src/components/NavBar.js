@@ -6,6 +6,7 @@ import Contact from '../components/ContactButton';
 import Services from '../components/ServicesButton';
 import logo from '../resources/logo.jpg';
 import UserButton from './User';
+import jwt from 'jsonwebtoken';
 
 const NavBar = (props) => {
     //menuItem should be the string of a navbar item
@@ -28,12 +29,28 @@ const NavBar = (props) => {
         return <LoginButton />
       }
     }
+
+    const isAdmin = () => {
+      const token = localStorage.getItem('user-token')
+      let is_admin;
+      if (token) {
+        jwt.verify(token, 'herbs', function(err, decoded) {
+            console.log(decoded.user_info);
+            is_admin = decoded.user_info.is_admin
+        });
+
+        if (is_admin) {
+          return <a href="/admin">Admin Panel</a>
+        }
+      }
+
+    }
     // console.log("==> user_logged: " + token);
 
     return(
       <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
         <div className="container">
-          <div className="site-navbar bg-light">
+          <div className="site-navbar">
             <div className="row align-items-center">
               <div className="col-2">
                 <h2 className="mb-0 site-logo">
@@ -54,9 +71,10 @@ const NavBar = (props) => {
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
                       <li className={setActivePageHighlight("Services")}><Services/></li>
                       <li className={setActivePageHighlight("Contact")}><Contact /></li>
+                      <li>{ isAdmin() }</li>
                       <li>{ logged() }</li>
                       <li><Search /></li>
-                      <li className={setActivePageHighlight("User")}><UserButton /></li>
+                      {/*<li className={setActivePageHighlight("User")}><UserButton /></li>*/}
                     </ul>
                   </div>
                 </nav>

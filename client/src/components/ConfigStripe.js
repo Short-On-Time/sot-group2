@@ -14,12 +14,12 @@ const stripeBtn = (props) => {
       token: token
     };
 
-    axios.post("http://localhost:3001/api/stripe/charges", body)
+    axios.post("/api/stripe/charges", body)
     .then(response => {
       console.log(response);
       alert("Payment Success");
 
-      axios.post("http://localhost:3001/api/users/user_premium", {email: "q@a.com"}).then(response => {
+      axios.post("/api/users/user_premium", {email: "q@a.com"}).then(response => {
         console.log(response);
       }).catch(error => {
         console.log("Setting user to premium error: ", error);

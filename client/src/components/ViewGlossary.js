@@ -38,7 +38,7 @@ const ViewGlossary = (props) => {
         }
     }
 
-    
+
     const doesContain = (title, glossary) => {
         let contains = false;
         glossary.forEach( (item) => {
@@ -66,7 +66,7 @@ const ViewGlossary = (props) => {
     }
 
     useEffect( () => {
-      axios.get(`http://localhost:${config.server_port}/api/users/get_glossary`)
+      axios.get('/api/users/get_glossary')
         .then(res => {
             const items = res.data;
             const compare = (a,b) => {
@@ -95,6 +95,6 @@ const ViewGlossary = (props) => {
     }, []);
 
     return getItem();
-    
+
 };
 export default ViewGlossary;

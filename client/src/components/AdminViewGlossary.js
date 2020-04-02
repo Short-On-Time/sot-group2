@@ -18,11 +18,12 @@ const AdminViewGlossary = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+      .get(`/api/admin/get_glossary`)
       .then(res => {
         setGlossary(res.data);
       });
   }, []);
+
 
   const changeView = (e) => {
       if (e.target.checked){
@@ -35,13 +36,13 @@ const AdminViewGlossary = props => {
           onlyDrafts: e.target.checked,
           toggleText: "Published" });
       }
-       
+
   };
 
   return (
     <div>
       <div class="admin-toggle">
-      <Form.Check 
+      <Form.Check
     type="switch"
     id="custom-switch"
     label={"Currently viewing: " + viewDrafts.toggleText}

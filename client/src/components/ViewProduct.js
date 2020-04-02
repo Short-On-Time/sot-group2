@@ -12,15 +12,15 @@ const ViewProduct = (props) => {
             <p className="text-primary"><b>Ailment: </b> {product.ailment}</p>,
             <p className="text-primary"><b>Description: </b> {product.description}</p>
         ];
-        
+
         return JSX;
     }
 
     useEffect( () => {
-      axios.get(`http://localhost:${config.server_port}/api/users/get_product/${props.name}`)
+      axios.get(`/api/users/get_product/${props.name}`)
         .then(res => {
             const product = res.data;
-            
+
             setProduct(product);
         })
     }, []);
@@ -30,6 +30,6 @@ const ViewProduct = (props) => {
         { createProduct(product) }
       </div>
     );
-    
+
 };
 export default ViewProduct;

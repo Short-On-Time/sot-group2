@@ -7,7 +7,7 @@ import config from "../config.js";
 import { FaRegEdit } from "react-icons/fa";
 
 const AdminEditGlossary = props => {
- 
+
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState(props.item.title);
   const [definition, setDefinition] = useState(props.item.definition);
@@ -15,7 +15,7 @@ const AdminEditGlossary = props => {
   const [isPublished, setIsPublished] = useState(props.item.is_published);
 
   const openModal = () => {
-    setModal(true);    
+    setModal(true);
   };
 
   const handleClose = () => {
@@ -32,7 +32,7 @@ const AdminEditGlossary = props => {
     };
     console.log("This is data", data);
     axios.put(
-      `http://localhost:${config.server_port}/api/admin/update_glossary/${data.title}`,
+      `/api/admin/update_glossary/${data.title}`,
       data
     ).then(
       response => {
@@ -40,7 +40,8 @@ const AdminEditGlossary = props => {
         window.location.reload(false);
       }
     )
-    handleClose();    
+
+    handleClose();
   };
 
   return (
