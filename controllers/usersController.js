@@ -28,10 +28,11 @@ function signJWT(payload, res) {
 
 function buildPayload(user) {
   return {
-    user: {
+    user_info: {
       id: user.id,
-      "is_premium": false,
-      "is_admin": false
+      email: user.email,
+      is_premium: user.is_premium,
+      is_admin: user.is_admin
     }
   }
 }
@@ -43,8 +44,8 @@ export const signup = async (req, res) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-    is_admin: false,
-    is_premium: false
+    is_admin: req.body.is_admin,
+    is_premium: req.body.is_premium
   });
 
   const salt = await bcrypt.genSalt(10);
@@ -77,6 +78,7 @@ export const signin = async (req, res) => {
     });
   }
   const payload = buildPayload(user)
+  console.log(payload);
   signJWT(payload, res)
 };
 
