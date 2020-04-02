@@ -135,7 +135,8 @@ const LoginButton = () => {
               Login
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal.Footer>
+      </Modal>
       </Form>
     </>
   );
