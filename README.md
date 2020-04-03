@@ -1,4 +1,4 @@
-# Short On Time ™
+# Short On Time™
 ## Website:
 https://short-on-time.herokuapp.com/
 
