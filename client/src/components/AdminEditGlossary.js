@@ -31,7 +31,7 @@ const AdminEditGlossary = props => {
 		};
 		console.log("This is data", data);
 		axios.put(
-			`/api/admin/update_glossary/${data.title}`,
+			`http://localhost:3001/api/admin/update_glossary/${data._id}`,
 			data
 		).then(
 			response => {

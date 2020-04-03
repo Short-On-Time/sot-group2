@@ -15,8 +15,8 @@ export default class AdminViewUsers extends React.Component {
 	}
 
 	deleteUser(e) {
-		const username = e.target.value;
-		axios.delete(`/api/admin/delete_user/${username}`).then(res => {
+		const id = e.target.value;
+		axios.delete(`/api/admin/delete_user/${id}`).then(res => {
 			console.log(`Deleted ${res.data.title}!`)
 		});
 		axios.get(`/api/admin/get_user`).then(res => {
@@ -44,7 +44,7 @@ export default class AdminViewUsers extends React.Component {
 								<input type="checkbox" name="is_admin" checked={user.is_admin} disabled />
 								<a class="btn btn-primary text-white px-4" href={`/admin/edit_user?key=${user._id}`}>EDIT</a>
 								{/*https://stackoverflow.com/questions/34875557/creating-custom-function-in-react-component*/}
-								<button class="btn btn-primary text-white px-4" onClick={this.deleteUser.bind(this)} value={user.username}>DELETE</button>
+								<button class="btn btn-primary text-white px-4" onClick={this.deleteUser.bind(this)} value={user._id}>DELETE</button>
 							</tr>
 						)
 					})

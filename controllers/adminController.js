@@ -37,8 +37,8 @@ export const addProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Product.findOneAndUpdate({name: name}, req.body, {new: true} ,(err, data) => {
+  const id = req.params.id;
+  Product.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -54,8 +54,8 @@ export const updateProduct = async (req, res) => {
 
 export const getProduct = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Product.findOne({name: name}, (err, data) => {
+  const id = req.params.id;
+  Product.findOne({_id: id}, (err, data) => {
     if(!data) {
       res.status(400).json({
         message: 'Product does not exist!',
@@ -75,8 +75,8 @@ export const getProductList = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Product.findOneAndDelete({name: name}, (err, data) => {
+  const id = req.params.id;
+  Product.findOneAndDelete({_id: id}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -114,8 +114,8 @@ export const addRecipe = async (req, res) => {
 
 export const updateRecipe = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Recipe.findOneAndUpdate({name: name}, req.body, {new: true} ,(err, data) => {
+  const id = req.params.id;
+  Recipe.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -131,8 +131,8 @@ export const updateRecipe = async (req, res) => {
 
 export const getRecipe = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Recipe.findOne({name: name}, (err, data) => {
+  const id = req.params.id;
+  Recipe.findOne({_id: id}, (err, data) => {
     if(!data) {
       res.status(400).json({
         message: 'Recipe does not exist!',
@@ -152,8 +152,8 @@ export const getRecipeList = async (req, res) => {
 
 export const deleteRecipe = async (req, res) => {
   initMongoose()
-  const name = req.params.name;
-  Recipe.findOneAndDelete({name: name}, (err, data) => {
+  const id = req.params.id;
+  Recipe.findOneAndDelete({_id: id}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -189,8 +189,8 @@ export const addGlossary = async (req, res) => {
 
 export const updateGlossary = async (req, res) => {
   initMongoose()
-  const title = req.params.title;
-  Glossary.findOneAndUpdate({title: title}, req.body, {new: true}, (err, data) => {
+  const id = req.params.id;
+  Glossary.findOneAndUpdate({_id: id}, req.body, {new: true}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -206,8 +206,8 @@ export const updateGlossary = async (req, res) => {
 
 export const getGlossary = async (req, res) => {
   initMongoose()
-  const title = req.params.title;
-  Glossary.findOne({title: title}, (err, data) => {
+  const id = req.params.id;
+  Glossary.findOne({_id: id}, (err, data) => {
     if(!data) {
       res.status(400).json({
         message: 'Glossary does not exist!',
@@ -227,8 +227,8 @@ export const getGlossaryList = async (req, res) => {
 
 export const deleteGlossary = async (req, res) => {
   initMongoose()
-  const title = req.params.title;
-  Glossary.findOneAndDelete({title: title}, (err, data) => {
+  const id = req.params.id;
+  Glossary.findOneAndDelete({_id: id}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -269,7 +269,7 @@ export const addUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   initMongoose()
-  const username = req.params.username;
+  const id = req.params.id;
 
   //check to see if password was changed
   if(req.body.password) {
@@ -277,7 +277,7 @@ export const updateUser = async (req, res) => {
     req.body.password = await bcrypt.hash(req.body.password, salt);
   }
 
-  User.findOneAndUpdate({username: username}, req.body, {new: true}, (err, data) => {
+  User.findOneAndUpdate({_id: id}, req.body, {new: true}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -293,8 +293,8 @@ export const updateUser = async (req, res) => {
 
 export const getUser = async (req, res) => {
   initMongoose()
-  const username = req.params.username;
-  User.findOne({username: username}, (err, data) => {
+  const id = req.params.id;
+  User.findOne({_id: id}, (err, data) => {
     if(!data) {
       res.status(400).json({
         message: 'User does not exist!',
@@ -314,8 +314,8 @@ export const getUserList = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   initMongoose()
-  const username = req.params.username;
-  User.findOneAndDelete({username: username}, (err, data) => {
+  const id = req.params.id;
+  User.findOneAndDelete({_id: id}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;

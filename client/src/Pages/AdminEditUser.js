@@ -5,6 +5,7 @@ import config from '../config.js';
 
 class AdminAddUser extends React.Component {
 	state = {
+    _id: "",
 		username: "",
 		email: "",
 		password: "",
@@ -31,6 +32,7 @@ class AdminAddUser extends React.Component {
 
 				//set data one at a time
 				this.setState({
+          _id: key,
 					username: data.username,
 					email: data.email,
 					password: data.password,
@@ -97,7 +99,7 @@ class AdminAddUser extends React.Component {
 	makeIt(e) {
 		var toSubmit = this.state;
 		if (toSubmit.username && toSubmit.email && toSubmit.password) {
-			axios.put(`http://localhost:${config.server_port}/api/admin/update_user/${toSubmit.username}`, toSubmit);
+			axios.put(`http://localhost:${config.server_port}/api/admin/update_user/${toSubmit._id}`, toSubmit);
 		} else {
 			console.log("not done yet");
 		}

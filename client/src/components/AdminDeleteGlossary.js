@@ -18,12 +18,12 @@ const AdminDeleteGlossary = props => {
 	};
 
 	const deleteGloss = e => {
-		const title = props.glossary.title;
+		const id = props.glossary._id;
 
 		axios.delete(
-			`http://localhost:${config.server_port}/api/admin/delete_glossary/${title}`
+			`http://localhost:${config.server_port}/api/admin/delete_glossary/${id}`
 		).then(res => {
-			console.log(`Deleted ${props.glossary.title}!`);
+			console.log(`Deleted ${id}!`);
 		});
 
 		axios.get(
