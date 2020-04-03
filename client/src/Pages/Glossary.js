@@ -5,7 +5,6 @@ import ViewGlossary from '../components/ViewGlossary';
 import Footer from '../components/Footer';
 
 const Glossary = (props) => {
-
     return (
         <div className="AboutPage">
             <div id="overlayer"></div>
@@ -45,7 +44,6 @@ const Glossary = (props) => {
                 <Footer />
             </div>
         </div>
-
     );
 }
 
