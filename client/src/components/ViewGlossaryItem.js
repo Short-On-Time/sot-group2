@@ -1,41 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import config from './config.js';
+// import config from './config.js';
 import Card from 'react-bootstrap/Card';
 
 const ViewGlossaryItem = (props) => {
-    const [glossaryItem, setGlossaryItem] = useState({});
+	const [glossaryItem, setGlossaryItem] = useState({});
 
-    const createGlossaryItem = (item) => {
-        const JSX = [
-            <h3>{item.title}</h3>,
-              <Card className="text-justify" style={{ width: 'auto' }}>
-                <Card.Body>
-                  <Card.Text>
-                    <b>Usage</b>: {item.usage} <br/><br/>
-                    <b>Definition</b>: {item.definition}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-        ];
+	const createGlossaryItem = (item) => {
+		const JSX = [
+			<h3>{item.title}</h3>,
+			<Card className="text-justify" style={{ width: 'auto' }}>
+				<Card.Body>
+					<Card.Text>
+						<b>Usage</b>: {item.usage} <br /><br />
+						<b>Definition</b>: {item.definition}
+					</Card.Text>
+				</Card.Body>
+			</Card>
+		];
 
-        return JSX;
-    }
+		return JSX;
+	}
 
-    useEffect( () => {
-      axios.get(`/api/users/get_glossary/${props.title}`)
-        .then(res => {
-            const item = res.data;
+	useEffect(() => {
+		axios.get(`/api/users/get_glossary/${props.title}`)
+			.then(res => {
+				const item = res.data;
+				setGlossaryItem(item);
+			})
+	}, []);
 
-            setGlossaryItem(item);
-        })
-    }, []);
-
-    return (
-      <div className="glossary-item">
-        { createGlossaryItem(glossaryItem) }
-      </div>
-    );
-
+	return (
+		<div className="glossary-item">
+			{createGlossaryItem(glossaryItem)}
+		</div>
+	);
 };
+
 export default ViewGlossaryItem;

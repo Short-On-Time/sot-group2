@@ -4,6 +4,8 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+// Please rename this file to something that reflects its purpose.
+
 const UserButton = () => {
 	const [show, setShow] = useState(false);
 

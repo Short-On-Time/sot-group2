@@ -10,49 +10,43 @@ import Button from "react-bootstrap/Button";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
-import { MdExitToApp } from "react-icons/md";
+// import { MdExitToApp } from "react-icons/md";
 import Logout from "../components/Logout";
 
 import "../App.css";
 
 const logOutPopover = (
-    <Popover id="popover-basic">
-
-      <ListGroup variant="flush">
-        <ListGroupItem action href="/">View site! <FiEye size={16}/></ListGroupItem>
-        <Logout/>
-     </ListGroup>
-
-    </Popover>
-  );
+	<Popover id="popover-basic">
+		<ListGroup variant="flush">
+			<ListGroupItem action href="/">View site! <FiEye size={16} /></ListGroupItem>
+			<Logout />
+		</ListGroup>
+	</Popover>
+);
 
 
 const AdminNavBar = (props) => {
-  return (
+	return (
+		<Navbar bg="success" className="mb-5">
+			<Navbar.Brand>
+				<Image src="images/logo.jpg" href="/" width="250" height="55" rounded />
+			</Navbar.Brand>
 
-    <Navbar bg="success" className="mb-5">
-      <Navbar.Brand>
-          <Image src="images/logo.jpg" href="/" width="250" height="55" rounded />
-      </Navbar.Brand>
-      <Navbar.Brand>
-          <h2 className="text-light">Admin Panel{props.page}</h2>
-        </Navbar.Brand>
-      <Nav className="mr-auto">
+			<Navbar.Brand>
+				<h2 className="text-light">Admin Panel{props.page}</h2>
+			</Navbar.Brand>
 
-      <Nav.Link className="text-light" href="/admin" hidden={props.isDashboard}><FaArrowLeft/> go back</Nav.Link>
-      </Nav>
+			<Nav className="mr-auto">
+				<Nav.Link className="text-light" href="/admin" hidden={props.isDashboard}><FaArrowLeft /> go back</Nav.Link>
+			</Nav>
 
-
-      <OverlayTrigger trigger="click" placement="left" overlay={logOutPopover}>
-
-      <Button variant="success">
-       <h3 className="text-light" style={{marginBottom:'0em'}}><FaRegUserCircle size={32} color="white" style={{marginBottom:'0.5rem'}}/> Options </h3>
-      </Button>
-      </OverlayTrigger>
-
-
-    </Navbar>
-  );
+			<OverlayTrigger trigger="click" placement="left" overlay={logOutPopover}>
+				<Button variant="success">
+					<h3 className="text-light" style={{ marginBottom: '0em' }}><FaRegUserCircle size={32} color="white" style={{ marginBottom: '0.5rem' }} /> Options </h3>
+				</Button>
+			</OverlayTrigger>
+		</Navbar>
+	);
 };
 
 export default AdminNavBar;
