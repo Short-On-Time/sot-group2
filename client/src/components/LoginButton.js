@@ -39,7 +39,7 @@ const LoginButton = () => {
 					console.log(decodedd.user_info);
 				});
 				localStorage.setItem(`user-token`, token);
-				if (res.status == 200) {
+				if (res.status === 200) {
 					localStorage.setItem("user_logged", true);
 					setShow(false)
 					setLoginButton(false)
@@ -52,7 +52,7 @@ const LoginButton = () => {
 			console.log(data);
 			axios.post(`/api/users/signup`, data).then(res => {
 				const token = res.data.token;
-				if (res.status == 200) {
+				if (res.status === 200) {
 					registrationOk();
 					setShow(false)
 					setLoginButton(false)

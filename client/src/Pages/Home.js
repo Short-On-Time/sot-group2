@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
+import Model from '../components/Model';
 import Footer from '../components/Footer';
 
 const Home = () => {
@@ -93,14 +94,15 @@ const Home = () => {
 								<span className="caption d-block mb-2 font-secondary font-weight-bold">Welcome to my site</span>
 								<h2 className="site-section-heading text-uppercase font-secondary mb-5">Information in a fun, inviting, and easily digestible format</h2>
 								<p>My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>
-
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div className="site-half block">
-					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" style={{ backgroundImage: "url('images/hero_1.jpg')" }} data-aos="fade"></div>
+					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
+						<Model />
+					</div>
 					<div className="container">
 						<div className="row no-gutters align-items-stretch">
 							<div className="col-lg-5 mr-lg-auto py-5 text-justify">
