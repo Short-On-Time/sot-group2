@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import config from './config.js';
+import config from './config.js';
 import ViewRemedy from './ViewRemedy'
 import Error from './Error'
 
-const ViewRemedys = (props) => {
-	//TODO: find a way to eliminate setRemedysJSX
-	const [remedys, setRemedys] = useState([]);
-	const [remedysJSX, setRemedysJSX] = useState([]);
+const ViewRemedies = (props) => {
+	//TODO: find a way to eliminate setRemediesJSX
+	const [remedies, setRemedies] = useState([]);
+	const [remediesJSX, setRemediesJSX] = useState([]);
 
 	const Remedy = (remedy, letter) => {
 		const getFirstLetter = (str) => {
@@ -16,14 +16,14 @@ const ViewRemedys = (props) => {
 
 
 		if (getFirstLetter(remedy.name) === letter.letter || (!isNaN(getFirstLetter(remedy.name)) && letter.letter === "#")) {
-			return (<div><a href={"/remedys/" + remedy.name} className="text-secondary">{remedy.name}</a></div>);
+			return (<div><a href={"/remedies/" + remedy.name} className="text-secondary">{remedy.name}</a></div>);
 		}
 		else if (!isNaN(getFirstLetter(remedy.name)) && letter.letter !== "#") {
 			letter.letter = "#";
 			return (
 				<div className="glossary-letter card">
 					<h5 id={letter.letter}>{letter.letter}</h5>
-					<a href={"/remedys/" + remedy.name} className="text-secondary">{remedy.name}</a>
+					<a href={"/remedies/" + remedy.name} className="text-secondary">{remedy.name}</a>
 				</div>
 			);
 		}
@@ -32,16 +32,16 @@ const ViewRemedys = (props) => {
 			return (
 				<div className="glossary-letter card">
 					<h5 id={letter.letter}>{letter.letter}</h5>
-					<a href={"/remedys/" + remedy.name} className="text-secondary">{remedy.name}</a>
+					<a href={"/remedies/" + remedy.name} className="text-secondary">{remedy.name}</a>
 				</div>
 			);
 		}
 	}
 
 
-	const doesContain = (name, remedys) => {
+	const doesContain = (name, remedies) => {
 		let contains = false;
-		remedys.forEach((remedy) => {
+		remedies.forEach((remedy) => {
 			if (remedy.name === name) {
 				contains = true;
 			}
@@ -51,13 +51,13 @@ const ViewRemedys = (props) => {
 
 	const getRemedy = () => {
 		if (!props.name) {
-			return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary">{remedysJSX}</div>;
+			return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary">{remediesJSX}</div>;
 		}
-		else if (remedysJSX.size === 0) {
-			return <p>Loading Remedys...</p>
+		else if (remediesJSX.size === 0) {
+			return <p>Loading Remedies...</p>
 		}
-		else if (doesContain(props.name, remedys) === false && remedys.length > 0) {
-			document.location = "/remedys"
+		else if (doesContain(props.name, remedies) === false && remedies.length > 0) {
+			document.location = "/remedies"
 			return (<div><h3>Remedy not found</h3><p>Redirecting..</p></div>);
 		}
 		else {
@@ -66,9 +66,9 @@ const ViewRemedys = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`/api/users/get_remedy`)
+		axios.get(`localhost:${config.server_port}/api/users/get_remedy`)
 			.then(res => {
-				const remedys = res.data;
+				const remedies = res.data;
 
 				const compare = (a, b) => {
 					if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -80,17 +80,17 @@ const ViewRemedys = (props) => {
 					return 0;
 				}
 
-				remedys.sort(compare);
+				remedies.sort(compare);
 
 				const lastLetter = { letter: "" }
-				setRemedys(remedys);
-				setRemedysJSX(remedys.map(remedy => Remedy(remedy, lastLetter)));
+				setRemedies(remedies);
+				setRemediesJSX(remedies.map(remedy => Remedy(remedy, lastLetter)));
 			})
 			.catch(function (e) {
 				console.log(e.response)
 				if (e) {
-					setRemedysJSX(<Error error={e} returnURL="/" />)
-					setRemedys([])
+					setRemediesJSX(<Error error={e} returnURL="/" />)
+					setRemedies([])
 				}
 			});
 	}, []);
@@ -98,4 +98,4 @@ const ViewRemedys = (props) => {
 	return getRemedy();
 
 };
-export default ViewRemedys;
+export default ViewRemedies;

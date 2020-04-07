@@ -6,7 +6,7 @@ import axios from "axios";
 import config from "../config.js";
 import { FaRegEdit } from "react-icons/fa";
 
-const AdminEditRemedys = props => {
+const AdminEditRemedies = props => {
 	const [modal, setModal] = useState(false);
 	const [name, setName] = useState(props.item.name);
 	const [ailment, setAilment] = useState(props.item.ailment);
@@ -144,4 +144,4 @@ const AdminEditRemedys = props => {
 	);
 };
 
-export default AdminEditRemedys;
+export default AdminEditRemedies;

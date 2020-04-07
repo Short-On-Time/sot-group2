@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewProducts from '../components/ViewProducts';
+import ViewProducts from '../components/ViewRemedies';
 import Search from '../components/Search';
 import NavBar from '../components/NavBar';
 // import { Link } from 'react-router';

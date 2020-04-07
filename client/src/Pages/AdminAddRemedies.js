@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import config from '../config.js';
 
-class AdminAddRemedys extends React.Component {
+class AdminAddRemedies extends React.Component {
 	state = {
 		name: "",
 		ailment: "",
@@ -141,4 +141,4 @@ class AdminAddRemedys extends React.Component {
 	}
 };
 
-export default AdminAddRemedys;
+export default AdminAddRemedies;

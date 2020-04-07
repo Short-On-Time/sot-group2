@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../App.css";
-import AdminViewRemedys from "../components/AdminViewRemedys";
+import AdminViewRemedies from "../components/AdminViewRemedies";
 import AdminNavBar from "../components/AdminNavBar";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
-const AdminRemedys = () => {
+const AdminRemedies = () => {
 	const [query, setQuery] = useState("");
 	const setFilter = e => {
 		setQuery(e.target.value);
@@ -27,7 +27,7 @@ const AdminRemedys = () => {
 							</InputGroup.Append>
 						</InputGroup>
 
-						<AdminViewRemedys query={query} />
+						<AdminViewRemedies query={query} />
 					</div>
 				</Container>
 			</div>
@@ -35,4 +35,4 @@ const AdminRemedys = () => {
 	);
 };
 
-export default AdminRemedys;
+export default AdminRemedies;

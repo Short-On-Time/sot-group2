@@ -4,19 +4,19 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import AdminEditRemedys from "../Pages/AdminEditRemedys";
+import AdminEditRemedies from "../Pages/AdminEditRemedies";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { TiDocumentAdd } from "react-icons/ti";
 
-const AdminViewRemedys = props => {
-	const [remedys, setRemedys] = useState([]);
+const AdminViewRemedies = props => {
+	const [remedies, setRemedies] = useState([]);
 	const [selectedItem, setSelectedItem] = useState([]);
 
 	useEffect(() => {
 		axios
 			.get(`/api/admin/get_remedy`)
 			.then(res => {
-				setRemedys(res.data);
+				setRemedies(res.data);
 			});
 	}, []);
 
@@ -28,7 +28,7 @@ const AdminViewRemedys = props => {
 			});
 		axios.get(`/api/admin/get_remedy`)
 			.then(res => {
-				setRemedys(res.data);
+				setRemedies(res.data);
 			});
 	};
 
@@ -45,23 +45,23 @@ const AdminViewRemedys = props => {
 					</tr>
 				</thead>
 				<tbody>
-					{remedys.filter(remedys =>
-						remedys.name.toLowerCase().includes(props.query.toLowerCase())
-					).map(remedys => {
+					{remedies.filter(remedies =>
+						remedies.name.toLowerCase().includes(props.query.toLowerCase())
+					).map(remedies => {
 						return (
-							<tr key={remedys._id} name={remedys.name}>
-								<td class="align-middle">{remedys.name}</td>
-								<td>{remedys.ailment}</td>
-								<td>{remedys.body_part}</td>
-								<td>{remedys.description}</td>
+							<tr key={remedies._id} name={remedies.name}>
+								<td class="align-middle">{remedies.name}</td>
+								<td>{remedies.ailment}</td>
+								<td>{remedies.body_part}</td>
+								<td>{remedies.description}</td>
 								<td class="align-middle">
 									<ButtonGroup>
-										<AdminEditRemedys
-											item={remedys} />
+										<AdminEditRemedies
+											item={remedies} />
 										<Button
 											variant="danger"
 											onclick={deleteGloss}
-											value={remedys.name}
+											value={remedies.name}
 										>
 											<FaRegTrashAlt color="white" />
 										</Button>
@@ -76,4 +76,4 @@ const AdminViewRemedys = props => {
 	);
 };
 
-export default AdminViewRemedys;
+export default AdminViewRemedies;
