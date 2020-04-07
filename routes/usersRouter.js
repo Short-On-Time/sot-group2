@@ -22,11 +22,11 @@ usersRouter.route('/get_glossary/:title').get(/*validateToken,*/ users.getGlossa
 usersRouter.route('/get_glossary').get(/*validateToken,*/ users.getGlossaryList);
 
 //user routes
-//usersRouter.get('/view_user', users.viewUserList)
-//usersRouter.get('/view_user/:username', users.viewUser);
-//usersRouter.route('/view_self').get(validateToken, users.viewSelf);
-//usersRouter.route('/edit_self').post(validateToken, users.editSelf);
-//usersRouter.route('/delete_self').delete(validateToken, users.deleteSelf);
+usersRouter.get('/view_user', users.viewUserList)
+usersRouter.get('/view_user/:username', users.viewUser);
+usersRouter.route('/view_self').get(validateToken, users.viewSelf);
+usersRouter.route('/edit_self').post(validateToken, users.editSelf);
+usersRouter.route('/delete_self').delete(validateToken, users.deleteSelf);
 
 
 export default usersRouter;
