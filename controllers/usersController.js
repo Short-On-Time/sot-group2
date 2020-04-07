@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
-import Product from '../models/ProductModel.js';
+import Remedy from '../models/RemedyModel.js';
 import Recipe from '../models/RecipeModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
@@ -82,13 +82,13 @@ export const signin = async (req, res) => {
   signJWT(payload, res)
 };
 
-export const getProduct = async (req, res) => {
+export const getRemedy = async (req, res) => {
   initMongoose()
   const name = req.params.name;
-  Product.findOne({name: name, is_published: true}, (err, data) => {
+  Remedy.findOne({name: name, is_published: true}, (err, data) => {
     if(!data) {
       res.status(400).json({
-        message: 'Product does not exist!',
+        message: 'Remedy does not exist!',
       });
     } else {
       res.status(200).json(data);
@@ -96,9 +96,9 @@ export const getProduct = async (req, res) => {
   });
 };
 
-export const getProductList = async (req, res) => {
+export const getRemedyList = async (req, res) => {
   initMongoose()
-  Product.find({is_published: true}, (err, data) => {
+  Remedy.find({is_published: true}, (err, data) => {
     res.status(200).json(data);
   });
 };

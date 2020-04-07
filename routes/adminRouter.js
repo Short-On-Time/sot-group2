@@ -2,12 +2,12 @@ import * as admin from '../controllers/adminController.js';
 import express from 'express'; //refers to Express the middleware helper for Node.js
 const adminRouter = express.Router();
 
-//product routes
-adminRouter.post('/add_product', admin.addProduct);
-adminRouter.put('/update_product/:id', admin.updateProduct);
-adminRouter.get('/get_product/:id', admin.getProduct);
-adminRouter.get('/get_product', admin.getProductList);
-adminRouter.delete('/delete_product/:id', admin.deleteProduct);
+//remedy routes
+adminRouter.post('/add_remedy', admin.addRemedy);
+adminRouter.put('/update_remedy/:id', admin.updateRemedy);
+adminRouter.get('/get_remedy/:id', admin.getRemedy);
+adminRouter.get('/get_remedy', admin.getRemedyList);
+adminRouter.delete('/delete_remedy/:id', admin.deleteRemedy);
 
 //recipe routes
 adminRouter.post('/add_recipe', admin.addRecipe);
