@@ -9,9 +9,9 @@ usersRouter.post('/signin', users.signin);
 
 usersRouter.post('/user_premium', users.userPremium);
 
-//product routes
-usersRouter.route('/get_product/:name').get(/*validateToken,*/ users.getProduct);
-usersRouter.route('/get_product').get(/*validateToken,*/ users.getProductList);
+//remedy routes
+usersRouter.route('/get_remedy/:name').get(/*validateToken,*/ users.getRemedy);
+usersRouter.route('/get_remedy').get(/*validateToken,*/ users.getRemedyList);
 
 //recipe routes
 usersRouter.route('/get_recipe/:name').get(/*validateToken,*/ users.getRecipe);

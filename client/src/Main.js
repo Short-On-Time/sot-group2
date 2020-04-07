@@ -9,16 +9,16 @@ import Admin from './Pages/Admin';
 import AdminGlossary from './Pages/AdminGlossary';
 import AdminAddGlossary from './Pages/AdminAddGlossary';
 
-import AdminProducts from './Pages/AdminProducts';
-import AdminAddProducts from './Pages/AdminAddProducts'
-import AdminEditProducts from './Pages/AdminEditProducts';
+import AdminRemedys from './Pages/AdminRemedys';
+import AdminAddRemedys from './Pages/AdminAddRemedys'
+import AdminEditRemedys from './Pages/AdminEditRemedys';
 
 import AdminUsers from './Pages/AdminUsers';
 import AdminAddUser from './Pages/AdminAddUser';
 import AdminEditUser from './Pages/AdminEditUser';
 
 import PageNotFound from './Pages/PageNotFound';
-import Products from './Pages/Products';
+import Remedys from './Pages/Remedys';
 
 const Main = () => {
 	return (
@@ -27,8 +27,8 @@ const Main = () => {
 			<Route exact path='/about' component={About} />
 			<Route exact path='/glossary' component={Glossary} />
 			<Route exact path='/glossary/:title' component={Glossary} />
-			<Route exact path='/products' component={Products} />
-			<Route exact path='/products/:name' component={Products} />
+			<Route exact path='/remedys' component={Remedys} />
+			<Route exact path='/remedys/:name' component={Remedys} />
 
 			{/* <Route exact path='/admin' component={Admin}/> */}
 
@@ -39,9 +39,9 @@ const Main = () => {
 						<Route path={`${url}/`} component={Admin} exact />
 						<Route path={`${url}/glossary_list`} component={AdminGlossary} />
 						<Route path={`${url}/add_glossary`} component={AdminAddGlossary} />
-						<Route path={`${url}/products_list`} component={AdminProducts} />
-						<Route path={`${url}/add_products`} component={AdminAddProducts} />
-						<Route path={`${url}/edit_products`} component={AdminEditProducts} />
+						<Route path={`${url}/remedys_list`} component={AdminRemedys} />
+						<Route path={`${url}/add_remedys`} component={AdminAddRemedys} />
+						<Route path={`${url}/edit_remedys`} component={AdminEditRemedys} />
 						<Route path={`${url}/user_list`} component={AdminUsers} />
 						<Route path={`${url}/add_user`} component={AdminAddUser} />
 						<Route path={`${url}/edit_user`} component={AdminEditUser} />
@@ -54,9 +54,9 @@ const Main = () => {
     		<Route exact path='/admin/add_glossary/' component={AdminAddGlossary}/>
     		<Route exact path='/admin/edit_glossary' component={AdminEditGlossary}/>
 
-    		<Route exact path='/admin/products_list/' component={AdminProducts}/>
-    		<Route exact path='/admin/add_products/' component={AdminAddProducts}/>
-    		<Route exact path='/admin/edit_products' component={AdminEditProducts}/>
+    		<Route exact path='/admin/remedys_list/' component={AdminRemedys}/>
+    		<Route exact path='/admin/add_remedys/' component={AdminAddRemedys}/>
+    		<Route exact path='/admin/edit_remedys' component={AdminEditRemedys}/>
         	*/
 			}
 

@@ -1,6 +1,6 @@
 /* Dependencies */
 import mongoose from 'mongoose';
-import Product from '../models/ProductModel.js';
+import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
 import Recipe from '../models/RecipeModel.js';
 import User from '../models/UserModel.js';
@@ -14,10 +14,10 @@ function initMongoose() {
   db.on('error', console.error.bind(console, 'connection error:'));
 }
 
-export const addProduct = async (req, res) => {
+export const addRemedy = async (req, res) => {
   initMongoose()
-  let save_product
-  save_product = new Product({
+  let save_remedy
+  save_remedy = new Remedy({
     name: req.body.name,
     ailment: req.body.ailment,
     body_part: req.body.body_part,
@@ -25,26 +25,26 @@ export const addProduct = async (req, res) => {
     is_premium: req.body.is_premium,
     is_published: req.body.is_published,
   });
-  save_product.save(function (err, save_product) {
+  save_remedy.save(function (err, save_remedy) {
     if(err) {
       return res.status(400).json(err);
     } else {
-      console.log('saved =>', save_product);
-      return res.status(200).json(save_product);
+      console.log('saved =>', save_remedy);
+      return res.status(200).json(save_remedy);
     }
   });
 };
 
-export const updateProduct = async (req, res) => {
+export const updateRemedy = async (req, res) => {
   initMongoose()
   const id = req.params.id;
-  Product.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
+  Remedy.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
     } else if (!data) {
       res.status(500).json({
-        message: "Product does not exist!"
+        message: "Remedy does not exist!"
       });
     } else {
       res.status(200).json(data);
@@ -52,13 +52,13 @@ export const updateProduct = async (req, res) => {
   });
 };
 
-export const getProduct = async (req, res) => {
+export const getRemedy = async (req, res) => {
   initMongoose()
   const id = req.params.id;
-  Product.findOne({_id: id}, (err, data) => {
+  Remedy.findOne({_id: id}, (err, data) => {
     if(!data) {
       res.status(400).json({
-        message: 'Product does not exist!',
+        message: 'Remedy does not exist!',
       });
     } else {
       res.status(200).json(data);
@@ -66,23 +66,23 @@ export const getProduct = async (req, res) => {
   });
 };
 
-export const getProductList = async (req, res) => {
+export const getRemedyList = async (req, res) => {
   initMongoose()
-  Product.find({}, (err, data) => {
+  Remedy.find({}, (err, data) => {
     res.status(200).json(data);
   });
 };
 
-export const deleteProduct = async (req, res) => {
+export const deleteRemedy = async (req, res) => {
   initMongoose()
   const id = req.params.id;
-  Product.findOneAndDelete({_id: id}, (err, data) => {
+  Remedy.findOneAndDelete({_id: id}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
     } else if(!data) {
       res.status(400).json({
-        message: 'Product does not exist!',
+        message: 'Remedy does not exist!',
       });
     } else {
       res.status(200).json(data);
