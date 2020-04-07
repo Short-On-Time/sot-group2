@@ -66,7 +66,7 @@ const ViewRemedies = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`localhost:${config.server_port}/api/users/get_remedy`)
+		axios.get(`http://localhost:${config.server_port}/api/users/get_remedy`)
 			.then(res => {
 				const remedies = res.data;
 
