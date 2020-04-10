@@ -136,8 +136,8 @@ export const getRemedyFull = async (req, res) => {
 
 export const getRemedyFullList = async (req, res) => {
   initMongoose()
-  Remedy.find({is_published: true, is_premium: false}, (err, data) => {
-    res.status(200).json({err: err, data: data});
+  Remedy.find({is_published: true}, (err, data) => {
+    res.status(200).json(data);
   });
 };
 
