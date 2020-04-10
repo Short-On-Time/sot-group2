@@ -7,7 +7,7 @@ import config from './config/config.js';
 import usersRouter from './routes/usersRouter.js';
 import adminRouter from './routes/adminRouter.js';
 import chargesRouter from './routes/chargesRouter.js';
-import forumRouter from './routes/forumRouter.js';
+//import forumRouter from './routes/forumRouter.js';
 import cors from 'cors';
 
 //connect to database
@@ -43,7 +43,7 @@ app.use(cors());
 app.use('/api/users/', usersRouter);
 app.use('/api/admin/', adminRouter);
 app.use('/api/stripe/', chargesRouter);
-app.use('/api/forum/', forumRouter);
+//app.use('/api/forum/', forumRouter);
 
 app.all('/*', (req, res) => {
     // res.status(201).json({message: "nothing here!"});

@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
 import Remedy from '../models/RemedyModel.js';
-import Recipe from '../models/RecipeModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -82,7 +81,16 @@ export const signin = async (req, res) => {
   signJWT(payload, res)
 };
 
-export const getRemedy = async (req, res) => {
+//clean remedy
+function cleanRemedyPreview(remedy) {
+	remedy.ingredients = null;
+	remedy.amounts = null;
+	remedy.units = null;
+	remedy.description = null;
+	return remedy;
+}
+
+export const getRemedyPreview = async (req, res) => {
   initMongoose()
   const name = req.params.name;
   Remedy.findOne({name: name, is_published: true}, (err, data) => {
@@ -91,41 +99,44 @@ export const getRemedy = async (req, res) => {
         message: 'Remedy does not exist!',
       });
     } else {
+			data = cleanRemedyPreview(data);
       res.status(200).json(data);
     }
   });
 };
 
-export const getRemedyList = async (req, res) => {
+export const getRemedyPreviewList = async (req, res) => {
   initMongoose()
   Remedy.find({is_published: true}, (err, data) => {
+		var cleanedData = [];
+		data.forEach(remedy => cleanedData.push(cleanRemedyPreview(remedy)));
     res.status(200).json(data);
   });
 };
 
-export const getRecipe = async (req, res) => {
+export const getRemedyFull = async (req, res) => {
   initMongoose()
   const name = req.params.name;
-  Recipe.findOne({name: name, is_published: true}, (err, data) => {
+  Remedy.findOne({name: name, is_published: true}, (err, data) => {
     if(!data) {
       res.status(400).json({
-        message: 'Glossary does not exist!',
+        message: 'Remedy does not exist!',
       });
     } else {
-      if(data.is_premium) {
+      /*if(data.is_premium) {
         res.status(403).json({
-          message: 'Recipe is premium!'
+          message: 'Remedy is premium!'
         });
-      } else {
+      } else {*/
         res.status(200).json(data);
-      }
+      //}
     }
   });
 };
 
-export const getRecipeList = async (req, res) => {
+export const getRemedyFullList = async (req, res) => {
   initMongoose()
-  Recipe.find({is_published: true, is_premium: false}, (err, data) => {
+  Remedy.find({is_published: true, is_premium: false}, (err, data) => {
     res.status(200).json({err: err, data: data});
   });
 };

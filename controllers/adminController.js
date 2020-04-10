@@ -2,7 +2,6 @@
 import mongoose from 'mongoose';
 import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
-import Recipe from '../models/RecipeModel.js';
 import User from '../models/UserModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
@@ -19,11 +18,17 @@ export const addRemedy = async (req, res) => {
   let save_remedy
   save_remedy = new Remedy({
     name: req.body.name,
-    ailment: req.body.ailment,
+		ailment_type: req.body.ailment_type,
     body_part: req.body.body_part,
-    description: req.body.description,
+		description: req.body.description,
+
+		ingredients: req.body.ingredients,
+		amounts: req.body.amounts,
+		units: req.body.units,
+		
     is_premium: req.body.is_premium,
-    is_published: req.body.is_published,
+		is_published: req.body.is_published,
+		is_free_trial: req.body.is_free_trial
   });
   save_remedy.save(function (err, save_remedy) {
     if(err) {
@@ -90,82 +95,29 @@ export const deleteRemedy = async (req, res) => {
   });
 };
 
-export const addRecipe = async (req, res) => {
-  initMongoose()
-  let save_recipe
-  save_recipe = new Recipe({
-    name: req.body.name,
-    ingredients: req.body.ingredients,
-    amount: req.body.amount,
-    units: req.body.units,
-    description: req.body.description,
-    is_premium: req.body.is_premium,
-    is_published: req.body.is_published
-  });
-  save_recipe.save(function (err, save_recipe) {
-    if(err) {
-      return res.status(400).json(err);
-    } else {
-      console.log('saved =>', save_recipe);
-      return res.status(200).json(save_recipe);
-    }
-  });
-};
-
-export const updateRecipe = async (req, res) => {
-  initMongoose()
-  const id = req.params.id;
-  Recipe.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
-    if(err) {
-      res.status(400).json({err});
-      throw err;
-    } else if (!data) {
-      res.status(500).json({
-        message: "Recipe does not exist!"
-      });
-    } else {
-      res.status(200).json(data);
-    }
-  });
-};
-
-export const getRecipe = async (req, res) => {
-  initMongoose()
-  const id = req.params.id;
-  Recipe.findOne({_id: id}, (err, data) => {
-    if(!data) {
-      res.status(400).json({
-        message: 'Recipe does not exist!',
-      });
-    } else {
-      res.status(200).json(data);
-    }
-  });
-};
-
-export const getRecipeList = async (req, res) => {
-  initMongoose()
-  Recipe.find({}, (err, data) => {
-    res.status(200).json(data);
-  });
-};
-
-export const deleteRecipe = async (req, res) => {
-  initMongoose()
-  const id = req.params.id;
-  Recipe.findOneAndDelete({_id: id}, (err, data) => {
-    if(err) {
-      res.status(400).json({err});
-      throw err;
-    } else if(!data) {
-      res.status(400).json({
-        message: 'Recipe does not exist!',
-      });
-    } else {
-      res.status(200).json(data);
-    }
-  });
-};
+export const free_trial = async (req, res) => {
+	initMongoose();
+	var allUpdates = [];
+	if(req.body.reset_all) {
+		Remedy.updateMany({is_free_trial: true}, {is_free_trial: false}, (err, data) => {
+			if(err) {
+				res.status(400).json({err});
+				throw err;
+			} else {
+				allUpdates.push(data);
+			}
+		});
+	};
+	Remedy.updateMany({body_part: req.body.body_part}, {is_free_trial: req.body.is_free_trial}, (err, data) => {
+		if(err) {
+			res.status(400).json({err});
+			throw err;
+		} else {
+			allUpdates.push(data);
+			res.status(200).json(allUpdates);
+		}
+	});
+}
 
 export const addGlossary = async (req, res) => {
   initMongoose()
