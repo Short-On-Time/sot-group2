@@ -9,6 +9,11 @@ import usersRouter from './routes/usersRouter.js';
 import adminRouter from './routes/adminRouter.js';
 import chargesRouter from './routes/chargesRouter.js';
 import cors from 'cors';
+import Sentry from '@sentry/node';
+
+Sentry.init({ dsn: 'https://6b0b414cfb644321982e20ed8319e634@o375820.ingest.sentry.io/5195824' });
+
+// The request handler must be the first middleware on the app
 
 //connect to database
 mongoose.connect(config.db.uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => {
@@ -17,6 +22,8 @@ mongoose.connect(config.db.uri, {useNewUrlParser: true, useUnifiedTopology: true
 
 //initialize app
 const app = express();
+
+app.use(Sentry.Handlers.requestHandler());
 
 //enable request logging for development debugging
 app.use(morgan('dev'));
@@ -40,13 +47,25 @@ app.use(function(req, res, next) {
 });
 app.use(cors());
 
+
 app.use('/api/users/', usersRouter);
 app.use('/api/admin/', adminRouter);
 app.use('/api/stripe/', chargesRouter);
+
+app.use(Sentry.Handlers.errorHandler());
 
 app.all('/*', (req, res) => {
     // res.status(201).json({message: "nothing here!"});
     res.sendFile(path.resolve("./client/build/index.html"));
 });
+
+app.use(function onError(err, req, res, next) {
+  // The error id is attached to `res.sentry` to be returned
+  // and optionally displayed to the user for support.
+  res.statusCode = 500;
+  res.end(res.sentry + "\n");
+});
+
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));
