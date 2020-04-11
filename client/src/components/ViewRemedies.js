@@ -14,6 +14,9 @@ const ViewRemedies = (props) => {
 
 	let search = useLocation().search;
 	const parseURLQuery = (query) => {
+		if(!query){
+			return {}
+		}
 		let queriesText = query.split('?')[1];
 		let queries = queriesText.split('&')
 		let filters = {};
