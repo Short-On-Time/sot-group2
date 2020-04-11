@@ -14,23 +14,56 @@ const ViewRemedies = (props) => {
 
 	let search = useLocation().search;
 	const parseURLQuery = (query) => {
-		let queries = query.split('?');
+		let queriesText = query.split('?')[1];
+		let queries = queriesText.split('&')
 		let filters = {};
 		queries.forEach( (q) => {
-			let key = q.split('=')[0];
-			let value = q.split('=')[1];
-			if(key == "body_part"){
-				filters.body_part = value
+			let splitQ = q.split('=');
+			let key = splitQ[0];
+			splitQ = splitQ[1].split('+');
+			let value = "";
+			splitQ.forEach( word => {
+				value += word + " ";
+			});
+			value = value.substring(0,value.length-1)
+
+			if(value){
+				if(key == "body_part"){
+					filters.body_part = value;
+				}
+				if(key == "ailment"){
+					filters.ailment = value;
+				}
 			}
 		})
 		return filters;
 	}
 
+	//TODO fix this logic
 	const filterRemedies = (rems, filter) => {
 		const matches = [];
 		rems.forEach( remedy => {
-			if(remedy.body_part.toLowerCase() === filter.body_part.toLowerCase()){
-				matches.push(remedy)
+			let matchesFilter = true;
+			if(filter.body_part){
+				if(remedy.body_part){
+					matchesFilter = matchesFilter && remedy.body_part.toLowerCase() === filter.body_part.toLowerCase();
+				}
+				else{
+					matchesFilter = false;
+				}
+			}
+			if(filter.ailment){
+				if(remedy.ailment){
+					
+					matchesFilter = matchesFilter && remedy.ailment.toLowerCase() === filter.ailment.toLowerCase();
+					console.log(filter.ailment.toLowerCase())
+				}
+				else{
+					matchesFilter = false;
+				}
+			}
+			if(matchesFilter) {
+				matches.push(remedy);
 			}
 		})
 		return matches;
@@ -128,7 +161,7 @@ const ViewRemedies = (props) => {
 				}
 			})
 			.catch(function (e) {
-				console.log(e.response)
+				console.log(e)
 				if (e) {
 					setRemediesJSX(<Error error={e} returnURL="/" />)
 					setRemedies([])

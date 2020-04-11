@@ -6,13 +6,17 @@ import config from './config.js';
 
 const RemediesSelector = (props) => {
 	const [bodyParts, setBodyParts] = useState([]);
+	const [ailments, setAilments] = useState([]);
 
 	const dropDownList = (items) => {
 		return items.map((part) => <option value={part.toLowerCase()} key={part.toLowerCase()}>{part}</option>);
 	}
 
 	const correctCase = (str) => {
-		return (str[0].toUpperCase()+str.substring(1).toLowerCase());
+		if(str){
+			return (str[0].toUpperCase()+str.substring(1).toLowerCase());
+		}
+		return;
 	}
 
 	useEffect(() => {
@@ -20,7 +24,7 @@ const RemediesSelector = (props) => {
 			.then(res => {
 				let remedies = res.data;
 
-				const compare = (a, b) => {
+				const compareBodyParts = (a, b) => {
 					if (a.body_part.toLowerCase() < b.body_part.toLowerCase()) {
 						return -1
 					}
@@ -29,16 +33,33 @@ const RemediesSelector = (props) => {
 					}
 					return 0;
 				}
-				remedies.sort();
+
+				
+				const compareAilments = (a, b) => {
+					if (a.ailment.toLowerCase() < b.ailment.toLowerCase()) {
+						return -1
+					}
+					if (a.ailment.toLowerCase() > b.ailment.toLowerCase()) {
+						return 1
+					}
+					return 0;
+				}
+
+				remedies.sort(compareBodyParts);
 				let parts = [""];
+				let ails = [""];
 
 				remedies.forEach(remedy => {
-					if(remedy.body_part.toLowerCase() != parts[parts.length-1].toLowerCase()){
-						parts.push(correctCase(remedy.body_part))
+					if(remedy.body_part && remedy.body_part.toLowerCase() != parts[parts.length-1].toLowerCase()){
+						parts.push(correctCase(remedy.body_part));
 					}
-				})
+					if(remedy.ailment && !ails.includes(correctCase(remedy.ailment))){
+						ails.push(correctCase(remedy.ailment));
+					}
+				});
 
 				setBodyParts(parts)
+				setAilments(ails);
 
 			})
 			.catch(function (e) {
@@ -51,9 +72,15 @@ const RemediesSelector = (props) => {
 	return (
 		<Form action="/remedies">
 			<Form.Group controlId="body_part">
-				<Form.Label>body part</Form.Label>
+				<Form.Label>Body Part:</Form.Label>
 				<Form.Control as="select" name="body_part">
 					{dropDownList(bodyParts)}
+				</Form.Control>
+			</Form.Group>
+			<Form.Group controlId="ailment">
+				<Form.Label>Ailment: </Form.Label>
+				<Form.Control as="select" name="ailment">
+					{dropDownList(ailments)}
 				</Form.Control>
 			</Form.Group>
 			<Button variant="primary" type="submit">
