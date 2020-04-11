@@ -19,12 +19,9 @@ const ViewRemedies = (props) => {
 		queries.forEach( (q) => {
 			let key = q.split('=')[0];
 			let value = q.split('=')[1];
-			console.log(key)
 			if(key == "part"){
-				console.log(value)
 				filters.part = value
 			}
-			console.log(filters)
 		})
 		return filters;
 	}
@@ -36,7 +33,6 @@ const ViewRemedies = (props) => {
 				matches.push(remedy)
 			}
 		})
-		console.log(matches)
 		return matches;
 	}
 
@@ -120,7 +116,6 @@ const ViewRemedies = (props) => {
 
 				
 				const filters = parseURLQuery(search);
-				console.log(filters)
 
 				const lastLetter = { letter: "" }
 				if(search){
