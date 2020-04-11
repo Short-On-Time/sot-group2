@@ -28,7 +28,7 @@ const AboutPage = () => {
 					<div className="row align-items-center justify-content-center">
 						<div className="col-md-5 text-center" data-aos="fade">
 							<h1 className="text-uppercase">About Us</h1>
-							<span className="caption d-block text-white">Free Templates by <a href="#">Colorlib</a></span>
+							<span className="caption d-block text-white">Free Templates by <a href="/">Colorlib</a></span>
 						</div>
 					</div>
 				</div>
@@ -77,10 +77,10 @@ const AboutPage = () => {
 								<span className="d-block mb-4">CEO, Co-Founder</span>
 								<p className="lead">Expedita et aliquam fuga dicta amet ad laborum error recusandae, voluptatibus quam minima sed, saepe odio voluptatem. Sed unde hic, vitae fugiat.</p>
 								<p>
-									<a href="#" className="p-3"><span className="icon-facebook"></span></a>
-									<a href="#" className="p-3"><span className="icon-twitter"></span></a>
-									<a href="#" className="p-3"><span className="icon-instagram"></span></a>
-									<a href="#" className="p-3"><span className="icon-linkedin"></span></a>
+									<a href="/" className="p-3"><span className="icon-facebook"></span></a>
+									<a href="/" className="p-3"><span className="icon-twitter"></span></a>
+									<a href="/" className="p-3"><span className="icon-instagram"></span></a>
+									<a href="/" className="p-3"><span className="icon-linkedin"></span></a>
 								</p>
 							</div>
 							<div className="col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="200">
@@ -89,10 +89,10 @@ const AboutPage = () => {
 								<span className="d-block mb-4">President, Co-Founder</span>
 								<p className="lead">Expedita et aliquam fuga dicta amet ad laborum error recusandae, voluptatibus quam minima sed, saepe odio voluptatem. Sed unde hic, vitae fugiat.</p>
 								<p>
-									<a href="#" className="p-3"><span className="icon-facebook"></span></a>
-									<a href="#" className="p-3"><span className="icon-twitter"></span></a>
-									<a href="#" className="p-3"><span className="icon-instagram"></span></a>
-									<a href="#" className="p-3"><span className="icon-linkedin"></span></a>
+									<a href="/" className="p-3"><span className="icon-facebook"></span></a>
+									<a href="/" className="p-3"><span className="icon-twitter"></span></a>
+									<a href="/" className="p-3"><span className="icon-instagram"></span></a>
+									<a href="/" className="p-3"><span className="icon-linkedin"></span></a>
 								</p>
 							</div>
 							<div className="col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="300">
@@ -101,10 +101,10 @@ const AboutPage = () => {
 								<span className="d-block mb-4">CEO, Co-Founder</span>
 								<p className="lead">Expedita et aliquam fuga dicta amet ad laborum error recusandae, voluptatibus quam minima sed, saepe odio voluptatem. Sed unde hic, vitae fugiat.</p>
 								<p>
-									<a href="#" className="p-3"><span className="icon-facebook"></span></a>
-									<a href="#" className="p-3"><span className="icon-twitter"></span></a>
-									<a href="#" className="p-3"><span className="icon-instagram"></span></a>
-									<a href="#" className="p-3"><span className="icon-linkedin"></span></a>
+									<a href="/" className="p-3"><span className="icon-facebook"></span></a>
+									<a href="/" className="p-3"><span className="icon-twitter"></span></a>
+									<a href="/" className="p-3"><span className="icon-instagram"></span></a>
+									<a href="/" className="p-3"><span className="icon-linkedin"></span></a>
 								</p>
 							</div>
 							<div className="col-md-6 text-center mb-5" data-aos="fade-up" data-aos-delay="400">
@@ -113,10 +113,10 @@ const AboutPage = () => {
 								<span className="d-block mb-4">Product Manager</span>
 								<p className="lead">Expedita et aliquam fuga dicta amet ad laborum error recusandae, voluptatibus quam minima sed, saepe odio voluptatem. Sed unde hic, vitae fugiat.</p>
 								<p>
-									<a href="#" className="p-3"><span className="icon-facebook"></span></a>
-									<a href="#" className="p-3"><span className="icon-twitter"></span></a>
-									<a href="#" className="p-3"><span className="icon-instagram"></span></a>
-									<a href="#" className="p-3"><span className="icon-linkedin"></span></a>
+									<a href="/" className="p-3"><span className="icon-facebook"></span></a>
+									<a href="/" className="p-3"><span className="icon-twitter"></span></a>
+									<a href="/" className="p-3"><span className="icon-instagram"></span></a>
+									<a href="/" className="p-3"><span className="icon-linkedin"></span></a>
 								</p>
 							</div>
 						</div>
@@ -157,7 +157,7 @@ const AboutPage = () => {
 						<div className="row align-items-center justify-content-center">
 							<div className="col-md-6 text-center mb-3 mb-md-0">
 								<h2 className="text-uppercase text-white mb-4" data-aos="fade-up">Try For Your Next Project</h2>
-								<a href="#" className="btn btn-bg-primary font-secondary text-uppercase" data-aos="fade-up" data-aos-delay="100">Contact Us</a>
+								<a href="/" className="btn btn-bg-primary font-secondary text-uppercase" data-aos="fade-up" data-aos-delay="100">Contact Us</a>
 							</div>
 						</div>
 					</div>
@@ -169,27 +169,27 @@ const AboutPage = () => {
 							<div className="col-md-4 mb-4 mb-md-0">
 								<h3 className="footer-heading mb-4 text-white">About</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quos rem ullam, placeat amet.</p>
-								<p><a href="#" className="btn btn-primary text-white px-4">Read More</a></p>
+								<p><a href="/" className="btn btn-primary text-white px-4">Read More</a></p>
 							</div>
 							<div className="col-md-5 mb-4 mb-md-0 ml-auto">
 								<div className="row mb-4">
 									<div className="col-md-6">
 										<h3 className="footer-heading mb-4 text-white">Quick Menu</h3>
 										<ul className="list-unstyled">
-											<li><a href="#">Home</a></li>
-											<li><a href="#">About</a></li>
-											<li><a href="#">Blog</a></li>
-											<li><a href="#">Contacts</a></li>
-											<li><a href="#">Privacy</a></li>
+											<li><a href="/">Home</a></li>
+											<li><a href="/">About</a></li>
+											<li><a href="/">Blog</a></li>
+											<li><a href="/">Contacts</a></li>
+											<li><a href="/">Privacy</a></li>
 										</ul>
 									</div>
 									<div className="col-md-6">
 										<h3 className="footer-heading mb-4 text-white">Free Templates</h3>
 										<ul className="list-unstyled">
-											<li><a href="#">HTML5 / CSS3</a></li>
-											<li><a href="#">Clean Design</a></li>
-											<li><a href="#">Responsive</a></li>
-											<li><a href="#">Multi Purpose Template</a></li>
+											<li><a href="/">HTML5 / CSS3</a></li>
+											<li><a href="/">Clean Design</a></li>
+											<li><a href="/">Responsive</a></li>
+											<li><a href="/">Multi Purpose Template</a></li>
 										</ul>
 									</div>
 								</div>
@@ -210,10 +210,10 @@ const AboutPage = () => {
 									<div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Social Icons</h3></div>
 									<div className="col-md-12">
 										<p>
-											<a href="#" className="pb-2 pr-2 pl-0"><span className="icon-facebook"></span></a>
-											<a href="#" className="p-2"><span className="icon-twitter"></span></a>
-											<a href="#" className="p-2"><span className="icon-instagram"></span></a>
-											<a href="#" className="p-2"><span className="icon-vimeo"></span></a>
+											<a href="/" className="pb-2 pr-2 pl-0"><span className="icon-facebook"></span></a>
+											<a href="/" className="p-2"><span className="icon-twitter"></span></a>
+											<a href="/" className="p-2"><span className="icon-instagram"></span></a>
+											<a href="/" className="p-2"><span className="icon-vimeo"></span></a>
 										</p>
 									</div>
 								</div>
