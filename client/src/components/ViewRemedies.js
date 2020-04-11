@@ -19,8 +19,8 @@ const ViewRemedies = (props) => {
 		queries.forEach( (q) => {
 			let key = q.split('=')[0];
 			let value = q.split('=')[1];
-			if(key == "part"){
-				filters.part = value
+			if(key == "body_part"){
+				filters.body_part = value
 			}
 		})
 		return filters;
@@ -29,7 +29,7 @@ const ViewRemedies = (props) => {
 	const filterRemedies = (rems, filter) => {
 		const matches = [];
 		rems.forEach( remedy => {
-			if(remedy.body_part.toLowerCase() === filter.part.toLowerCase()){
+			if(remedy.body_part.toLowerCase() === filter.body_part.toLowerCase()){
 				matches.push(remedy)
 			}
 		})
