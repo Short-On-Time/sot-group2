@@ -73,6 +73,7 @@ const NavBar = (props) => {
 									<ul className="site-menu js-clone-nav d-none d-lg-block">
 										<li className={setActivePageHighlight("Home")}><a href="/">Home</a></li>
 										<li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
+										<li className={setActivePageHighlight("Forum")}><a href="forum">Forum</a></li>
 										<li className={setActivePageHighlight("Services")}><Services /></li>
 										<li className={setActivePageHighlight("Contact")}><Contact /></li>
 										<li>{isAdmin()}</li>

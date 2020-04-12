@@ -8,13 +8,7 @@ adminRouter.put('/update_remedy/:id', admin.updateRemedy);
 adminRouter.get('/get_remedy/:id', admin.getRemedy);
 adminRouter.get('/get_remedy', admin.getRemedyList);
 adminRouter.delete('/delete_remedy/:id', admin.deleteRemedy);
-
-//recipe routes
-adminRouter.post('/add_recipe', admin.addRecipe);
-adminRouter.put('/update_recipe/:id', admin.updateRecipe);
-adminRouter.get('/get_recipe/:id', admin.getRecipe);
-adminRouter.get('/get_recipe', admin.getRecipeList);
-adminRouter.delete('/delete_recipe/:id', admin.deleteRecipe);
+adminRouter.put('/free_trial', admin.free_trial);
 
 //glossary routes
 adminRouter.post('/add_glossary', admin.addGlossary);
