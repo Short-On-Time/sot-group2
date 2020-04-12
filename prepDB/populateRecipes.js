@@ -48,4 +48,5 @@ let csvStream=fastcsv
     });
 
 stream.pipe(csvStream);
+mongoose.connection.close();
 console.log("populated Glossary");

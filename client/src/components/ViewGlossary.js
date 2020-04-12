@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import config from './config.js';
+import config from './config.js';
 import ViewGlossaryItem from './ViewGlossaryItem.js';
 import Error from './Error.js';
 
@@ -63,7 +63,7 @@ const ViewGlossary = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get('/api/users/get_glossary')
+		axios.get(`http://localhost:${config.server_port}/api/users/get_glossary`)
 			.then(res => {
 				const items = res.data;
 				const compare = (a, b) => {

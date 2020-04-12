@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import config from './config.js';
+import config from './config.js';
 import Card from 'react-bootstrap/Card';
 
 const ViewGlossaryItem = (props) => {
@@ -23,9 +23,10 @@ const ViewGlossaryItem = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`/api/users/get_glossary/${props.title}`)
+		axios.get(`http://localhost:${config.server_port}/api/users/get_glossary/${props.title}`)
 			.then(res => {
-				const item = res.data;
+                const item = res.data;
+                console.log(item)
 				setGlossaryItem(item);
 			})
 	}, []);

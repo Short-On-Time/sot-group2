@@ -43,9 +43,12 @@ let csvStream=fastcsv
         glossaryData.shift();
         //console.log(glossaryData);
         GlossaryModel.insertMany(glossaryData, (err) =>{
-            if (err) throw err;
+						if (err) throw err;
+						else{
+							mongoose.connection.close();
+							console.log('populated Glossary');
+						}
         })
     });
 
 stream.pipe(csvStream);
-console.log("populated Glossary");

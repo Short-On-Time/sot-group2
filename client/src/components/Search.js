@@ -15,7 +15,7 @@ const SearchField = () => {
 		}
 	}
 
-	if (url === "products" || url === "glossary") {
+	if (url === "products" || url === "glossary" || url === "remedies") {
 		return (
 			<Form target="_blank" onSubmit={() => goToPage(searchText)}>
 				<Row>

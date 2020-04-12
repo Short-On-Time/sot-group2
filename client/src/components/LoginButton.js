@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-// import config from './config.js';
+import config from './config.js';
 // import Logout from '../components/Logout';
 import React, { useState, useEffect } from 'react';
 // import { Redirect } from 'react-router-dom';
@@ -33,13 +33,13 @@ const LoginButton = () => {
 			"username": username
 		}
 		if (!username) {
-			axios.post(`/api/users/signin`, data).then(res => {
+			axios.post(`localhost:${config.server_port}/api/users/signin`, data).then(res => {
 				const token = res.data.token;
 				jwt.verify(token, 'herbs', function (err, decodedd) {
 					console.log(decodedd.user_info);
 				});
 				localStorage.setItem(`user-token`, token);
-				if (res.status == 200) {
+				if (res.status === 200) {
 					localStorage.setItem("user_logged", true);
 					setShow(false)
 					setLoginButton(false)
@@ -50,9 +50,9 @@ const LoginButton = () => {
 			});
 		} else {
 			console.log(data);
-			axios.post(`/api/users/signup`, data).then(res => {
+			axios.post(`localhost:${config.server_port}/api/users/signup`, data).then(res => {
 				const token = res.data.token;
-				if (res.status == 200) {
+				if (res.status === 200) {
 					registrationOk();
 					setShow(false)
 					setLoginButton(false)

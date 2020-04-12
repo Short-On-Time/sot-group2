@@ -18,7 +18,7 @@ const stripeBtn = (props) => {
 			console.log(response);
 			alert("Payment Success");
 
-			axios.post("/api/users/user_premium", { email: "q@a.com" }).then(response => {
+			axios.post(`localhost:${config.server_port}/api/users/user_premium`, { email: "q@a.com" }).then(response => {
 				console.log(response);
 			}).catch(error => {
 				console.log("Setting user to premium error: ", error);
