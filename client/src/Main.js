@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Glossary from './Pages/Glossary';
 import Admin from './Pages/Admin';
+import Forum from './Pages/Forum';
 
 import AdminGlossary from './Pages/AdminGlossary';
 import AdminAddGlossary from './Pages/AdminAddGlossary';
@@ -25,10 +26,12 @@ const Main = () => {
 		<Switch>
 			<Route exact path='/' component={Home} />
 			<Route exact path='/about' component={About} />
+			<Route exact path='/forum' component={Forum} />
 			<Route exact path='/glossary' component={Glossary} />
 			<Route exact path='/glossary/:title' component={Glossary} />
 			<Route exact path='/remedies' component={Remedies} />
 			<Route exact path='/remedies/:name' component={Remedies} />
+
 
 			{/* <Route exact path='/admin' component={Admin}/> */}
 
