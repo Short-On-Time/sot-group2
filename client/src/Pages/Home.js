@@ -2,6 +2,7 @@ import React from 'react';
 import RemediesSelector from '../components/RemediesSelector';
 import Search from '../components/Search';
 import NavBar from '../components/NavBar';
+import Services from '../components/ServicesButton';
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../App.css';
@@ -9,6 +10,7 @@ import '../App.css';
 import Model from '../components/Model';
 import Footer from '../components/Footer';
 import PremiumCaption from '../components/PremiumCaption';
+import WelcomeCaption from '../components/WelcomeCaption';
 
 const Home = () => {
 	return (
@@ -37,7 +39,7 @@ const Home = () => {
 						<div className="container">
 							<div className="row align-items-center justify-content-center">
 								<div className="col-md-6 text-center" data-aos="fade">
-									<h1 className="font-secondary  font-weight-bold text-uppercase">Welcome to Consider Herbs</h1>
+									<h1 className="font-secondary  font-weight-bold text-uppercase"><WelcomeCaption /></h1>
 								</div>
 							</div>
 						</div>
@@ -80,7 +82,7 @@ const Home = () => {
 								<div className="text-center">
 									<span className="flaticon-box display-4 d-block mb-3 text-primary"></span>
 									<h3 className="text-uppercase h4 mb-3">Quality content</h3>
-									<p>Premium users have access to personal and curated content. <br /><a href="#" style={{ color: "forestgreen" }}>Try it now!</a></p>
+									<p>Premium users have access to personal and curated content. <br /><a style={{ color: "forestgreen" }}><Services text={"Try it now!"}/></a></p>
 								</div>
 							</div>
 						</div>

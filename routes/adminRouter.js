@@ -20,6 +20,14 @@ adminRouter.post('/add_email_newsleter', admin.addEmailNewsletter);
 adminRouter.post('/change_premium_caption', admin.changePremiumCaption);
 adminRouter.get('/get_premium_caption', admin.getPremiumCaption);
 
+// home page welcome caption
+adminRouter.post('/change_welcome_caption', admin.changeWelcomeCaption);
+adminRouter.get('/get_welcome_caption', admin.getWelcomeCaption);
+
+// home page disclaimer caption
+adminRouter.post('/change_disclaimer_caption', admin.changeDisclaimerCaption);
+adminRouter.get('/get_disclaimer_caption', admin.getDisclaimerCaption);
+
 //glossary routes
 adminRouter.post('/add_glossary', admin.addGlossary);
 adminRouter.put('/update_glossary/:id', admin.updateGlossary);

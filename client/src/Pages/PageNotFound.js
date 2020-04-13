@@ -27,15 +27,22 @@ const PageNotFound = () => {
 
 				<NavBar page="PageNotFound" />
 
-				<div className="py-5 bg-primary">
+				<div className="py-5" style={{backgroundColor: "forestgreen"}}>
 					<div className="container">
 						<div className="row align-items-center justify-content-center">
 							<div className="col-md-6 text-center mb-3 mb-md-0">
 								<br />
 								<br />
 								<br />
-								<h2 className="text-uppercase text-white mb-4" data-aos="fade-up">Page Not found</h2>
-								<a href="/" className="btn btn-primary text-uppercase" >Go to the home page</a>
+									<h2 className="text-uppercase text-white mb-4" data-aos="fade-up">Page Not found</h2>
+									<a href="/" className="btn btn-primary text-uppercase" >Go to the home page</a>
+								<br />
+								<br />
+								<br />
+								<br />
+								<br />
+								<br />
+								<br />
 							</div>
 						</div>
 					</div>

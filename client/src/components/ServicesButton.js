@@ -6,9 +6,10 @@ import StripePay from './ConfigStripe.js'
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 import config from './config.js';
 
-const ServicesButton = () => {
+const ServicesButton = (props) => {
 	const [smShow, setSmShow] = useState(false);
 	const [lgShow, setLgShow] = useState(false);
 	const stripePromise = loadStripe('pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK');
@@ -17,6 +18,18 @@ const ServicesButton = () => {
 	const [three_month, setThreeMonth] = useState(0);
 	const [one_session, setOneSession] = useState(0);
 	const [five_session, setFiveSession] = useState(0);
+
+	let logged = localStorage.getItem("user_logged");
+
+	const token = localStorage.getItem(`user-token`);
+	let user_decoded_token = ''
+	if (logged) {
+		jwt.verify(token, 'herbs', function (err, decoded) {
+			user_decoded_token = decoded.user_info
+		});
+	}
+
+
 
 	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
 		setOneMonth(res.data.amount)
@@ -33,9 +46,27 @@ const ServicesButton = () => {
 		setFiveSession(res.data.amount)
 	});
 
+	const subscriptionButtons = () => {
+		return (
+			<>
+				<StripePay amount={one_session} info={user_decoded_token} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
+				<StripePay amount={five_session} info={user_decoded_token} text={`Five sessions for $${five_session/100}`} />
+			</>
+		)
+	}
+
+	const consultingButtons = () => {
+		return (
+			<>
+				<StripePay amount={one_month} info={user_decoded_token} text={`One month for $${one_month/100}`} /><br /><br />
+				<StripePay amount={three_month} info={user_decoded_token} text={`Three months for $${three_month/100}`} />
+			</>
+		)
+	}
+
 	return (
 		<>
-			<a style={{ cursor: "pointer" }} onClick={() => setLgShow(true)}>Services</a>
+			<a style={{ cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
 			<Modal
 				size="lg"
 				show={lgShow}
@@ -58,8 +89,9 @@ const ServicesButton = () => {
 							<Card.Text>
 								Personal consulting with Herbalist Dee at scheduled time.
             				</Card.Text>
-							<StripePay amount={one_session} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
-							<StripePay amount={five_session} text={`Five sessions for $${five_session/100}`} />
+								<div>
+								{ (logged) ? subscriptionButtons : <b>You need to login before purchasing.</b> }
+								</div>
 						</Card.Body>
 					</Card>
 					<hr />
@@ -69,9 +101,10 @@ const ServicesButton = () => {
 							<Card.Title>Monthly subscription</Card.Title>
 							<Card.Text>
 								In order to unlock herbal recipes for all body symptoms and premium services.
-            				</Card.Text>
-							<StripePay amount={one_month} text={`One month for $${one_month/100}`} /><br /><br />
-							<StripePay amount={three_month} text={`Three months for $${three_month/100}`} />
+            	</Card.Text>
+							<div>
+								{ (logged) ? consultingButtons : <b>You need to login before purchasing.</b> }
+							</div>
 						</Card.Body>
 					</Card>
 				</Modal.Body>

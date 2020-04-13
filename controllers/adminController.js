@@ -6,6 +6,8 @@ import User from '../models/UserModel.js';
 import Newsletter from '../models/NewsletterModel.js';
 import Testimonial from '../models/TestimonialModel.js';
 import PremiumCaption from '../models/PremiumCaptionModel.js';
+import WelcomeCaption from '../models/WelcomeCaptionModel.js';
+import DisclaimerCaption from '../models/WelcomeCaptionModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -32,9 +34,55 @@ export const changePremiumCaption = async (req, res) => {
   });
 }
 
+export const changeWelcomeCaption = async (req, res) => {
+  initMongoose()
+  let save_caption
+  save_caption = new WelcomeCaption({
+    content: req.body.content
+  })
+  save_caption.save(function (err, save_caption) {
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_caption);
+      return res.status(200).json(save_caption);
+    }
+  });
+}
+
+export const changeDisclaimerCaption = async (req, res) => {
+  initMongoose()
+  let save_caption
+  save_caption = new DisclaimerCaption({
+    content: req.body.content
+  })
+  save_caption.save(function (err, save_caption) {
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_caption);
+      return res.status(200).json(save_caption);
+    }
+  });
+}
+
 export const getPremiumCaption = async (req, res) => {
   initMongoose()
   PremiumCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
+    res.status(200).json(caption)
+  });
+}
+
+export const getWelcomeCaption = async (req, res) => {
+  initMongoose()
+  WelcomeCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
+    res.status(200).json(caption)
+  });
+}
+
+export const getDisclaimerCaption = async (req, res) => {
+  initMongoose()
+  DisclaimerCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
     res.status(200).json(caption)
   });
 }

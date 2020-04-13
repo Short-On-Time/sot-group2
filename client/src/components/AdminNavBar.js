@@ -27,9 +27,11 @@ const logOutPopover = (
 
 const AdminNavBar = (props) => {
 	return (
-		<Navbar bg="success" className="mb-5">
+		<Navbar bg="success" className="mb-5" style={{boxShadow: "rgba(0, 0, 0, 0.2) 0px 5px 5px"}}>
 			<Navbar.Brand>
-				<Image src="images/logo.jpg" href="/" width="250" height="55" rounded />
+				<a href="/" style={{cursor: "pointer"}}>
+					<Image src="images/logo.jpg" href="/" width="250" height="55" rounded />
+				</a>
 			</Navbar.Brand>
 
 			<Navbar.Brand>
