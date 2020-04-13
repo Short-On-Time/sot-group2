@@ -8,6 +8,7 @@ import '../App.css';
 
 import Model from '../components/Model';
 import Footer from '../components/Footer';
+import PremiumCaption from '../components/PremiumCaption';
 
 const Home = () => {
 	return (
@@ -164,9 +165,9 @@ const Home = () => {
 								<p className="mb-5"><img src="images/hero_2.jpg" alt="Image" className="img-fluid shadow p-3 mb-5 bg-white rounded" /></p>
 							</div>
 							<div className="col-lg-5 ml-auto">
-								<h2 className="site-section-heading mb-3 font-secondary text-uppercase">Vast number of options</h2>
-								<p className="mb-5">Become a premium user to gain access to all products</p>
-
+								<h2 className="site-section-heading mb-3 font-secondary text-uppercase">What is premium?</h2>
+								<p className="caption mb-5"><PremiumCaption /></p>
+{/*
 								<div className="row">
 									<div className="col-lg-6">
 										<div className="counter">
@@ -181,12 +182,12 @@ const Home = () => {
 										</div>
 									</div>
 								</div>
-
+*/}
 							</div>
 						</div>
 					</div>
 				</div>
-
+ {/*
 				<div className="site-section block-14 nav-direction-white">
 					<div className="container">
 						<div className="row mb-5">
@@ -238,7 +239,7 @@ const Home = () => {
 						</div>
 					</div>
 				</div>
-
+*/}
 				<Footer />
 			</div>
 		</div>

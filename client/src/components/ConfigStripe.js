@@ -32,10 +32,10 @@ const stripeBtn = (props) => {
 
 	return (
 		<StripeCheckout
-			label="Go Premium"					// Component button text
+			label={props.text}				// Component button text
 			name="ConsiderHerbs"				// Modal Header
 			description="Upgrade to a premium account today."
-			panelLabel="Go Premium"				// Submit button in modal
+			panelLabel={props.text}				// Submit button in modal
 			amount={props.amount}				// Amount in cents $9.99
 			token={onToken}
 			stripeKey={publishableKey}

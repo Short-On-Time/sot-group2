@@ -34,7 +34,7 @@ const RemediesSelector = (props) => {
 					return 0;
 				}
 
-				
+
 				const compareAilments = (a, b) => {
 					if (a.ailment.toLowerCase() < b.ailment.toLowerCase()) {
 						return -1
@@ -84,7 +84,7 @@ const RemediesSelector = (props) => {
 				</Form.Control>
 			</Form.Group>
 			<Button variant="primary" type="submit">
-				Submit
+				Search
 			</Button>
 		</Form>
 	);

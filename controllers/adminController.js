@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
 import User from '../models/UserModel.js';
+import Newsletter from '../models/NewsletterModel.js';
+import Testimonial from '../models/TestimonialModel.js';
+import PremiumCaption from '../models/PremiumCaptionModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -11,6 +14,63 @@ function initMongoose() {
   mongoose.connect(config.db.uri, {useNewUrlParser: true});
   let db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
+}
+
+export const changePremiumCaption = async (req, res) => {
+  initMongoose()
+  let save_caption
+  save_caption = new PremiumCaption({
+    content: req.body.content
+  })
+  save_caption.save(function (err, save_caption) {
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_caption);
+      return res.status(200).json(save_caption);
+    }
+  });
+}
+
+export const getPremiumCaption = async (req, res) => {
+  initMongoose()
+  PremiumCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
+    res.status(200).json(caption)
+  });
+}
+
+export const addTestimonial = async (req, res) => {
+  initMongoose()
+  let save_testimonial
+  save_testimonial = new Testimonial({
+    author: req.body.author,
+    content: req.body.content
+  })
+  save_testimonial.save(function (err, save_testimonial) {
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_testimonial);
+      return res.status(200).json(save_testimonial);
+    }
+  });
+}
+
+export const addEmailNewsletter = async (req, res) => {
+  initMongoose()
+  let save_newsletter
+  save_newsletter = new Newsletter({
+    email: req.body.email,
+  })
+  save_newsletter.save(function (err, save_newsletter) {
+    if(err) {
+      console.log(err);
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_newsletter);
+      return res.status(200).json(save_newsletter);
+    }
+  });
 }
 
 export const addRemedy = async (req, res) => {
@@ -25,7 +85,7 @@ export const addRemedy = async (req, res) => {
 		ingredients: req.body.ingredients,
 		amounts: req.body.amounts,
 		units: req.body.units,
-		
+
     is_premium: req.body.is_premium,
 		is_published: req.body.is_published,
 		is_free_trial: req.body.is_free_trial

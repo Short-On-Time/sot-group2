@@ -5,11 +5,33 @@ import Card from 'react-bootstrap/Card';
 import StripePay from './ConfigStripe.js'
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import config from './config.js';
 
 const ServicesButton = () => {
 	const [smShow, setSmShow] = useState(false);
 	const [lgShow, setLgShow] = useState(false);
 	const stripePromise = loadStripe('pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK');
+
+	const [one_month, setOneMonth] = useState(0);
+	const [three_month, setThreeMonth] = useState(0);
+	const [one_session, setOneSession] = useState(0);
+	const [five_session, setFiveSession] = useState(0);
+
+	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
+		setOneMonth(res.data.amount)
+	});
+
+	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-3-month`).then(res => {
+		setThreeMonth(res.data.amount)
+	});
+
+	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-1-session`).then(res => {
+		setOneSession(res.data.amount)
+	});
+	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-5-session`).then(res => {
+		setFiveSession(res.data.amount)
+	});
 
 	return (
 		<>
@@ -32,22 +54,24 @@ const ServicesButton = () => {
 					<Card>
 						<Card.Header>Professional consulting</Card.Header>
 						<Card.Body>
-							<Card.Title>Consulting with Dr. Dee</Card.Title>
+							<Card.Title>Consulting with Herbalist Dee</Card.Title>
 							<Card.Text>
-								Personal consulting with Dr. Dee at scheduled time, for only $50.00.
+								Personal consulting with Herbalist Dee at scheduled time.
             				</Card.Text>
-							<StripePay amount={5000} />
+							<StripePay amount={one_session} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
+							<StripePay amount={five_session} text={`Five sessions for $${five_session/100}`} />
 						</Card.Body>
 					</Card>
 					<hr />
 					<Card>
 						<Card.Header>Premium services</Card.Header>
 						<Card.Body>
-							<Card.Title>Lifetime subscription</Card.Title>
+							<Card.Title>Monthly subscription</Card.Title>
 							<Card.Text>
-								In order to unlock herbal recipes for all body symptoms and premium services. Only $100.00.
+								In order to unlock herbal recipes for all body symptoms and premium services.
             				</Card.Text>
-							<StripePay amount={10000} />
+							<StripePay amount={one_month} text={`One month for $${one_month/100}`} /><br /><br />
+							<StripePay amount={three_month} text={`Three months for $${three_month/100}`} />
 						</Card.Body>
 					</Card>
 				</Modal.Body>

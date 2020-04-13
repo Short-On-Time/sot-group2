@@ -1,0 +1,461 @@
+diff --git a/arch/x86/entry/syscalls/syscall_32.tbl b/arch/x86/entry/syscalls/syscall_32.tbl
+index 3cf7b533b..6fb53f891 100644
+--- a/arch/x86/entry/syscalls/syscall_32.tbl
++++ b/arch/x86/entry/syscalls/syscall_32.tbl
+@@ -398,3 +398,5 @@
+ 384	i386	arch_prctl		sys_arch_prctl			__ia32_compat_sys_arch_prctl
+ 385	i386	io_pgetevents		sys_io_pgetevents		__ia32_compat_sys_io_pgetevents
+ 386	i386	rseq			sys_rseq			__ia32_sys_rseq
++387     i386	get_tag			sys_get_tag
++388     i386    set_tag                 sys_set_tag
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index f0b1709a5..1fc88d744 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -343,6 +343,14 @@
+ 332	common	statx			__x64_sys_statx
+ 333	common	io_pgetevents		__x64_sys_io_pgetevents
+ 334	common	rseq			__x64_sys_rseq
++335	common	get_tag			__x64_sys_get_tag
++336     common  set_tag                 __x64_sys_set_tag
++337     common  set_alloc		__x64_sys_set_alloc
++338     common  get_alloc		__x64_sys_get_alloc
++
++# 335 and 336 added by Vinicius Martinson on 03/01/2020
++# get a tag from a process and set a tag to a process, given process id
++
+ 
+ #
+ # x32-specific system call numbers start at 512 to avoid cache impact
+diff --git a/include/linux/errno.h b/include/linux/errno.h
+index 3cba62757..ea3ae07e2 100644
+--- a/include/linux/errno.h
++++ b/include/linux/errno.h
+@@ -31,4 +31,8 @@
+ #define EIOCBQUEUED	529	/* iocb queued, will get completion event */
+ #define ERECALLCONFLICT	530	/* conflict with recalled state */
+ 
++#define EBADLEVELRANGE 531      /* Process level out of range (must be greater or equal to zero AND less or equal than three) */
++#define EALLOCSUDO     532	/* To set new allocation time, process must be super user */
++#define EBADALLOCVALUE 533	/* New allocation time must be non-negative and total sum must be greater or equal to 5ms */
++
+ #endif
+diff --git a/include/linux/sched.h b/include/linux/sched.h
+index bc6026cdb..66fcf5a86 100644
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -780,6 +780,9 @@ struct task_struct {
+ 
+ 	/* PID/PID hash table linkage. */
+ 	struct pid			*thread_pid;
++	// u32 tag added by Vinicius Martinson on 03/01/2020
++	// All process now carry a tag (32 bits long)
++	u32				tag;
+ 	struct hlist_node		pid_links[PIDTYPE_MAX];
+ 	struct list_head		thread_group;
+ 	struct list_head		thread_node;
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 257cccba3..894adf1cb 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -1314,5 +1314,12 @@ static inline unsigned int ksys_personality(unsigned int personality)
+ 
+ 	return old;
+ }
+-
++// Functions added by Vinicius Martinson on 03/01/2020
++// Get tags from processes, given process id
++// Set tags to process given process id
++asmlinkage int sys_get_tag(int);
++asmlinkage int sys_set_tag(int, int);
++
++asmlinkage int sys_get_alloc(int);
++asmlinkage int sys_set_alloc(int, int);
+ #endif
+diff --git a/init/main.c b/init/main.c
+index 004c75de5..747338f15 100644
+--- a/init/main.c
++++ b/init/main.c
+@@ -1068,7 +1068,9 @@ static int __ref kernel_init(void *unused)
+ 	numa_default_policy();
+ 
+ 	rcu_end_inkernel_boot();
+-
++	pr_info("\n");
++	pr_info("##### Vinicius Martinson (UFID: 8761-3468) God is good! #####");
++	pr_info("\n");
+ 	if (ramdisk_execute_command) {
+ 		ret = run_init_process(ramdisk_execute_command);
+ 		if (!ret)
+diff --git a/kernel/Makefile b/kernel/Makefile
+index 4d922ad29..ecf0078a4 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -43,6 +43,7 @@ obj-y += irq/
+ obj-y += rcu/
+ obj-y += livepatch/
+ obj-y += dma/
++obj-y += tag/
+ 
+ obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
+ obj-$(CONFIG_FREEZER) += freezer.o
+diff --git a/kernel/pid.c b/kernel/pid.c
+index 20881598b..c457bf783 100644
+--- a/kernel/pid.c
++++ b/kernel/pid.c
+@@ -435,6 +435,15 @@ pid_t __task_pid_nr_ns(struct task_struct *task, enum pid_type type,
+ }
+ EXPORT_SYMBOL(__task_pid_nr_ns);
+ 
++//int _gettag(int nr)
++//{
++	//struct pid *pid;
++	//pid = find_vpid(nr);
++	//pid->numbers[0].tag = 77;
++  //      return pid->numbers[0]->.tag;
++//}
++//EXPORT_SYMBOL(_gettag);
++
+ struct pid_namespace *task_active_pid_ns(struct task_struct *tsk)
+ {
+ 	return ns_of_pid(task_pid(tsk));
+diff --git a/kernel/sched/core.c b/kernel/sched/core.c
+index 1fc0b04ed..13c3523f0 100644
+--- a/kernel/sched/core.c
++++ b/kernel/sched/core.c
+@@ -11,6 +11,8 @@
+ 
+ #include <linux/kcov.h>
+ 
++#include <linux/timekeeping.h>
++
+ #include <asm/switch_to.h>
+ #include <asm/tlb.h>
+ 
+@@ -199,6 +201,7 @@ void update_rq_clock(struct rq *rq)
+ #endif
+ 
+ 	delta = sched_clock_cpu(cpu_of(rq)) - rq->clock;
++	//maybe here 2
+ 	if (delta < 0)
+ 		return;
+ 	rq->clock += delta;
+@@ -3139,7 +3142,7 @@ static void sched_tick_remote(struct work_struct *work)
+ 
+ 	update_rq_clock(rq);
+ 	delta = rq_clock_task(rq) - curr->se.exec_start;
+-
++	// maybe here
+ 	/*
+ 	 * Make sure the next tick runs within a reasonable
+ 	 * amount of time.
+@@ -3434,6 +3437,25 @@ again:
+  *
+  * WARNING: must be called with preemption disabled!
+  */
++
++// Min of 10ms
++#define MIN_ALLOC		10000000
++
++const u64 level_zero = 10000000;
++const u64 level_one = 10000000;
++const u64 level_two = 10000000;
++const u64 level_three = 10000000;
++
++extern int set_alloc_level_zero = MIN_ALLOC;
++extern int set_alloc_level_one = MIN_ALLOC;
++extern int set_alloc_level_two = MIN_ALLOC;
++extern int set_alloc_level_three = MIN_ALLOC;
++
++int sched_level_zero = MIN_ALLOC;
++int sched_level_one = MIN_ALLOC;
++int sched_level_two = MIN_ALLOC;
++int sched_level_three = MIN_ALLOC;
++
+ static void __sched notrace __schedule(bool preempt)
+ {
+ 	struct task_struct *prev, *next;
+@@ -3441,11 +3463,17 @@ static void __sched notrace __schedule(bool preempt)
+ 	struct rq_flags rf;
+ 	struct rq *rq;
+ 	int cpu;
++	int run = 0;
++
++	int* alloc_level_zero = &sched_level_zero;
++	int* alloc_level_one = &sched_level_one;
++	int* alloc_level_two = &sched_level_two;
++	int* alloc_level_three = &sched_level_three;
+ 
+ 	cpu = smp_processor_id();
+ 	rq = cpu_rq(cpu);
+ 	prev = rq->curr;
+-
++	//printk("this process tag is %d", prev->tag);
+ 	schedule_debug(prev);
+ 
+ 	if (sched_feat(HRTICK))
+@@ -3497,8 +3525,81 @@ static void __sched notrace __schedule(bool preempt)
+ 		}
+ 		switch_count = &prev->nvcsw;
+ 	}
++	// loop here
++	int process_tag = prev->tag;
++	int process_level = process_tag & 3;
++	if (process_level == 0 && (int)(*alloc_level_zero) > 0) {
++		u64 start = ktime_get_raw_ns();
++		next = pick_next_task(rq, prev, &rf);
++		run = 1;
++		u64 end = ktime_get_raw_ns();
++		u64 delta = start-end;
++		delta = abs(delta);
++		*alloc_level_zero = *alloc_level_zero - delta;
++		printk("Process level zero, remaining alloc time: %d | delta: %lld", (int)(*alloc_level_zero), delta);
++	} else if (process_level == 1 && (int)(*alloc_level_one) > 0) {
++                u64 start = ktime_get_raw_ns();
++                next = pick_next_task(rq, prev, &rf);
++		run = 1;
++                u64 end = ktime_get_raw_ns();
++                u64 delta = start-end;
++                delta = abs(delta);
++                *alloc_level_one = *alloc_level_one - delta;
++                printk("Process level one, remaining alloc time: %d | delta: %lld", (int)(*alloc_level_one), delta);
++        } else if (process_level == 2 && (int)(*alloc_level_two) > 0) {
++                u64 start = ktime_get_raw_ns();
++                next = pick_next_task(rq, prev, &rf);
++                run = 1;
++                u64 end = ktime_get_raw_ns();
++                u64 delta = start-end;
++                delta = abs(delta);
++                *alloc_level_two = *alloc_level_two - delta;
++                printk("Process level two, remaining alloc time: %d | delta: %lld", (int)(*alloc_level_two), delta);
++        } else if (process_level == 3 && (int)(*alloc_level_three) > 0) {
++                u64 start = ktime_get_raw_ns();
++                next = pick_next_task(rq, prev, &rf);
++                run = 1;
++                u64 end = ktime_get_raw_ns();
++                u64 delta = start-end;
++                delta = abs(delta);
++                *alloc_level_three = *alloc_level_three - delta;
++                printk("Process level three, remaining alloc time: %d | delta: %lld", (int)(*alloc_level_three), delta);
++        }
++
++	if ((int)(*alloc_level_zero) <= 0) {
++		//printk("Done with alloc level zero");
++		if ((int)(*alloc_level_zero) != set_alloc_level_zero) {
++                	sched_level_zero = set_alloc_level_zero;
++            	} else {
++                	sched_level_zero = level_zero;
++            	}
++		if (run == 0) next = pick_next_task(rq, prev, &rf);
++	} else if ((int)(*alloc_level_one) <= 0) {
++                //printk("Done with alloc level one");
++                if ((int)(*alloc_level_one) != set_alloc_level_one) {
++                        sched_level_one = set_alloc_level_one;
++                } else {
++                        sched_level_one = level_one;
++                }
++                if (run == 0) next = pick_next_task(rq, prev, &rf);
++        } else if ((int)(*alloc_level_two) <= 0) {
++                //printk("Done with alloc level two");
++                if ((int)(*alloc_level_two) != set_alloc_level_two) {
++                        sched_level_two = set_alloc_level_two;
++                } else {
++                        sched_level_two = level_two;
++                }
++                if (run == 0) next = pick_next_task(rq, prev, &rf);
++        } else if ((int)(*alloc_level_three) <= 0) {
++                //printk("Done with alloc level three");
++                if ((int)(*alloc_level_three) != set_alloc_level_three) {
++                        sched_level_three = set_alloc_level_three;
++                } else {
++                        sched_level_three = level_three;
++                }
++                if (run == 0) next = pick_next_task(rq, prev, &rf);
++        }
+ 
+-	next = pick_next_task(rq, prev, &rf);
+ 	clear_tsk_need_resched(prev);
+ 	clear_preempt_need_resched();
+ 
+diff --git a/kernel/sched/rt.c b/kernel/sched/rt.c
+index aa7ee3a0b..6e2250233 100644
+--- a/kernel/sched/rt.c
++++ b/kernel/sched/rt.c
+@@ -2338,7 +2338,7 @@ static void task_tick_rt(struct rq *rq, struct task_struct *p, int queued)
+ 
+ 	if (--p->rt.time_slice)
+ 		return;
+-
++	// if process level 0, then sched_rr_timeslice_level_zero <
+ 	p->rt.time_slice = sched_rr_timeslice;
+ 
+ 	/*
+diff --git a/kernel/sched/sched.h b/kernel/sched/sched.h
+index 425a5589e..a757d1e37 100644
+--- a/kernel/sched/sched.h
++++ b/kernel/sched/sched.h
+@@ -807,7 +807,7 @@ extern void rto_push_irq_work_func(struct irq_work *work);
+ struct rq {
+ 	/* runqueue lock: */
+ 	raw_spinlock_t		lock;
+-
++	int			level;
+ 	/*
+ 	 * nr_running and cpu_load should be in the same cacheline because
+ 	 * remote CPUs use both these fields when doing load calculation.
+diff --git a/kernel/tag/Makefile b/kernel/tag/Makefile
+new file mode 100644
+index 000000000..1da1cce77
+--- /dev/null
++++ b/kernel/tag/Makefile
+@@ -0,0 +1 @@
++obj-y := tag.o
+diff --git a/kernel/tag/tag.c b/kernel/tag/tag.c
+new file mode 100644
+index 000000000..32d7887ba
+--- /dev/null
++++ b/kernel/tag/tag.c
+@@ -0,0 +1,143 @@
++#include <linux/cred.h>
++#include <linux/kernel.h>
++#include <linux/sched.h>
++#include <linux/pid.h>
++#include <linux/syscalls.h>
++#include <linux/errno.h>
++
++#define NS               1000000
++
++int errno;
++
++extern int set_alloc_level_zero;
++extern int set_alloc_level_one;
++extern int set_alloc_level_two;
++extern int set_alloc_level_three;
++
++SYSCALL_DEFINE2(set_alloc, int, level, int, new_allocation) {
++  if (current_uid().val != 0) {
++	errno = EALLOCSUDO;
++	return -1;
++  }
++
++  if (new_allocation < 0) {
++	errno = EBADALLOCVALUE;
++	return -1;
++  }
++
++  if (level < 0 || level > 3) {
++	errno = EBADLEVELRANGE;
++	return -1;
++  }
++
++  int current_zero = set_alloc_level_zero/NS;
++  int current_one = set_alloc_level_one/NS;
++  int current_two = set_alloc_level_two/NS;
++  int current_three = set_alloc_level_three/NS;
++
++  if (level == 0) current_zero = new_allocation;
++  if (level == 1) current_one = new_allocation;
++  if (level == 2) current_two = new_allocation;
++  if (level == 3) current_three = new_allocation;
++
++  if ((current_zero + current_one + current_two + current_three) < 5) {
++	errno = EBADALLOCVALUE;
++	return -1;
++  }
++
++  if (level == 0) {
++    int *new_alloc = &set_alloc_level_zero;
++    *new_alloc = (new_allocation * NS);
++  } else if (level == 1) {
++    int *new_alloc = &set_alloc_level_one;
++    *new_alloc = (new_allocation * NS);
++  } else if (level == 2) {
++    int *new_alloc = &set_alloc_level_two;
++    *new_alloc = (new_allocation * NS);
++  } else if (level == 3) {
++    int *new_alloc = &set_alloc_level_three;
++    *new_alloc = (new_allocation * NS);
++  }
++  return new_allocation;
++}
++
++SYSCALL_DEFINE1(get_alloc, int, level) {
++  if (level == 0) return set_alloc_level_zero/NS;
++  if (level == 1) return set_alloc_level_one/NS;
++  if (level == 2) return set_alloc_level_two/NS;
++  if (level == 3) return set_alloc_level_three/NS;
++  if (level < 0 || level > 3) errno = EBADLEVELRANGE;
++  return -1;
++}
++
++SYSCALL_DEFINE2(set_tag, int, pid, int, new_tag)
++{
++    struct pid *pid_struct = NULL;
++    struct task_struct *task = NULL;
++
++    // useful bitmasks
++    const unsigned int BIT_0 = 0b1;
++    const unsigned int BIT_01 = 0b11;
++    const unsigned int BIT_MSB = 0x80000000;
++
++	if (new_tag < 0) return -1;
++
++	pid_struct = find_get_pid(pid);
++	if (!pid_struct)
++		return -1;
++
++	task = pid_task(pid_struct, PIDTYPE_PID);
++	if (!task)
++		return -1;
++
++    // new_tag must have 0 in MSB
++    if (new_tag & BIT_MSB) return -1;
++
++	if (current_uid().val == 0) {
++		// A process running as the superuser may read and write the tag of any process.
++
++		task->tag = new_tag;
++		return new_tag;
++	} else {
++        int new_level = new_tag & BIT_01;
++        int curr_level = task->tag & BIT_01;
++		if (task == current) {
++			// user process changing its own security level
++            // a user process may decrease its own level, but not increase it
++			if (new_level <= curr_level) {
++                // a user process may reset a bit in its tag's bitmap to zero but not set a bit
++                unsigned int i = 0;
++                for (i = 2; i <= 30; i++) {
++                    int mask = BIT_0 << i;
++                    int new_byte = new_tag & mask;
++                    int curr_byte = task->tag & mask;
++                    if (new_byte > curr_byte) return -1;
++                }
++				task->tag = new_tag;
++				return new_tag;
++			} else
++				return -1;
++		}
++		// a user process has read-only access to the tag of any process
++		return -1;
++
++	}
++	return -1;
++}
++
++SYSCALL_DEFINE1(get_tag, int, pid)
++{
++	struct pid *pid_struct = NULL;
++    struct task_struct *task = NULL;
++
++    pid_struct = find_get_pid(pid);
++	if (!pid_struct) {
++		return -1;
++	}
++
++	task = pid_task(pid_struct, PIDTYPE_PID);
++	if (!task)
++		return -1;
++
++	return task->tag;
++}

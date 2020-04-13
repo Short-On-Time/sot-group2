@@ -5,5 +5,8 @@ const chargesRouter = express.Router();
 
 //logon routes
 chargesRouter.post('/charges', charges.charge);
+chargesRouter.post('/charges_type', charges.addChargeType);
+chargesRouter.post('/change_charges_type', charges.changeChargeType);
+chargesRouter.get('/get_charges_type/:type', charges.getChargeType);
 
 export default chargesRouter;

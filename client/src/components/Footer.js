@@ -1,4 +1,5 @@
 import React from 'react';
+import Newsletter from './NewsletterEmailField'
 
 const Footer = () => {
 	return (
@@ -22,15 +23,7 @@ const Footer = () => {
 							</div>
 						</div>
 
-						<div className="row mb-5">
-							<div className="col-md-12">
-								<h3 className="footer-heading mb-4 text-white">Stay up to date</h3>
-								<form action="#" className="d-flex footer-subscribe">
-									<input type="text" className="form-control rounded-0" placeholder="Enter your email" />
-									<input type="submit" className="btn btn-primary rounded-0" value="Subscribe" />
-								</form>
-							</div>
-						</div>
+						<Newsletter />
 					</div>
 
 					<div className="col-md-2">

@@ -10,6 +10,16 @@ adminRouter.get('/get_remedy', admin.getRemedyList);
 adminRouter.delete('/delete_remedy/:id', admin.deleteRemedy);
 adminRouter.put('/free_trial', admin.free_trial);
 
+//testimonial
+adminRouter.post('/add_testimonial', admin.addTestimonial);
+
+//newsletter
+adminRouter.post('/add_email_newsleter', admin.addEmailNewsletter);
+
+// home page premium caption
+adminRouter.post('/change_premium_caption', admin.changePremiumCaption);
+adminRouter.get('/get_premium_caption', admin.getPremiumCaption);
+
 //glossary routes
 adminRouter.post('/add_glossary', admin.addGlossary);
 adminRouter.put('/update_glossary/:id', admin.updateGlossary);
