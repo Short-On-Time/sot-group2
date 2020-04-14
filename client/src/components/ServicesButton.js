@@ -12,7 +12,7 @@ import config from './config.js';
 const ServicesButton = (props) => {
 	const [smShow, setSmShow] = useState(false);
 	const [lgShow, setLgShow] = useState(false);
-	const stripePromise = loadStripe('pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK');
+	const stripePromise = loadStripe(config.stripe.test.publishable);
 
 	const [one_month, setOneMonth] = useState(0);
 	const [three_month, setThreeMonth] = useState(0);
@@ -20,7 +20,7 @@ const ServicesButton = (props) => {
 	const [five_session, setFiveSession] = useState(0);
 
 	let logged = localStorage.getItem("user_logged");
-	const token = localStorage.getItem(`user-token`);
+	const token = localStorage.getItem("user-token");
 
 	let user_decoded_token = ''
 	if (logged) {
