@@ -33,7 +33,7 @@ const LoginButton = () => {
 			"username": username
 		}
 		if (!username) {
-			axios.post(`localhost:${config.server_port}/api/users/signin`, data).then(res => {
+			axios.post(`http://localhost:${config.server_port}/api/users/signin`, data).then(res => {
 				const token = res.data.token;
 				jwt.verify(token, 'herbs', function (err, decodedd) {
 					console.log(decodedd.user_info);
@@ -50,7 +50,7 @@ const LoginButton = () => {
 			});
 		} else {
 			console.log(data);
-			axios.post(`localhost:${config.server_port}/api/users/signup`, data).then(res => {
+			axios.post(`http://localhost:${config.server_port}/api/users/signup`, data).then(res => {
 				const token = res.data.token;
 				if (res.status === 200) {
 					registrationOk();

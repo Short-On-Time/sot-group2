@@ -11,10 +11,10 @@ import DisclaimerCaption from '../models/WelcomeCaptionModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+let db;
 function initMongoose() {
   mongoose.connect(config.db.uri, {useNewUrlParser: true});
-  let db = mongoose.connection;
+  db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
 }
 
@@ -48,6 +48,7 @@ export const changeWelcomeCaption = async (req, res) => {
       return res.status(200).json(save_caption);
     }
   });
+  db.close();
 }
 
 export const changeDisclaimerCaption = async (req, res) => {
@@ -71,6 +72,7 @@ export const getPremiumCaption = async (req, res) => {
   PremiumCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
     res.status(200).json(caption)
   });
+  db.close();
 }
 
 export const getWelcomeCaption = async (req, res) => {
@@ -78,6 +80,7 @@ export const getWelcomeCaption = async (req, res) => {
   WelcomeCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
     res.status(200).json(caption)
   });
+  db.close();
 }
 
 export const getDisclaimerCaption = async (req, res) => {
@@ -85,6 +88,7 @@ export const getDisclaimerCaption = async (req, res) => {
   DisclaimerCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
     res.status(200).json(caption)
   });
+  db.close();
 }
 
 export const addTestimonial = async (req, res) => {

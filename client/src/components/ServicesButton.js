@@ -20,8 +20,8 @@ const ServicesButton = (props) => {
 	const [five_session, setFiveSession] = useState(0);
 
 	let logged = localStorage.getItem("user_logged");
-
 	const token = localStorage.getItem(`user-token`);
+
 	let user_decoded_token = ''
 	if (logged) {
 		jwt.verify(token, 'herbs', function (err, decoded) {
@@ -89,9 +89,7 @@ const ServicesButton = (props) => {
 							<Card.Text>
 								Personal consulting with Herbalist Dee at scheduled time.
             				</Card.Text>
-								<div>
-								{ (logged) ? subscriptionButtons : <b>You need to login before purchasing.</b> }
-								</div>
+								{ (logged) ? subscriptionButtons() : subscriptionButtons }
 						</Card.Body>
 					</Card>
 					<hr />
@@ -103,7 +101,7 @@ const ServicesButton = (props) => {
 								In order to unlock herbal recipes for all body symptoms and premium services.
             	</Card.Text>
 							<div>
-								{ (logged) ? consultingButtons : <b>You need to login before purchasing.</b> }
+								{ (logged) ? consultingButtons() : <b>You need to login before purchasing.</b> }
 							</div>
 						</Card.Body>
 					</Card>

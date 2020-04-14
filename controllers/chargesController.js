@@ -6,10 +6,10 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Stripe from 'stripe';
 const stripe = new Stripe('sk_test_cI3u2JMXdPaFHsjxdHRuleLo005EtmkfsL');
-
+let db;
 function initMongoose() {
   mongoose.connect(config.db.uri, {useNewUrlParser: true});
-  let db = mongoose.connection;
+  db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
 }
 
@@ -70,7 +70,7 @@ export const addChargeType = async (req, res) => {
 
 
 export const changeChargeType = async (req, res) => {
-  // initMongoose()
+  initMongoose()
   let type = req.body.type
   let amount = req.body.amount
   Charge.findOneAndUpdate({type: type}, {$set: { amount: amount }}, (err, data) => {
@@ -100,4 +100,5 @@ export const getChargeType = async (req, res) => {
       res.status(200).json(data);
     }
   });
+  db.close();
 };
