@@ -23,6 +23,6 @@ forumRouter.delete('/delete_post/:id', forum.deletePost);
 //posts are the comments
 forumRouter.post('/add_comment/:post_id', forum.addComment);
 forumRouter.put('/edit_comment/:post_id/:comment_id', forum.editComment); //not sure if you can stack them this way...
-forumRouter.delete('/delete_comment/:post_id/:comment_id', forum.deleteComment)
+forumRouter.delete('/delete_comment/:post_id/:comment_id', forum.deleteComment);
 
 export default forumRouter;
