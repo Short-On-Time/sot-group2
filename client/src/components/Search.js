@@ -8,19 +8,14 @@ const SearchField = () => {
 
 	let url = window.location.href;
 	url = url.split("/")[3];
-
-	const goToPage = (value) => {
-		if (value) {
-			document.location = "/" + url + "/" + value;
-		}
-	}
-
-	if (url === "products" || url === "glossary" || url === "remedies") {
+	let page = url.split("?")[0];
+	console.log(url)
+	if (page === "products" || page === "glossary" || page === "remedies") {
 		return (
-			<Form target="_blank" onSubmit={() => goToPage(searchText)}>
+			<Form action={url}>
 				<Row>
 					<Col>
-						<Form.Control type="text" placeholder="Search for any products" value={searchText} onChange={(val) => { setSearchText(val.target.value) }} />
+						<Form.Control type="text" placeholder={`Search ${page}`} value={searchText} onChange={(val) => { setSearchText(val.target.value) }} name="search_term"/>
 					</Col>
 				</Row>
 			</Form>

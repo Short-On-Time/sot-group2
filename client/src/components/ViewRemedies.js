@@ -37,6 +37,9 @@ const ViewRemedies = (props) => {
 				if(key == "ailment"){
 					filters.ailment = value;
 				}
+				if(key == "search_term"){
+					filters.search_term = value;
+				}
 			}
 		})
 		return filters;
@@ -63,7 +66,15 @@ const ViewRemedies = (props) => {
 				matchesFilter = false;
 			}
 		}
-		console.log(matchesFilter)
+		if(filter.search_term){
+			if(remedy.name){
+				matchesFilter = matchesFilter && remedy.name.toLowerCase().includes(filter.search_term.toLowerCase());
+				console.log(filter.search_term.toLowerCase())
+			}
+			else{
+				matchesFilter = false;
+			}
+		}
 		return matchesFilter;
 	}
 
