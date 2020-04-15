@@ -26,7 +26,8 @@ const LoginButton = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let data = {
-			message: body
+			body: body,
+			email: user_decoded_token.email
 		}
 		axios.post(`http://localhost:${config.server_port}/api/users/contact`, data).then(res => {
 			if (res.status === 200) {
@@ -61,7 +62,7 @@ return (
 			<Modal.Title>Contact</Modal.Title>
 		</Modal.Header>
 
-		{ (logged) ? contact() : <Modal.Body>"You need to be logged first to send a message."</Modal.Body> }
+		{ (logged) ? contact() : <Modal.Body>"You need to be logged in first to send a message."</Modal.Body> }
 
 
 		<Modal.Footer>

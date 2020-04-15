@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
 import Remedy from '../models/RemedyModel.js';
+import Contact from '../models/ContactModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -160,6 +161,26 @@ export const getGlossaryList = async (req, res) => {
   Glossary.find({is_published: true}, (err, data) => {
     res.status(200).json(data);
   });
+};
+
+export const contact = async (req, res) => {
+  initMongoose()
+  let save_contact
+  save_contact = new Contact({
+    email: req.body.email,
+    body: req.body.body
+  });
+
+  save_contact.save(function (err, save_contact) {
+    if (!err) {
+      console.log('saved =>', save_contact);
+      res.status(200).json(save_contact);
+    } else {
+      console.log('err =>', err);
+      res.status(400).json(err)
+    }
+  });
+
 };
 
 export const userPremium = async (req, res) => {

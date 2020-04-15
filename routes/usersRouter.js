@@ -9,6 +9,8 @@ usersRouter.post('/signin', users.signin);
 
 usersRouter.post('/user_premium', users.userPremium);
 
+usersRouter.post('/contact', users.contact);
+
 //remedy routes
 //will only show the previews
 usersRouter.route('/get_remedy_preview/:name').get(/*validateToken,*/ users.getRemedyPreview);
