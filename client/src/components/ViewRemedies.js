@@ -43,33 +43,28 @@ const ViewRemedies = (props) => {
 	}
 
 	//TODO fix this logic
-	const filterRemedies = (rems, filter) => {
-		const matches = [];
-		rems.forEach( remedy => {
-			let matchesFilter = true;
-			if(filter.body_part){
-				if(remedy.body_part){
-					matchesFilter = matchesFilter && remedy.body_part.toLowerCase() === filter.body_part.toLowerCase();
-				}
-				else{
-					matchesFilter = false;
-				}
+	const matchesQuery = (remedy, filter) => {
+		let matchesFilter = true;
+		if(filter.body_part){
+			if(remedy.body_part){
+				matchesFilter = matchesFilter && remedy.body_part.toLowerCase() === filter.body_part.toLowerCase();
 			}
-			if(filter.ailment){
-				if(remedy.ailment){
-					
-					matchesFilter = matchesFilter && remedy.ailment.toLowerCase() === filter.ailment.toLowerCase();
-					console.log(filter.ailment.toLowerCase())
-				}
-				else{
-					matchesFilter = false;
-				}
+			else{
+				matchesFilter = false;
 			}
-			if(matchesFilter) {
-				matches.push(remedy);
+		}
+		if(filter.ailment){
+			if(remedy.ailment){
+				
+				matchesFilter = matchesFilter && remedy.ailment.toLowerCase() === filter.ailment.toLowerCase();
+				console.log(filter.ailment.toLowerCase())
 			}
-		})
-		return matches;
+			else{
+				matchesFilter = false;
+			}
+		}
+		console.log(matchesFilter)
+		return matchesFilter;
 	}
 
 	const Remedy = (remedy, letter) => {
@@ -155,8 +150,9 @@ const ViewRemedies = (props) => {
 
 				const lastLetter = { letter: "" }
 				if(search){
-					setRemedies(filterRemedies(remedies, filters));
-					setRemediesJSX(filterRemedies(remedies, filters).map(remedy => Remedy(remedy, lastLetter)));
+					setRemedies(remedies.filter( remedy => matchesQuery(remedy, filters)));
+					setRemediesJSX(remedies.filter( remedy => matchesQuery(remedy, filters)).map(remedy => Remedy(remedy, lastLetter)));
+					
 				}
 				else{	
 					setRemedies(remedies, filters);
