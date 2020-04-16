@@ -129,7 +129,7 @@ const ViewGlossary = (props) => {
 					
 				}
 				else{	
-					setGlossary(items, filters);
+					setGlossary(items);
 					setGlossaryJSX(items.map(item => glossaryItem(item, lastLetter)));
 				}
 			})
