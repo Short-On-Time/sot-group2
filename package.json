@@ -38,6 +38,7 @@
     "mongoose": "^5.9.2",
     "morgan": "^1.9.1",
     "react-image-mapper": "0.0.15",
+    "multer": "^1.4.2",
     "react-three-fiber": "^4.0.28",
     "request": "^2.88.2",
     "root": "^3.2.0",

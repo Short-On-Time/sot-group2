@@ -30,13 +30,24 @@ const ViewRemedies = (props) => {
 			});
 			value = value.substring(0,value.length-1)
 
-			if(value){
-				if(key == "body_part"){
+			switch(key) {
+				case "body_part":
 					filters.body_part = value;
-				}
-				if(key == "ailment"){
+					break;
+				case "ailment":
 					filters.ailment = value;
-				}
+					break;
+				case "search_term":
+					filters.search_term = value;
+					break;
+				case "include_premium":
+					if(value === "on"){
+						filters.include_premium = true;
+					}
+					else{
+						filters.include_premium = false;
+					}
+					break;
 			}
 		})
 		return filters;
@@ -55,15 +66,25 @@ const ViewRemedies = (props) => {
 		}
 		if(filter.ailment){
 			if(remedy.ailment){
-				
 				matchesFilter = matchesFilter && remedy.ailment.toLowerCase() === filter.ailment.toLowerCase();
-				console.log(filter.ailment.toLowerCase())
 			}
 			else{
 				matchesFilter = false;
 			}
 		}
-		console.log(matchesFilter)
+		if(filter.search_term){
+			if(remedy.name){
+				matchesFilter = matchesFilter && remedy.name.toLowerCase().includes(filter.search_term.toLowerCase());
+			}
+			else{
+				matchesFilter = false;
+			}
+		}
+		if(!filter.include_premium){
+			if(remedy.is_premium && !remedy.is_free_trial){
+				matchesFilter = false;
+			}
+		}
 		return matchesFilter;
 	}
 
@@ -155,7 +176,7 @@ const ViewRemedies = (props) => {
 					
 				}
 				else{	
-					setRemedies(remedies, filters);
+					setRemedies(remedies);
 					setRemediesJSX(remedies.map(remedy => Remedy(remedy, lastLetter)));
 				}
 			})
