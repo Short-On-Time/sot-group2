@@ -1,8 +1,9 @@
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import React, { useState } from 'react';
-import { Canvas } from 'react-three-fiber'
+import { Canvas } from 'react-three-fiber';
 
+import Model2D from '../components/Model2D';
 import Model3D from '../components/Model3D';
 
 const Model = () => {
@@ -12,12 +13,7 @@ const Model = () => {
 
 	return (
 		<>
-			<Canvas>
-        		<ambientLight />
-        		<pointLight position={[10, 10, 10]} />
-        		{/*<Model3D position={[-1.2, 0, 0]} />
-        		<Model3D position={[1.2, 0, 0]} />*/}
-    		</Canvas>
+			{is3d ? <Canvas>{/* <Model3D /> */}</Canvas> : <Model2D />}
 			<br />
 			<ToggleButtonGroup type="radio" name="dimension" value={is3d} onChange={changeDim}>
 				<ToggleButton variant="outline-primary" value={false}>2D</ToggleButton>

@@ -4,10 +4,6 @@ import { Canvas, useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import lerp from 'lerp'
 
-/*function getMousePos(e) {
-	return { x: e.clientX, y: e.clientY }
-}
-
 function getMouseDegrees(x, y, degreeLimit) {
 	let dx = 0, dy = 0, xdiff, xPercentage, ydiff, yPercentage
 	let w = { x: window.innerWidth, y: window.innerHeight }
@@ -47,7 +43,7 @@ function moveJoint(mouse, joint, degreeLimit = 40) {
 	joint.rotation.y = THREE.Math.degToRad(joint.rotation.yD)
 }
 
-function Model(mouse, { ...props }) {
+function Model({mouse, ...props }) {
 	const group = useRef()
 	const { nodes, animations } = useLoader(GLTFLoader, '../resources/stacy.glb')
 	const texture = useLoader(THREE.TextureLoader, '../resources/stacy.jpg')
@@ -59,7 +55,7 @@ function Model(mouse, { ...props }) {
 		actions.current = { idle: mixer.clipAction(animations[8], group.current) }
 		actions.current.idle.play()
 		return () => animations.forEach(clip => mixer.uncacheClip(clip))
-	}, [])
+	}, [animations, mixer])
 
 	useFrame((state, delta) => {
 		mixer.update(delta)
@@ -73,7 +69,7 @@ function Model(mouse, { ...props }) {
 				<primitive object={nodes['mixamorigHips']} />
 				<skinnedMesh geometry={nodes['stacy'].geometry} skeleton={nodes['stacy'].skeleton} rotation={[-Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
 					<meshPhongMaterial attach="material" map={texture} map-flipY={false} skinning />
-				</skinnedMesh>
+				</skinnedMesh>*/
 			</group>
 		</group>
 	)
@@ -93,7 +89,7 @@ export default function Model3D() {
 	const mouse = useRef({ x: 0, y: 0 })
 
 	return (
-		<Canvas onMouseMove={e => (mouse.current = getMousePos(e))} shadowMap pixelRatio={window.devicePixelRatio} camera={{ position: [0, -3, 18] }}>
+		<Canvas onMouseMove={e => mouse.current = { x: e.clientX, y: e.clientY }} shadowMap pixelRatio={window.devicePixelRatio} camera={{ position: [0, -3, 18] }}>
 			<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
 			<hemisphereLight skyColor={"black"} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
 			<directionalLight
@@ -117,4 +113,3 @@ export default function Model3D() {
 		</Canvas>
 	)
 }
-*/
