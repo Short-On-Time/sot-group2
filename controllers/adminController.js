@@ -313,8 +313,12 @@ export const addUser = async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    is_admin: req.body.is_admin,
-    is_premium: req.body.is_premium,
+		is_premium: req.body.is_premium,
+		is_admin: req.body.is_admin,
+		is_moderator: req.body.is_moderator,
+		is_glossary_editor: req.body.is_glossary_editor,
+		is_remedy_editor: req.body.is_remedy_editor,
+		is_website_editor: req.body.is_website_editor
   });
 
   //actually salt the password LOL

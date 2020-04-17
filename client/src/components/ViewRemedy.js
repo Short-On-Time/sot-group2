@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 import ListGroup from 'react-bootstrap/ListGroup'
+import PremiumWarning from './PremiumWarning'
+import Error from './Error'
 
 const ViewRemedy = (props) => {
+	const [isForbidden, setIsForbidden] = useState(false);
 	const [remedy, setRemedy] = useState([]);
 
 	const ingredients = (remedy) => {
@@ -21,10 +24,13 @@ const ViewRemedy = (props) => {
 	}
 
 	const createRemedy = (remedy) => {
+		if(isForbidden){
+			return <PremiumWarning return="/remedies" page={remedy.name}/>;
+		}
 		const JSX = [
 			<h3>{remedy.name}</h3>,
 			<h6>{remedy.body_part}</h6>,
-			<p><b>Ailment: </b> {remedy.ailment}</p>,
+			<p><b>Ailment: </b> {remedy.ailment_type}</p>,
 			<p><b>Description: </b> {remedy.description}</p>,
 			<h5>Ingredients: </h5>
 		];
@@ -41,6 +47,16 @@ const ViewRemedy = (props) => {
 
 				setRemedy(remedy);
 			})
+			.catch(function (e) {
+				console.log(e)
+				//TODO check this actually works once authentication is working
+				if(e.response.status === 403){
+					setIsForbidden(true);
+				}
+				else if (e) {
+					return <Error error={e} returnURL="/" />
+				}
+			});
 	}, []);
 
 	return (
