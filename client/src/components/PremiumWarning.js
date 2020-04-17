@@ -11,7 +11,7 @@ const PremiumWarning = (props) => {
 		window.location = url;
 	}
 	
-	{console.log(props)}
+	console.log(props)
 
 	return(
 		<Modal show={show} onHide={handleClose}>

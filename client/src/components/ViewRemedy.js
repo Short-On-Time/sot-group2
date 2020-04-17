@@ -30,7 +30,7 @@ const ViewRemedy = (props) => {
 		const JSX = [
 			<h3>{remedy.name}</h3>,
 			<h6>{remedy.body_part}</h6>,
-			<p><b>Ailment: </b> {remedy.ailment}</p>,
+			<p><b>Ailment: </b> {remedy.ailment_type}</p>,
 			<p><b>Description: </b> {remedy.description}</p>,
 			<h5>Ingredients: </h5>
 		];

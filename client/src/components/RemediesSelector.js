@@ -36,10 +36,10 @@ const RemediesSelector = (props) => {
 
 
 				const compareAilments = (a, b) => {
-					if (a.ailment.toLowerCase() < b.ailment.toLowerCase()) {
+					if (a.ailment_type.toLowerCase() < b.ailment_type.toLowerCase()) {
 						return -1
 					}
-					if (a.ailment.toLowerCase() > b.ailment.toLowerCase()) {
+					if (a.ailment_type.toLowerCase() > b.ailment_type.toLowerCase()) {
 						return 1
 					}
 					return 0;
@@ -53,8 +53,8 @@ const RemediesSelector = (props) => {
 					if(remedy.body_part && remedy.body_part.toLowerCase() != parts[parts.length-1].toLowerCase()){
 						parts.push(correctCase(remedy.body_part));
 					}
-					if(remedy.ailment && !ails.includes(correctCase(remedy.ailment))){
-						ails.push(correctCase(remedy.ailment));
+					if(remedy.ailment_type && !ails.includes(correctCase(remedy.ailment_type))){
+						ails.push(correctCase(remedy.ailment_type));
 					}
 				});
 
@@ -77,14 +77,14 @@ const RemediesSelector = (props) => {
 					{dropDownList(bodyParts)}
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId="ailment">
+			<Form.Group controlId="ailment_type">
 				<Form.Label>Ailment: </Form.Label>
-				<Form.Control as="select" name="ailment">
+				<Form.Control as="select" name="ailment_type">
 					{dropDownList(ailments)}
 				</Form.Control>
 			</Form.Group>
 			<Form.Group controlId="include_premium">
-				<Form.Check name="include_premium" label="Include Premium Remedies" type="switch"/>
+				<Form.Check name="include_premium" label="Include Premium Remedies" type="switch" defaultChecked="on"/>
 			</Form.Group>
 			<Button variant="primary" type="submit">
 				Search

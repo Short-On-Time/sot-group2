@@ -34,8 +34,8 @@ const ViewRemedies = (props) => {
 				case "body_part":
 					filters.body_part = value;
 					break;
-				case "ailment":
-					filters.ailment = value;
+				case "ailment_type":
+					filters.ailment_type = value;
 					break;
 				case "search_term":
 					filters.search_term = value;
@@ -64,9 +64,9 @@ const ViewRemedies = (props) => {
 				matchesFilter = false;
 			}
 		}
-		if(filter.ailment){
-			if(remedy.ailment){
-				matchesFilter = matchesFilter && remedy.ailment.toLowerCase() === filter.ailment.toLowerCase();
+		if(filter.ailment_type){
+			if(remedy.ailment_type){
+				matchesFilter = matchesFilter && remedy.ailment_type.toLowerCase() === filter.ailment_type.toLowerCase();
 			}
 			else{
 				matchesFilter = false;
@@ -85,6 +85,7 @@ const ViewRemedies = (props) => {
 				matchesFilter = false;
 			}
 		}
+		
 		return matchesFilter;
 	}
 
