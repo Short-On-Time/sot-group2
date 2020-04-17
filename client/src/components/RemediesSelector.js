@@ -83,8 +83,8 @@ const RemediesSelector = (props) => {
 					{dropDownList(ailments)}
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId="include_premium">
-				<Form.Check name="include_premium" label="Include Premium Remedies" type="switch" defaultChecked="on"/>
+			<Form.Group controlId="free_only">
+				<Form.Check name="free_only" label="Only include free remedies: " type="switch"/>
 			</Form.Group>
 			<Button variant="primary" type="submit">
 				Search

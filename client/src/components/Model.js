@@ -6,6 +6,10 @@ const Model = ({ mouse, ...props }) => {
 	const mesh = useRef()
 	const { nodes } = useLoader(GLTFLoader, 'model.glb')
 
+	const redirect = (url) =>{
+		document.location = "/remedies"
+	}
+
 	return (
 		<mesh
 			ref={mesh}
@@ -13,7 +17,7 @@ const Model = ({ mouse, ...props }) => {
 			dispose={null}
 			visible
 			geometry={nodes["body"].geometry}
-			onClick={() => {console.log("You've clicked the very zoomed-in leg! At this point, I should redirect, but I don't know how!")}}
+			onClick={() => {redirect(true)}}
 		>
 			<meshPhongMaterial attach="material" skinning />
 		</mesh>

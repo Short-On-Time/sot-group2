@@ -3,6 +3,7 @@ import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewRemedies from '../components/ViewRemedies';
 import Footer from '../components/Footer';
+import Search from '../components/Search'
 
 const Remedies = (props) => {
 	return (
@@ -27,12 +28,15 @@ const Remedies = (props) => {
 
 				<div className=" inner-page overlay" style={{ backgroundImage: "url('images/hero_2.jpg')" }} data-aos="fade" data-stellar-background-ratio="0.5">
 					<div className="row align-items-center justify-content-center">
-						<div className="text-center" data-aos="fade">
+						<div className="text-center shadow p-3 mb-5 bg-white rounded" data-aos="fade">
 							<br />
 							<br />
 							<br />
 							<br />
 							<h1 className="text-uppercase">Remedies</h1>
+							<br />
+							<Search />
+							<br />
 							<ViewRemedies name={props.match.params.name} />
 							<br />
 							<br />
