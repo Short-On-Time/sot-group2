@@ -3,6 +3,7 @@ import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewGlossary from '../components/ViewGlossary';
 import Footer from '../components/Footer';
+import Search from '../components/Search';
 
 const Glossary = (props) => {
     return (
@@ -33,6 +34,9 @@ const Glossary = (props) => {
                             <br />
                             <br />
                             <h1 className="text-uppercase">Glossary</h1>
+							<br />
+							<Search />
+							<br />
                             <ViewGlossary title = {props.match.params.title}/>
                             <br />
                             <br />

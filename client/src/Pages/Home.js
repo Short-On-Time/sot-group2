@@ -1,18 +1,23 @@
-import React from 'react';
-import RemediesSelector from '../components/RemediesSelector';
-import Search from '../components/Search';
-import NavBar from '../components/NavBar';
-import Services from '../components/ServicesButton';
-// import { Link } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import React, { Suspense, useRef, useState } from 'react'
+import { Canvas } from 'react-three-fiber'
+
+import RemediesSelector from '../components/RemediesSelector'
+// import Search from '../components/Search'
+import NavBar from '../components/NavBar'
+import Services from '../components/ServicesButton'
+
+import CameraControls from '../components/CameraControls'
+import Model from '../components/Model'
+import Footer from '../components/Footer'
+import PremiumCaption from '../components/PremiumCaption'
+import WelcomeCaption from '../components/WelcomeCaption'
+
 import '../App.css';
 
-import Model from '../components/Model';
-import Footer from '../components/Footer';
-import PremiumCaption from '../components/PremiumCaption';
-import WelcomeCaption from '../components/WelcomeCaption';
-
 const Home = () => {
+	const mouse = useRef({ x: 0, y: 0 })
+
 	return (
 		<div className="App">
 			<div id="overlayer"></div>
@@ -82,7 +87,7 @@ const Home = () => {
 								<div className="text-center">
 									<span className="flaticon-box display-4 d-block mb-3 text-primary"></span>
 									<h3 className="text-uppercase h4 mb-3">Quality content</h3>
-									<p>Premium users have access to personal and curated content. <br /><a style={{ color: "forestgreen" }}><Services text={"Try it now!"}/></a></p>
+									<p>Premium users have access to personal and curated content. <br /><a style={{ color: "forestgreen" }}><Services text={"Try it now!"} /></a></p>
 								</div>
 							</div>
 						</div>
@@ -105,7 +110,50 @@ const Home = () => {
 
 				<div className="site-half block">
 					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
-						<Model />
+						<Canvas
+							style={{ background: "white" }}
+							pixelRatio={window.devicePixelRatio}
+							camera={{ position: [0, 2, 10] }}
+							shadowMap
+							onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
+						>
+							<CameraControls />
+							<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
+							<hemisphereLight skyColor={"black"} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
+							<directionalLight
+								position={[-8, 12, 8]}
+								shadow-camera-left={-8.25}
+								shadow-camera-bottom={-8.25}
+								shadow-camera-right={8.25}
+								shadow-camera-top={8.25}
+								shadow-camera-near={0.1}
+								shadow-camera-far={1500}
+								castShadow
+							/>
+							<Suspense fallback={
+								<mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
+									<sphereGeometry attach="geometry" args={[1, 16, 16]} />
+									<meshStandardMaterial
+										attach="material"
+										color="white"
+										transparent
+										opacity={0.6}
+										roughness={1}
+										metalness={0}
+									/>
+								</mesh>
+							}>
+								<mesh position={[0, 4, -10]}>
+									<circleBufferGeometry attach="geometry" args={[8, 64]} />
+									<meshBasicMaterial attach="material" color="lightpink" />
+								</mesh>
+								<mesh rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -11, 0]} receiveShadow>
+									<planeGeometry attach="geometry" args={[5000, 5000, 1, 1]} />
+									<meshLambertMaterial attach="material" color="#9b9b9b" transparent opacity={0.2} />
+								</mesh>
+								<Model mouse={mouse} position={[0, -4, 5]} scale={[7, 7, 7]} />
+							</Suspense>
+						</Canvas>
 					</div>
 					<div className="container">
 						<div className="row no-gutters align-items-stretch">
@@ -169,7 +217,7 @@ const Home = () => {
 							<div className="col-lg-5 ml-auto">
 								<h2 className="site-section-heading mb-3 font-secondary text-uppercase">What is premium?</h2>
 								<p className="caption mb-5"><PremiumCaption /></p>
-{/*
+								{/*
 								<div className="row">
 									<div className="col-lg-6">
 										<div className="counter">
@@ -189,7 +237,7 @@ const Home = () => {
 						</div>
 					</div>
 				</div>
- {/*
+				{/*
 				<div className="site-section block-14 nav-direction-white">
 					<div className="container">
 						<div className="row mb-5">
