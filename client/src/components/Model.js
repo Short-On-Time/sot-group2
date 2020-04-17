@@ -1,32 +1,22 @@
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
-import ToggleButton from 'react-bootstrap/ToggleButton'
-import React, { Suspense, useState } from 'react'
-import { Canvas } from 'react-three-fiber'
+import React, { useRef } from 'react'
+import { useLoader } from 'react-three-fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-import LoadingModel from '../components/LoadingModel'
-import Model2D from '../components/Model2D'
-import Model3D from '../components/Model3D'
-
-const Model = () => {
-	const [is3d, set3d] = useState(true)
-
-	const changeDim = (is3d) => set3d(is3d)
+const Model = ({ mouse, ...props }) => {
+	const mesh = useRef()
+	const { nodes } = useLoader(GLTFLoader, 'model.glb')
 
 	return (
-		<>
-			{is3d ?
-			<Canvas style={{ background: "#171717" }}>
-				<directionalLight intensity={0.5} />
-				<Suspense fallback={<LoadingModel />}>
-					<Model3D position={[0, 0, 0]} />
-				</Suspense>
-			</Canvas> : <Model2D />}
-			<br />
-			<ToggleButtonGroup type="radio" name="dimension" value={is3d} onChange={changeDim}>
-				<ToggleButton variant="outline-primary" value={false}>2D</ToggleButton>
-				<ToggleButton variant="outline-primary" value={true}>3D</ToggleButton>
-			</ToggleButtonGroup>
-		</>
+		<mesh
+			ref={mesh}
+			{...props}
+			dispose={null}
+			visible
+			geometry={nodes["body"].geometry}
+			onClick={() => {console.log("You've clicked the very zoomed-in leg! At this point, I should redirect, but I don't know how!")}}
+		>
+			<meshPhongMaterial attach="material" skinning />
+		</mesh>
 	)
 }
 
