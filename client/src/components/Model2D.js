@@ -1,6 +1,6 @@
-import ImageMapper from 'react-image-mapper';
+// import ImageMapper from 'react-image-mapper';
 
-export default function Model2D() {
+const Model2D = () => {
 	return null
 	/*enterArea = (area) => {
 		this.setState({ hoveredArea: area });
@@ -43,3 +43,5 @@ export default function Model2D() {
 		</>
 	)*/
 }
+
+export default Model2D
