@@ -46,7 +46,7 @@ export const getImage = async (req, res) => {
 export const getImageList = async (req, res) => {
 	initMongoose()
 	Image.find({}, (err, data) => {
-		var names = data.map(d => d.name);
+		var names = data.map(d => [d.name, d.id]);
 		res.status(200).send(names);
 	});
 }
@@ -66,4 +66,18 @@ export const deleteImage = async (req, res) => {
 			res.status(200).type(data.mimeType).send(data.imageBuffer);
     }
   });
+}
+
+export const getImageID = async (req, res) => {
+	const id = req.params.id;
+	initMongoose()
+	Image.findOne({_id: id}, (err, data) => {
+		if(!data) {
+      res.status(400).json({
+        message: 'Image does not exist!',
+      });
+    } else {
+			res.status(200).type(data.mimeType).send(data.imageBuffer);
+    }
+	});
 }
