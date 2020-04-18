@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import React, { Suspense, useRef, useState } from 'react'
+// import { Link } from 'react-router-dom'
+import React, { Suspense, useRef } from 'react'
 import { Canvas } from 'react-three-fiber'
 
 import RemediesSelector from '../components/RemediesSelector'
@@ -113,7 +113,7 @@ const Home = () => {
 						<Canvas
 							style={{ background: "white" }}
 							pixelRatio={window.devicePixelRatio}
-							camera={{ position: [0, 2, 10] }}
+							camera={{ position: [0, 20, 75] }}
 							shadowMap
 							onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
 						>
@@ -155,6 +155,7 @@ const Home = () => {
 							</Suspense>
 						</Canvas>
 					</div>
+
 					<div className="container">
 						<div className="row no-gutters align-items-stretch">
 							<div className="col-lg-5 mr-lg-auto py-5 text-justify">
@@ -198,7 +199,7 @@ const Home = () => {
 										<img src="images/hero_2.jpg" alt="Image" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Neroli Oil</h2>
-											<p>Lowers inflammation & pain, reduces stress and improve symptoms of menopause, decreases blood pressure levels.</p>
+											<p>Lowers inflammation &amp; pain, reduces stress and improve symptoms of menopause, decreases blood pressure levels.</p>
 											<p><a href="/glossary/Neroli%20Oil" className="btn btn-primary text-white px-4">Learn More</a></p>
 										</div>
 									</div>
