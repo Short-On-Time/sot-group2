@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
+import Nav from "react-bootstrap/Nav";
 import { MdExitToApp } from "react-icons/md";
 
 class Logout extends React.Component {
@@ -23,9 +23,9 @@ class Logout extends React.Component {
 		}
 
 		if (nav) {
-			return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16} /></ListGroupItem>
+			return <Nav.Link className="admin-link text-light" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
 		} else {
-			return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={16} /></ListGroupItem>
+			return <Nav.Link className="admin-link text-light" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
 		}
 
 	}

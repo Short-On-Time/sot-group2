@@ -28,10 +28,10 @@ const Admin = () => {
 						/>
 
 						<AdminPanelCard
-							title="Forum"
+							title="Manage Users"
 							image="images/img_3.jpg"
-							description="Manage the forum."
-							link="#"
+							description="Manage users and permissions."
+							link="/admin/user_list"
 						/>
 					</CardDeck>
 				</Container>
@@ -40,16 +40,16 @@ const Admin = () => {
 				<Container>
 					<CardDeck>
 						<AdminPanelCard
-							title="Manage Users"
+							title="Manage Context"
 							image="images/img_5.jpg"
-							description="See and manage users."
-							link="#"
+							description="Manage text across the site."
+							link="/admin/context"
 						/>
 
 						<AdminPanelCard
-							title="Placeholder"
+							title="Images"
 							image="images/img_6.jpg"
-							description="See and manage users."
+							description="Manage images across the site."
 							link="#"
 						/>
 

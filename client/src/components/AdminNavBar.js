@@ -42,11 +42,15 @@ const AdminNavBar = (props) => {
 				<Nav.Link className="text-light" href="/admin" hidden={props.isDashboard}><FaArrowLeft /> go back</Nav.Link>
 			</Nav>
 
-			<OverlayTrigger trigger="click" placement="left" overlay={logOutPopover}>
+			{/* <OverlayTrigger trigger="click" placement="left" overlay={logOutPopover}>
 				<Button variant="success">
 					<h3 className="text-light" style={{ marginBottom: '0em' }}><FaRegUserCircle size={32} color="white" style={{ marginBottom: '0.5rem' }} /> Options </h3>
 				</Button>
-			</OverlayTrigger>
+			</OverlayTrigger> */}
+			<Nav class="justify-content-end">
+				<Nav.Link className="admin-link text-light" href="/">View site <FiEye size={20} /></Nav.Link> 
+				<Logout />
+			</Nav>
 		</Navbar>
 	);
 };

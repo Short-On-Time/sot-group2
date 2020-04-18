@@ -70,6 +70,11 @@
   background-color: forestgreen !important;
 } */
 
+.admin-link {
+  font-size: 1.3rem;
+  display: inline-block;
+}
+
 .hover-card {
   border: 1px solid rgba(0, 0, 0, 0.125) !important; 
   transition: box-shadow 0.3s;

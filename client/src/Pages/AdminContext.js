@@ -7,7 +7,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
 
-const AdminGlossary = () => {
+const AdminContext = () => {
 	const [query, setQuery] = useState("");
 
 	const setFilter = e => {
@@ -17,20 +17,19 @@ const AdminGlossary = () => {
 	return (
 		<div className="App">
 			<div className="site-wrap">
-				<AdminNavBar isDashboard={false} page=": Glossary" />
+				<AdminNavBar isDashboard={false} page=": Manage Context" />
 				<Container>
 					<div class="adglossary-content">
-						<InputGroup className="mb-3">
+						{/* <InputGroup className="mb-3">
 							<InputGroup.Prepend>
 								<InputGroup.Text>Search</InputGroup.Text>
 							</InputGroup.Prepend>
 							<FormControl
 								placeholder="Start typing to filter terms!"
 								onChange={setFilter.bind(this)} />
+						</InputGroup> */}
 
-						</InputGroup>
-
-						<AdminViewGlossary query={query} />
+						
 					</div>
 				</Container>
 			</div>
@@ -38,4 +37,4 @@ const AdminGlossary = () => {
 	);
 };
 
-export default AdminGlossary;
+export default AdminContext;

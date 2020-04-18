@@ -6,8 +6,8 @@ const Model = ({ mouse, ...props }) => {
 	const mesh = useRef()
 	const { nodes } = useLoader(GLTFLoader, 'model.glb')
 
-	const redirect = (url) =>{
-		document.location = "/remedies"
+	const redirect = (url) => {
+		document.location = '/remedies'
 	}
 
 	return (
@@ -17,7 +17,9 @@ const Model = ({ mouse, ...props }) => {
 			dispose={null}
 			visible
 			geometry={nodes["body"].geometry}
-			onClick={() => {redirect(true)}}
+			onClick={() => { redirect('url') }}
+			onPointerOver={() => {  }}
+			onPointerOut={() => {  }}
 		>
 			<meshPhongMaterial attach="material" skinning />
 		</mesh>
