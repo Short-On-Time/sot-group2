@@ -6,7 +6,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import config from './config.js';
 
-const LoginButton = () => {
+const ContactButton = () => {
 	const [show, setShow] = useState(false);
 	const [body, setBody] = useState('');
 
@@ -62,7 +62,7 @@ return (
 			<Modal.Title>Contact</Modal.Title>
 		</Modal.Header>
 
-		{ (logged) ? contact() : <Modal.Body>"You need to be logged in first to send a message."</Modal.Body> }
+		{ (logged) ? contact() : <Modal.Body>You need to be logged in first to send a message.</Modal.Body> }
 
 
 		<Modal.Footer>
@@ -78,4 +78,4 @@ return (
 );
 };
 
-export default LoginButton;
+export default ContactButton;

@@ -89,7 +89,7 @@ const ServicesButton = (props) => {
 							<Card.Text>
 								Personal consulting with Herbalist Dee at scheduled time.
             				</Card.Text>
-								{ (logged) ? subscriptionButtons() : subscriptionButtons }
+								{ (logged) ? subscriptionButtons() : <b>You need to login before purchasing.</b> }
 						</Card.Body>
 					</Card>
 					<hr />
