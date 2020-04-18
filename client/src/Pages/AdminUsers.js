@@ -1,36 +1,45 @@
-import React from 'react';
+import React, { useState } from "react";
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import AdminViewUsers from '../components/AdminViewUsers';
+import AdminNavBar from "../components/AdminNavBar";
+import Container from "react-bootstrap/Container";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 
-class AdminUsers extends React.Component {
-	state = {
-		query: ""
-	}
+const AdminUsers = () => {
+	const [query, setQuery] = useState("");
 
-	setFilter(e) {
-		this.setState({
-			query: e.target.value
-		})
-	}
+	const setFilter = e => {
+		setQuery(e.target.value);
+	};
 
-	render() {
+	
 		return (
 			<div className="App">
 				<div className="site-wrap">
-					<h1>Users Panel</h1>
-					<a href="/admin" className="btn btn-primary text-white px-4">go back</a>
-					<p />
+				<AdminNavBar isDashboard={false} page=": Users" />	
+				<Container>
+				<div class="adglossary-content">
+						<InputGroup className="mb-3">
+							<InputGroup.Prepend>
+								<InputGroup.Text>Search</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								placeholder="Start typing to filter users!"
+								onChange={setFilter.bind(this)} />
 
-					<input type="text" name="search" placeholder="Search User Here!" onChange={this.setFilter.bind(this)} />
-					<a className="btn btn-primary text-white px-4" href="/admin/add_user?new=true">Add</a>
+						</InputGroup>
+					
 
-					<AdminViewUsers query={this.state.query} />
+					<AdminViewUsers query={query} />
+					</div>
+					</Container>				
 				</div>
 			</div>
 		)
-	}
+	
 }
 
 export default AdminUsers;
