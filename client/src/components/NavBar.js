@@ -78,7 +78,6 @@ const NavBar = (props) => {
 										<li className={setActivePageHighlight("Services")}><Services text={"Services"}/></li>
 										<li className={setActivePageHighlight("Contact")}><Contact /></li>
 										<li>{isAdmin()}</li>
-										<li><Search /></li>
 										<li>{logged()}</li>
 										{/*<li className={setActivePageHighlight("User")}><UserButton /></li>*/}
 									</ul>

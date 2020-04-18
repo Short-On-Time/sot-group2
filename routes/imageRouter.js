@@ -10,4 +10,7 @@ imageRouter.get('/get_image/:name', image.getImage);
 imageRouter.get('/get_image', image.getImageList);
 imageRouter.delete('/delete_image/:name', image.deleteImage);
 
+//for auto-grabbing images
+imageRouter.get('/load_image/:id', image.getImageID);
+
 export default imageRouter;

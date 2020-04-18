@@ -4,8 +4,6 @@ import axios from 'axios';
 import config from './config.js';
 import ViewRemedy from './ViewRemedy'
 import Error from './Error'
-import { filter } from 'async';
-
 
 const ViewRemedies = (props) => {
 	//TODO: find a way to eliminate setRemediesJSX
@@ -19,7 +17,7 @@ const ViewRemedies = (props) => {
 		}
 		let queriesText = query.split('?')[1];
 		let queries = queriesText.split('&')
-		let filters = {};
+		let filters = {free_only: false};
 		queries.forEach( (q) => {
 			let splitQ = q.split('=');
 			let key = splitQ[0];
@@ -40,12 +38,9 @@ const ViewRemedies = (props) => {
 				case "search_term":
 					filters.search_term = value;
 					break;
-				case "include_premium":
+				case "free_only":
 					if(value === "on"){
-						filters.include_premium = true;
-					}
-					else{
-						filters.include_premium = false;
+						filters.free_only = true;
 					}
 					break;
 			}
@@ -80,7 +75,7 @@ const ViewRemedies = (props) => {
 				matchesFilter = false;
 			}
 		}
-		if(!filter.include_premium){
+		if(filter.free_only){
 			if(remedy.is_premium && !remedy.is_free_trial){
 				matchesFilter = false;
 			}
@@ -96,7 +91,11 @@ const ViewRemedies = (props) => {
 		}
 
 		if (getFirstLetter(remedy.name) === letter.letter || (!isNaN(getFirstLetter(remedy.name)) && letter.letter === "#")) {
-			return (<div><a href={"/remedies/" + remedy.name} className="text-secondary">{remedy.name}</a></div>);
+			return (
+				<div>
+					<a href={"/remedies/" + remedy.name} className="text-secondary">{remedy.name}</a>
+				</div>
+			);
 		}
 		else if (!isNaN(getFirstLetter(remedy.name)) && letter.letter !== "#") {
 			letter.letter = "#";
@@ -132,10 +131,10 @@ const ViewRemedies = (props) => {
 	const getRemedy = () => {
 		if (!props.name) {
 			if(remedies.length){
-				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary">{remediesJSX}</div>;
+				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns remedies">{remediesJSX}</div>;
 			}
 			else{
-				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary"><p>No recipes match your request</p></div>;
+				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns remedies"><p>No recipes match your request</p></div>;
 			}
 		}
 		else if (remediesJSX.size === 0) {
