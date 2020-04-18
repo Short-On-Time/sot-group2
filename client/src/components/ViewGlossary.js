@@ -10,7 +10,6 @@ const ViewGlossary = (props) => {
 	const [glossary, setGlossary] = useState([]);
 	const [glossaryJSX, setGlossaryJSX] = useState([]);
 
-
 	let search = useLocation().search;
 	const parseURLQuery = (query) => {
 		if(!query){
@@ -93,7 +92,12 @@ const ViewGlossary = (props) => {
 
 	const getItem = () => {
 		if (!props.title) {
-			return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary">{glossaryJSX}</div>;
+			if(glossary.length){
+				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary">{glossaryJSX}</div>;
+			}
+			else{
+				return <div style={{ backgroundColor: "white" }} className="list-unstyled card-columns glossary"><p>No glossary items match your request</p></div>;
+			}
 		} else if (glossaryJSX.size === 0) {
 			return <p>Loading Glossary Items...</p>
 		} else if (doesContain(props.title, glossary) === false && glossary.length > 0) {
