@@ -15,8 +15,10 @@ import AdminAddRemedies from './Pages/AdminAddRemedies'
 import AdminEditRemedies from './Pages/AdminEditRemedies';
 
 import AdminUsers from './Pages/AdminUsers';
-import AdminAddUser from './Pages/AdminAddUser';
-import AdminEditUser from './Pages/AdminEditUser';
+import AdminAddUser from './components/AdminAddUser';
+import AdminEditUser from './components/AdminEditUser';
+
+import AdminContext from './Pages/AdminContext';
 
 import PageNotFound from './Pages/PageNotFound';
 import Remedies from './Pages/Remedies';
@@ -48,6 +50,7 @@ const Main = () => {
 						<Route path={`${url}/user_list`} component={AdminUsers} />
 						<Route path={`${url}/add_user`} component={AdminAddUser} />
 						<Route path={`${url}/edit_user`} component={AdminEditUser} />
+						<Route path={`${url}/context`} component={AdminContext} />
 					</>
 				)}
 			/>
