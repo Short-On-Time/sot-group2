@@ -16,18 +16,19 @@ const ContactButton = () => {
 	let logged = localStorage.getItem("user_logged");
 	const token = localStorage.getItem("user-token");
 
-	let user_decoded_token = ''
-	if (logged) {
-		jwt.verify(token, 'herbs', function (err, decoded) {
-			user_decoded_token = decoded.user_info
-		});
+	const UserEmail = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			return decoded.user_info.email
+		}
 	}
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let data = {
 			body: body,
-			email: user_decoded_token.email
+			email: UserEmail()
 		}
 		axios.post(`http://localhost:${config.server_port}/api/users/contact`, data).then(res => {
 			if (res.status === 200) {
@@ -44,7 +45,7 @@ const ContactButton = () => {
 			<>
 			<Modal.Body>
 				To: <a href="mailto:Dee@ConsiderHerbs.com">Dee@ConsiderHerbs.com</a><br/>
-			From: {user_decoded_token.email}
+			From: {UserEmail()}
 			<Form.Group controlId="exampleForm.ControlTextarea1">
 				<Form.Label>Message</Form.Label>
 				<Form.Control as="textarea" rows="3" onChange={(event) => setBody(event.target.value)} />

@@ -19,17 +19,15 @@ const ServicesButton = (props) => {
 	const [one_session, setOneSession] = useState(0);
 	const [five_session, setFiveSession] = useState(0);
 
-	let logged = localStorage.getItem("user_logged");
-	const token = localStorage.getItem("user-token");
-
-	let user_decoded_token = ''
-	if (logged) {
-		jwt.verify(token, 'herbs', function (err, decoded) {
-			user_decoded_token = decoded.user_info
-		});
+	const UserInfo = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			return decoded.user_info
+		}
 	}
 
-
+	let logged = localStorage.getItem("user_logged");
 
 	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
 		setOneMonth(res.data.amount)
@@ -49,8 +47,8 @@ const ServicesButton = (props) => {
 	const subscriptionButtons = () => {
 		return (
 			<>
-				<StripePay amount={one_session} info={user_decoded_token} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
-				<StripePay amount={five_session} info={user_decoded_token} text={`Five sessions for $${five_session/100}`} />
+				<StripePay amount={one_session} info={UserInfo()} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
+				<StripePay amount={five_session} info={UserInfo()} text={`Five sessions for $${five_session/100}`} />
 			</>
 		)
 	}
@@ -58,8 +56,8 @@ const ServicesButton = (props) => {
 	const consultingButtons = () => {
 		return (
 			<>
-				<StripePay amount={one_month} info={user_decoded_token} text={`One month for $${one_month/100}`} /><br /><br />
-				<StripePay amount={three_month} info={user_decoded_token} text={`Three months for $${three_month/100}`} />
+				<StripePay amount={one_month} info={UserInfo()} text={`One month for $${one_month/100}`} /><br /><br />
+				<StripePay amount={three_month} info={UserInfo()} text={`Three months for $${three_month/100}`} />
 			</>
 		)
 	}

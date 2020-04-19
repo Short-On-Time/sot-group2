@@ -22,11 +22,7 @@ class Logout extends React.Component {
 			this.props.loginData()
 		}
 
-		if (nav) {
-			return <Nav.Link className="admin-link text-light" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
-		} else {
-			return <Nav.Link className="admin-link text-light" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
-		}
+		return <Nav.Link className="admin-link" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
 
 	}
 }

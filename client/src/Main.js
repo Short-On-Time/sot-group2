@@ -22,6 +22,40 @@ import AdminContext from './Pages/AdminContext';
 
 import PageNotFound from './Pages/PageNotFound';
 import Remedies from './Pages/Remedies';
+import jwt from 'jsonwebtoken';
+
+const isAdmin = () => {
+	const token = localStorage.getItem("user-token")
+	if (token) {
+		let decoded = jwt.verify(token, 'herbs');
+		return decoded.user_info.is_admin
+	} else {
+		return false
+	}
+
+}
+
+const AdminRoute = () => {
+	return (
+	<Route
+		path="/admin"
+		render={({ match: { url } }) => (
+			<>
+				<Route path={`${url}/`} component={Admin} exact />
+				<Route path={`${url}/glossary_list`} component={AdminGlossary} />
+				<Route path={`${url}/add_glossary`} component={AdminAddGlossary} />
+				<Route path={`${url}/remedies_list`} component={AdminRemedies} />
+				<Route path={`${url}/add_remedies`} component={AdminAddRemedies} />
+				<Route path={`${url}/edit_remedies`} component={AdminEditRemedies} />
+				<Route path={`${url}/user_list`} component={AdminUsers} />
+				<Route path={`${url}/add_user`} component={AdminAddUser} />
+				<Route path={`${url}/edit_user`} component={AdminEditUser} />
+				<Route path={`${url}/context`} component={AdminContext} />
+			</>
+		)}
+	/>
+)
+}
 
 const Main = () => {
 	return (
@@ -37,23 +71,9 @@ const Main = () => {
 
 			{/* <Route exact path='/admin' component={Admin}/> */}
 
-			<Route
-				path="/admin"
-				render={({ match: { url } }) => (
-					<>
-						<Route path={`${url}/`} component={Admin} exact />
-						<Route path={`${url}/glossary_list`} component={AdminGlossary} />
-						<Route path={`${url}/add_glossary`} component={AdminAddGlossary} />
-						<Route path={`${url}/remedies_list`} component={AdminRemedies} />
-						<Route path={`${url}/add_remedies`} component={AdminAddRemedies} />
-						<Route path={`${url}/edit_remedies`} component={AdminEditRemedies} />
-						<Route path={`${url}/user_list`} component={AdminUsers} />
-						<Route path={`${url}/add_user`} component={AdminAddUser} />
-						<Route path={`${url}/edit_user`} component={AdminEditUser} />
-						<Route path={`${url}/context`} component={AdminContext} />
-					</>
-				)}
-			/>
+			{isAdmin() ? AdminRoute() : ""}
+
+
 
 			{/*
 			<Route exact path='/admin/glossary_list/' component={AdminGlossary}/>
@@ -66,9 +86,6 @@ const Main = () => {
         	*/
 			}
 
-			<Route exact path='/admin/user_list/' component={AdminUsers} />
-			<Route exact path='/admin/add_user/' component={AdminAddUser} />
-			<Route exact path='/admin/edit_user/' component={AdminEditUser} />
 			<Route component={PageNotFound} />
 		</Switch>
 	);
