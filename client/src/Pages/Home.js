@@ -133,7 +133,7 @@ const Home = () => {
 								shadowMap
 								onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
 							>
-								<CameraControls />
+								<CameraControls />	{/* get rid of CameraControls and emplace all the camera controls here */}
 								<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
 								<hemisphereLight skyColor={'black'} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
 								<directionalLight
@@ -172,32 +172,16 @@ const Home = () => {
 											]
 										}}
 										width={50}
-										imgWidth={500}
-										// onLoad={() => this.load()}
-										// onClick={area => this.clicked(area)}
+										imgWidth={500}									// figure out wtf these widths should be
+										onLoad={() => {  }}
+										onClick={() => {  }} 							// redirect to remedy with certain name
 										onMouseEnter={(area) => setHoveredArea(area)}
 										onMouseLeave={() => setHoveredArea(null)}
-									// onMouseMove={(area, _, e) => this.moveOnArea(area, e)}
-									// onImageClick={e => this.clickedOutside(e)}
-									// onImageMouseMove={e => this.moveOnImage(e)}
+										onMouseMove={() => {  }}						// probably unneeded
+										onImageClick={() => {  }}						// figure out how this is different from onClick
+										onImageMouseMove={() => {  }}					// also probably unneeded
 									/>
-									{
-										hoveredArea &&
-										<span style={{
-											position: 'absolute',
-											color: '#fff',
-											padding: '5px',
-											background: 'rgba(0, 0, 0, 0.8)',
-											transform: 'translate3d(-50%, -50%, 0)',
-											borderRadius: '5px',
-											pointerEvents: 'none',
-											zIndex: '1000',
-											top: `${hoveredArea.center[1]}px`,
-											left: `${hoveredArea.center[0]}px`
-										}}>
-											{hoveredArea && hoveredArea.name}
-										</span>
-									}
+
 									<ToggleButtonGroup type="radio" name="orientation-controller" size="sm" vertical defaultValue={'front'}
 										onChange={(orientation) => setOrientation(orientation)}
 									>
@@ -229,6 +213,7 @@ const Home = () => {
 									</Spinner>
 								) : '2D'}
 							</ToggleButton>
+
 							<ToggleButton
 								variant="outline-success"
 								value={true}
@@ -262,7 +247,7 @@ const Home = () => {
 					</div>
 				</div>
 
-				<div className="site-section ">
+				<div className="site-section">
 					<div className="container">
 						<div className="row">
 							<div className="col-md-12 text-center">
