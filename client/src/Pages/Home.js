@@ -19,7 +19,7 @@ import WelcomeCaption from '../components/WelcomeCaption'
 import '../App.css';
 
 const Home = () => {
-	const [is3d, set3d] = useState(true)
+	const [is3d, set3d] = useState(false)
 	const [isLoading, setLoading] = useState(false)
 	const [orientation, setOrientation] = useState('front')
 	const [hoveredArea, setHoveredArea] = useState(null)
@@ -171,8 +171,8 @@ const Home = () => {
 												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
 											]
 										}}
-										width={50}
-										imgWidth={500}									// figure out wtf these widths should be
+										height={300}
+										imgHeight={500}									// figure out wtf these widths should be
 										onLoad={() => {  }}
 										onClick={() => {  }} 							// redirect to remedy with certain name
 										onMouseEnter={(area) => setHoveredArea(area)}
