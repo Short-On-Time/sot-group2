@@ -15,6 +15,8 @@ const RemedySchema = mongoose.Schema({
 	is_published: { type: Boolean, required: true, default: false },
   is_premium: { type: Boolean, required: true, default: true },
 	is_free_trial: { type: Boolean, required: true, default: false},
+
+	imageID: {type: String},
 	
   createdAt: { type: Date, default: Date.now()}
 });
