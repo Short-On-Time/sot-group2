@@ -1,12 +1,15 @@
 // import { Link } from 'react-router-dom'
-import React, { Suspense, useRef } from 'react'
+import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { Canvas } from 'react-three-fiber'
+import ImageMapper from 'react-image-mapper'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import Spinner from 'react-bootstrap/Spinner'
 
 import RemediesSelector from '../components/RemediesSelector'
 // import Search from '../components/Search'
 import NavBar from '../components/NavBar'
 import Services from '../components/ServicesButton'
-
 import CameraControls from '../components/CameraControls'
 import Model from '../components/Model'
 import Footer from '../components/Footer'
@@ -16,6 +19,19 @@ import WelcomeCaption from '../components/WelcomeCaption'
 import '../App.css';
 
 const Home = () => {
+	const [is3d, set3d] = useState(true)
+	const [isLoading, setLoading] = useState(false)
+	const [orientation, setOrientation] = useState('front')
+	const [hoveredArea, setHoveredArea] = useState(null)
+
+	// update to receive request from ImageMapper onLoad()
+	// update to work with some sort of loading from 3D model---maybe from Suspense?
+	useEffect(() => {
+		if (isLoading) {
+			new Promise((resolve) => setTimeout(resolve, 2000)).then(() => setLoading(false))
+		}
+	}, [isLoading])
+
 	const mouse = useRef({ x: 0, y: 0 })
 
 	return (
@@ -110,50 +126,113 @@ const Home = () => {
 
 				<div className="site-half block">
 					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
-						<Canvas
-							style={{ background: "white" }}
-							pixelRatio={window.devicePixelRatio}
-							camera={{ position: [0, 20, 75] }}
-							shadowMap
-							onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
-						>
-							<CameraControls />
-							<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
-							<hemisphereLight skyColor={"black"} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
-							<directionalLight
-								position={[-8, 12, 8]}
-								shadow-camera-left={-8.25}
-								shadow-camera-bottom={-8.25}
-								shadow-camera-right={8.25}
-								shadow-camera-top={8.25}
-								shadow-camera-near={0.1}
-								shadow-camera-far={1500}
-								castShadow
-							/>
-							<Suspense fallback={
-								<mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
-									<sphereGeometry attach="geometry" args={[1, 16, 16]} />
-									<meshStandardMaterial
-										attach="material"
-										color="white"
-										transparent
-										opacity={0.6}
-										roughness={1}
-										metalness={0}
-									/>
-								</mesh>
-							}>
-								<mesh position={[0, 4, -10]}>
+						{is3d ? (
+							<Canvas
+								pixelRatio={window.devicePixelRatio}
+								camera={{ position: [0, -3, 18] }}
+								shadowMap
+								onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
+							>
+								<CameraControls />	{/* get rid of CameraControls and emplace all the camera controls here */}
+								<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
+								<hemisphereLight skyColor={'black'} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
+								<directionalLight
+									position={[-8, 12, 8]}
+									shadow-camera-left={-8.25}
+									shadow-camera-bottom={-8.25}
+									shadow-camera-right={8.25}
+									shadow-camera-top={8.25}
+									shadow-camera-near={0.1}
+									shadow-camera-far={1500}
+									castShadow
+								/>
+								<mesh position={[0, -3, -10]}>
 									<circleBufferGeometry attach="geometry" args={[8, 64]} />
 									<meshBasicMaterial attach="material" color="lightpink" />
 								</mesh>
-								<mesh rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -11, 0]} receiveShadow>
+								<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -11, 0]} receiveShadow>
 									<planeGeometry attach="geometry" args={[5000, 5000, 1, 1]} />
 									<meshLambertMaterial attach="material" color="#9b9b9b" transparent opacity={0.2} />
 								</mesh>
-								<Model mouse={mouse} position={[0, -4, 5]} scale={[7, 7, 7]} />
-							</Suspense>
-						</Canvas>
+								<Suspense fallback={null}>
+									<Model mouse={mouse} position={[0, -11, 0]} scale={[7, 7, 7]} />
+								</Suspense>
+							</Canvas>
+						) : (
+								<div style={{ position: 'relative' }}>
+									<ImageMapper
+										src={`${orientation}.jpg`}
+										map={{
+											name: 'map',
+											areas: [
+												{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], fillColor: 'blue' },
+												{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], fillColor: 'pink' },
+												{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
+												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
+											]
+										}}
+										width={50}
+										imgWidth={500}									// figure out wtf these widths should be
+										onLoad={() => {  }}
+										onClick={() => {  }} 							// redirect to remedy with certain name
+										onMouseEnter={(area) => setHoveredArea(area)}
+										onMouseLeave={() => setHoveredArea(null)}
+										onMouseMove={() => {  }}						// probably unneeded
+										onImageClick={() => {  }}						// figure out how this is different from onClick
+										onImageMouseMove={() => {  }}					// also probably unneeded
+									/>
+
+									<ToggleButtonGroup type="radio" name="orientation-controller" size="sm" vertical defaultValue={'front'}
+										onChange={(orientation) => setOrientation(orientation)}
+									>
+										<ToggleButton variant="outline-success" value={'front'}>Front</ToggleButton>
+										<ToggleButton variant="outline-success" value={'side'}>Side</ToggleButton>
+										<ToggleButton variant="outline-success" value={'back'}>Back</ToggleButton>
+									</ToggleButtonGroup>
+								</div>
+							)
+						}
+
+						<br />
+
+						<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d}
+							onChange={(is3d) => set3d(is3d)}
+						>
+							<ToggleButton variant="outline-success" value={false} disabled={isLoading && !is3d}
+								onClick={(!isLoading && is3d) && (() => setLoading(true))}
+							>
+								{isLoading && !is3d ? (
+									<Spinner
+										as="span"
+										animation="border"
+										size="sm"
+										role="status"
+										aria-hidden="true"
+									>
+										<span className="sr-only">Loading...</span>
+									</Spinner>
+								) : '2D'}
+							</ToggleButton>
+
+							<ToggleButton
+								variant="outline-success"
+								value={true}
+								disabled={isLoading && is3d}
+								onClick={(!isLoading && !is3d) && (() => setLoading(true))}
+							>
+								{isLoading && is3d ? (
+									<Spinner
+										as="span"
+										animation="border"
+										size="sm"
+										role="status"
+										aria-hidden="true"
+									>
+										<span className="sr-only">Loading...</span>
+									</Spinner>
+								) : '3D'}
+							</ToggleButton>
+						</ToggleButtonGroup>
 					</div>
 
 					<div className="container">
@@ -168,7 +247,7 @@ const Home = () => {
 					</div>
 				</div>
 
-				<div className="site-section ">
+				<div className="site-section">
 					<div className="container">
 						<div className="row">
 							<div className="col-md-12 text-center">
