@@ -19,8 +19,9 @@ import WelcomeCaption from '../components/WelcomeCaption'
 import '../App.css';
 
 const Home = () => {
-	const [is3d, set3d] = useState(false)
+	const [is3d, set3d] = useState(true)
 	const [isLoading, setLoading] = useState(false)
+	const [orientation, setOrientation] = useState('front')
 	const [hoveredArea, setHoveredArea] = useState(null)
 
 	// update to receive request from ImageMapper onLoad()
@@ -127,15 +128,14 @@ const Home = () => {
 					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
 						{is3d ? (
 							<Canvas
-								style={{ background: 'white' }}
 								pixelRatio={window.devicePixelRatio}
-								camera={{ position: [0, 20, 75] }}
+								camera={{ position: [0, -3, 18] }}
 								shadowMap
 								onMouseMove={e => (mouse.current = { x: e.clientX, y: e.clientY })}
 							>
 								<CameraControls />
-								<fog attach="fog" args={[0xdfdfdf, 100, 150]} />
-								<hemisphereLight skyColor={"black"} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
+								<fog attach="fog" args={[0xdfdfdf, 35, 65]} />
+								<hemisphereLight skyColor={'black'} groundColor={0xffffff} intensity={0.68} position={[0, 50, 0]} />
 								<directionalLight
 									position={[-8, 12, 8]}
 									shadow-camera-left={-8.25}
@@ -146,64 +146,51 @@ const Home = () => {
 									shadow-camera-far={1500}
 									castShadow
 								/>
-								<Suspense fallback={
-									<mesh visible position={[0, 0, 0]} rotation={[0, 0, 0]}>
-										<sphereGeometry attach="geometry" args={[1, 16, 16]} />
-										<meshStandardMaterial
-											attach="material"
-											color="white"
-											transparent
-											opacity={0.6}
-											roughness={1}
-											metalness={0}
-										/>
-									</mesh>
-								}>
-									<mesh position={[0, 0, -10]}>
-										<circleBufferGeometry attach="geometry" args={[60, 64]} />
-										<meshBasicMaterial attach="material" color="lightpink" />
-									</mesh>
-									<mesh rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -35, 5]} receiveShadow>
-										<planeGeometry attach="geometry" args={[5000, 5000, 1, 1]} />
-										<meshLambertMaterial attach="material" color="#9b9b9b" transparent opacity={0.2} />
-									</mesh>
-									<Model mouse={mouse} position={[0, -35, 5]} scale={[12, 12, 12]} />
+								<mesh position={[0, -3, -10]}>
+									<circleBufferGeometry attach="geometry" args={[8, 64]} />
+									<meshBasicMaterial attach="material" color="lightpink" />
+								</mesh>
+								<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -11, 0]} receiveShadow>
+									<planeGeometry attach="geometry" args={[5000, 5000, 1, 1]} />
+									<meshLambertMaterial attach="material" color="#9b9b9b" transparent opacity={0.2} />
+								</mesh>
+								<Suspense fallback={null}>
+									<Model mouse={mouse} position={[0, -11, 0]} scale={[7, 7, 7]} />
 								</Suspense>
 							</Canvas>
 						) : (
 								<div style={{ position: 'relative' }}>
 									<ImageMapper
-										src={'https://c1.staticflickr.com/5/4052/4503898393_303cfbc9fd_b.jpg'}
+										src={`${orientation}.jpg`}
 										map={{
 											name: 'map',
 											areas: [
-												{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], preFillColor: 'green', fillColor: 'blue' },
-												{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], preFillColor: 'pink' },
+												{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], fillColor: 'blue' },
+												{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], fillColor: 'pink' },
 												{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
-												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], preFillColor: 'red' },
-												{ name: '5', shape: 'circle', coords: [170, 100, 25] },
+												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
 											]
 										}}
-										width={300}
+										width={50}
 										imgWidth={500}
 										// onLoad={() => this.load()}
 										// onClick={area => this.clicked(area)}
 										onMouseEnter={(area) => setHoveredArea(area)}
-										onMouseLeave={(area) => setHoveredArea(null)}
-										// onMouseMove={(area, _, e) => this.moveOnArea(area, e)}
-										// onImageClick={e => this.clickedOutside(e)}
-										// onImageMouseMove={e => this.moveOnImage(e)}
+										onMouseLeave={() => setHoveredArea(null)}
+									// onMouseMove={(area, _, e) => this.moveOnArea(area, e)}
+									// onImageClick={e => this.clickedOutside(e)}
+									// onImageMouseMove={e => this.moveOnImage(e)}
 									/>
 									{
 										hoveredArea &&
 										<span style={{
 											position: 'absolute',
 											color: '#fff',
-											padding: '10px',
+											padding: '5px',
 											background: 'rgba(0, 0, 0, 0.8)',
 											transform: 'translate3d(-50%, -50%, 0)',
 											borderRadius: '5px',
-											pointerEvents: "none",
+											pointerEvents: 'none',
 											zIndex: '1000',
 											top: `${hoveredArea.center[1]}px`,
 											left: `${hoveredArea.center[0]}px`
@@ -211,6 +198,13 @@ const Home = () => {
 											{hoveredArea && hoveredArea.name}
 										</span>
 									}
+									<ToggleButtonGroup type="radio" name="orientation-controller" size="sm" vertical defaultValue={'front'}
+										onChange={(orientation) => setOrientation(orientation)}
+									>
+										<ToggleButton variant="outline-success" value={'front'}>Front</ToggleButton>
+										<ToggleButton variant="outline-success" value={'side'}>Side</ToggleButton>
+										<ToggleButton variant="outline-success" value={'back'}>Back</ToggleButton>
+									</ToggleButtonGroup>
 								</div>
 							)
 						}
