@@ -26,7 +26,7 @@ const NavBar = (props) => {
 
 	const logged = () => {
 		if (token) {
-			return <Logout loginData={logout_user} />
+			return <Logout navBarLink={"true"} loginData={logout_user} />
 			// admin logged
 		} else {
 			return <LoginButton />
