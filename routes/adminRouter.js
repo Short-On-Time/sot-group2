@@ -1,6 +1,7 @@
 import * as admin from '../controllers/adminController.js';
 import express from 'express'; //refers to Express the middleware helper for Node.js
 const adminRouter = express.Router();
+import validateAdmin from '../utils/auth_admin.js';
 
 //remedy routes
 adminRouter.post('/add_remedy', admin.addRemedy);

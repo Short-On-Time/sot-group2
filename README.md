@@ -24,10 +24,3 @@ https://short-on-time.herokuapp.com/
 
 ## Environmental Variables
 <p>Located at source root (.env), with SKIP_PREFLIGHT_CHECK=true, parameter to skip a mismatch of module versions.
-
-QUESTIONS;
-
-1. this info (todo) can be here?
-2. Recording assignment
-3. Cashapp, facebook login, twilio...
-4. Final document, how lenghty, how specific...

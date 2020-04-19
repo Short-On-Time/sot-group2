@@ -6,7 +6,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import config from './config.js';
 
-const LoginButton = () => {
+const ContactButton = () => {
 	const [show, setShow] = useState(false);
 	const [body, setBody] = useState('');
 
@@ -16,17 +16,19 @@ const LoginButton = () => {
 	let logged = localStorage.getItem("user_logged");
 	const token = localStorage.getItem("user-token");
 
-	let user_decoded_token = ''
-	if (logged) {
-		jwt.verify(token, 'herbs', function (err, decoded) {
-			user_decoded_token = decoded.user_info
-		});
+	const UserEmail = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			return decoded.user_info.email
+		}
 	}
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let data = {
-			message: body
+			body: body,
+			email: UserEmail()
 		}
 		axios.post(`http://localhost:${config.server_port}/api/users/contact`, data).then(res => {
 			if (res.status === 200) {
@@ -43,7 +45,7 @@ const LoginButton = () => {
 			<>
 			<Modal.Body>
 				To: <a href="mailto:Dee@ConsiderHerbs.com">Dee@ConsiderHerbs.com</a><br/>
-			From: {user_decoded_token.email}
+			From: {UserEmail()}
 			<Form.Group controlId="exampleForm.ControlTextarea1">
 				<Form.Label>Message</Form.Label>
 				<Form.Control as="textarea" rows="3" onChange={(event) => setBody(event.target.value)} />
@@ -61,7 +63,7 @@ return (
 			<Modal.Title>Contact</Modal.Title>
 		</Modal.Header>
 
-		{ (logged) ? contact() : <Modal.Body>"You need to be logged first to send a message."</Modal.Body> }
+		{ (logged) ? contact() : <Modal.Body>You need to be logged in first to send a message.</Modal.Body> }
 
 
 		<Modal.Footer>
@@ -77,4 +79,4 @@ return (
 );
 };
 
-export default LoginButton;
+export default ContactButton;
