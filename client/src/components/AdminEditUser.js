@@ -54,7 +54,7 @@ const AdminEditUser = (props) => {
 
       <Modal show={modal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
+          <Modal.Title>Editing: {username}</Modal.Title>
         </Modal.Header>
 
         <form>
@@ -113,8 +113,7 @@ const AdminEditUser = (props) => {
 							Cancel
             			</Button>
             <Button
-              variant="primary"
-              type="submit"              
+              variant="primary"              
               onClick={handleSubmit}
             >Save</Button>
           </Modal.Footer>

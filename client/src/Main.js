@@ -8,17 +8,17 @@ import Admin from './Pages/Admin';
 import Forum from './Pages/Forum';
 
 import AdminGlossary from './Pages/AdminGlossary';
-import AdminAddGlossary from './Pages/AdminAddGlossary';
+
 
 import AdminRemedies from './Pages/AdminRemedies';
 import AdminAddRemedies from './Pages/AdminAddRemedies'
 import AdminEditRemedies from './Pages/AdminEditRemedies';
 
 import AdminUsers from './Pages/AdminUsers';
-import AdminAddUser from './components/AdminAddUser';
-import AdminEditUser from './components/AdminEditUser';
 
-import AdminContext from './Pages/AdminContext';
+
+import AdminCaptions from './Pages/AdminCaptions';
+import AdminImages from './Pages/AdminImages';
 
 import PageNotFound from './Pages/PageNotFound';
 import Remedies from './Pages/Remedies';
@@ -43,14 +43,12 @@ const Main = () => {
 					<>
 						<Route path={`${url}/`} component={Admin} exact />
 						<Route path={`${url}/glossary_list`} component={AdminGlossary} />
-						<Route path={`${url}/add_glossary`} component={AdminAddGlossary} />
 						<Route path={`${url}/remedies_list`} component={AdminRemedies} />
 						<Route path={`${url}/add_remedies`} component={AdminAddRemedies} />
 						<Route path={`${url}/edit_remedies`} component={AdminEditRemedies} />
 						<Route path={`${url}/user_list`} component={AdminUsers} />
-						<Route path={`${url}/add_user`} component={AdminAddUser} />
-						<Route path={`${url}/edit_user`} component={AdminEditUser} />
-						<Route path={`${url}/context`} component={AdminContext} />
+						<Route path={`${url}/captions`} component={AdminCaptions} />
+						<Route path={`${url}/images`} component={AdminImages} />
 					</>
 				)}
 			/>
@@ -66,9 +64,8 @@ const Main = () => {
         	*/
 			}
 
-			<Route exact path='/admin/user_list/' component={AdminUsers} />
-			<Route exact path='/admin/add_user/' component={AdminAddUser} />
-			<Route exact path='/admin/edit_user/' component={AdminEditUser} />
+			
+			
 			<Route component={PageNotFound} />
 		</Switch>
 	);

@@ -5,7 +5,7 @@ import AdminEditUser from "./AdminEditUser";
 import AdminAddUser from "./AdminAddUser";
 import AdminDeleteUser from "./AdminDeleteUser";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-// import config from '../config.js';
+
 
 const AdminViewUsers = (props) => {
   const [users, setUsers] = useState([]);
@@ -15,17 +15,6 @@ const AdminViewUsers = (props) => {
       setUsers(res.data);
     });
   }, []);
-
-  // deleteUser(e) {
-  // 	const id = e.target.value;
-  // 	axios.delete(`/api/admin/delete_user/${id}`).then(res => {
-  // 		console.log(`Deleted ${res.data.title}!`)
-  // 	});
-  // 	axios.get(`/api/admin/get_user`).then(res => {
-  // 		const users = res.data;
-  // 		this.setState({ users });
-  // 	});
-  // }
 
   return (
     <Table striped bordered>
@@ -76,14 +65,7 @@ const AdminViewUsers = (props) => {
 											/>
 										</ButtonGroup>
                 </td>
-                {/*https://stackoverflow.com/questions/34875557/creating-custom-function-in-react-component*/}
-                {/* <button
-                  class="btn btn-primary text-white px-4"
-                  onClick={this.deleteUser.bind(this)}
-                  value={user._id}
-                >
-                  DELETE
-                </button> */}
+               
               </tr>
             );
           })}

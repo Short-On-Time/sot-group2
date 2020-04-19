@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import config from "../config.js";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-// import Container from "react-bootstrap/Container";
 import AdminEditGlossary from "./AdminEditGlossary";
 import AdminDeleteGlossary from "./AdminDeleteGlossary";
 import AdminAddGlossary from "./AdminAddGlossary";

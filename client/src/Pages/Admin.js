@@ -40,17 +40,17 @@ const Admin = () => {
 				<Container>
 					<CardDeck>
 						<AdminPanelCard
-							title="Manage Context"
+							title="Manage Captions"
 							image="images/img_5.jpg"
-							description="Manage text across the site."
-							link="/admin/context"
+							description="Manage captions across the site."
+							link="/admin/captions"
 						/>
 
 						<AdminPanelCard
 							title="Images"
 							image="images/img_6.jpg"
 							description="Manage images across the site."
-							link="#"
+							link="/admin/images"
 						/>
 
 						<AdminPanelCard
