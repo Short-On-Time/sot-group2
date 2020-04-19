@@ -19,8 +19,9 @@ import WelcomeCaption from '../components/WelcomeCaption'
 import '../App.css';
 
 const Home = () => {
-	const [is3d, set3d] = useState(true)
+	const [is3d, set3d] = useState(false)
 	const [isLoading, setLoading] = useState(false)
+	const [hoveredArea, setHoveredArea] = useState(null)
 
 	// update to receive request from ImageMapper onLoad()
 	// update to work with some sort of loading from 3D model---maybe from Suspense?
@@ -124,9 +125,9 @@ const Home = () => {
 
 				<div className="site-half block">
 					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
-						{is3d ?
+						{is3d ? (
 							<Canvas
-								style={{ background: "white" }}
+								style={{ background: 'white' }}
 								pixelRatio={window.devicePixelRatio}
 								camera={{ position: [0, 20, 75] }}
 								shadowMap
@@ -168,40 +169,61 @@ const Home = () => {
 									</mesh>
 									<Model mouse={mouse} position={[0, -35, 5]} scale={[12, 12, 12]} />
 								</Suspense>
-							</Canvas> :
-							<div>
-								<ImageMapper
-									src={'https://c1.staticflickr.com/5/4052/4503898393_303cfbc9fd_b.jpg'}
-									map={{
-										name: "my-map",
-										areas: [
-											{ name: "1", shape: "poly", coords: [25, 33, 27, 300, 128, 240, 128, 94], preFillColor: "green", fillColor: "blue" },
-											{ name: "2", shape: "poly", coords: [219, 118, 220, 210, 283, 210, 284, 119], preFillColor: "pink" },
-											{ name: "3", shape: "poly", coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: "yellow" },
-											{ name: "4", shape: "poly", coords: [245, 285, 290, 285, 274, 239, 249, 238], preFillColor: "red" },
-											{ name: "5", shape: "circle", coords: [170, 100, 25] },
-										]
-									}}
-									width={500}
-								// onLoad={() => this.load()}
-								// onClick={area => this.clicked(area)}
-								// onMouseEnter={area => this.enterArea(area)}
-								// onMouseLeave={area => this.leaveArea(area)}
-								// onMouseMove={(area, _, e) => this.moveOnArea(area, e)}
-								// onImageClick={e => this.clickedOutside(e)}
-								// onImageMouseMove={e => this.moveOnImage(e)}
-								/>
-							</div>
+							</Canvas>
+						) : (
+								<div style={{ position: 'relative' }}>
+									<ImageMapper
+										src={'https://c1.staticflickr.com/5/4052/4503898393_303cfbc9fd_b.jpg'}
+										map={{
+											name: 'map',
+											areas: [
+												{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], preFillColor: 'green', fillColor: 'blue' },
+												{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], preFillColor: 'pink' },
+												{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
+												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], preFillColor: 'red' },
+												{ name: '5', shape: 'circle', coords: [170, 100, 25] },
+											]
+										}}
+										width={300}
+										imgWidth={500}
+										// onLoad={() => this.load()}
+										// onClick={area => this.clicked(area)}
+										onMouseEnter={(area) => setHoveredArea(area)}
+										onMouseLeave={(area) => setHoveredArea(null)}
+										// onMouseMove={(area, _, e) => this.moveOnArea(area, e)}
+										// onImageClick={e => this.clickedOutside(e)}
+										// onImageMouseMove={e => this.moveOnImage(e)}
+									/>
+									{
+										hoveredArea &&
+										<span style={{
+											position: 'absolute',
+											color: '#fff',
+											padding: '10px',
+											background: 'rgba(0, 0, 0, 0.8)',
+											transform: 'translate3d(-50%, -50%, 0)',
+											borderRadius: '5px',
+											pointerEvents: "none",
+											zIndex: '1000',
+											top: `${hoveredArea.center[1]}px`,
+											left: `${hoveredArea.center[0]}px`
+										}}>
+											{hoveredArea && hoveredArea.name}
+										</span>
+									}
+								</div>
+							)
 						}
 
-						<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d} onChange={(is3d) => set3d(is3d)}>
-							<ToggleButton
-								variant="outline-success"
-								value={false}
-								disabled={isLoading && !is3d}
-								onClick={!isLoading && is3d ? () => setLoading(true) : null}
+						<br />
+
+						<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d}
+							onChange={(is3d) => set3d(is3d)}
+						>
+							<ToggleButton variant="outline-success" value={false} disabled={isLoading && !is3d}
+								onClick={(!isLoading && is3d) && (() => setLoading(true))}
 							>
-								{isLoading && !is3d ?
+								{isLoading && !is3d ? (
 									<Spinner
 										as="span"
 										animation="border"
@@ -210,15 +232,16 @@ const Home = () => {
 										aria-hidden="true"
 									>
 										<span className="sr-only">Loading...</span>
-									</Spinner> : '2D'}
+									</Spinner>
+								) : '2D'}
 							</ToggleButton>
 							<ToggleButton
 								variant="outline-success"
 								value={true}
 								disabled={isLoading && is3d}
-								onClick={!isLoading && !is3d ? () => setLoading(true) : null}
+								onClick={(!isLoading && !is3d) && (() => setLoading(true))}
 							>
-								{isLoading && is3d ?
+								{isLoading && is3d ? (
 									<Spinner
 										as="span"
 										animation="border"
@@ -227,7 +250,8 @@ const Home = () => {
 										aria-hidden="true"
 									>
 										<span className="sr-only">Loading...</span>
-									</Spinner> : '3D'}
+									</Spinner>
+								) : '3D'}
 							</ToggleButton>
 						</ToggleButtonGroup>
 					</div>
