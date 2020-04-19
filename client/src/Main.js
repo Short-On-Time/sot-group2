@@ -8,17 +8,23 @@ import Admin from './Pages/Admin';
 import Forum from './Pages/Forum';
 
 import AdminGlossary from './Pages/AdminGlossary';
-import AdminAddGlossary from './Pages/AdminAddGlossary';
 
 import AdminRemedies from './Pages/AdminRemedies';
 import AdminAddRemedies from './Pages/AdminAddRemedies'
 import AdminEditRemedies from './Pages/AdminEditRemedies';
 
 import AdminUsers from './Pages/AdminUsers';
+
+import AdminAddGlossary from './Pages/AdminAddGlossary';
+
 import AdminAddUser from './components/AdminAddUser';
 import AdminEditUser from './components/AdminEditUser';
 
 import AdminContext from './Pages/AdminContext';
+
+
+import AdminCaptions from './Pages/AdminCaptions';
+import AdminImages from './Pages/AdminImages';
 
 import PageNotFound from './Pages/PageNotFound';
 import Remedies from './Pages/Remedies';

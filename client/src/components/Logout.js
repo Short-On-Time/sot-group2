@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import Nav from "react-bootstrap/Nav";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
 import { MdExitToApp } from "react-icons/md";
 import jwt from 'jsonwebtoken';
 import { useLocation } from 'react-router-dom'
@@ -26,8 +26,8 @@ class Logout extends React.Component {
 			console.log("LOGIN DATA ====");
 			this.props.loginData()
 		}
-		
-		return <Nav.Link className="admin-link" href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></Nav.Link>
+
+		return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></ListGroupItem>
 
 	}
 }
