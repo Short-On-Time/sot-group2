@@ -7,7 +7,7 @@ import Newsletter from '../models/NewsletterModel.js';
 import Testimonial from '../models/TestimonialModel.js';
 import PremiumCaption from '../models/PremiumCaptionModel.js';
 import WelcomeCaption from '../models/WelcomeCaptionModel.js';
-import DisclaimerCaption from '../models/WelcomeCaptionModel.js';
+import DisclaimerCaption from '../models/DisclaimerCaptionModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -69,24 +69,36 @@ export const changeDisclaimerCaption = async (req, res) => {
 
 export const getPremiumCaption = async (req, res) => {
   initMongoose()
-  PremiumCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  PremiumCaption.count({}, function( err, count){
+    c = count
+  })
+  PremiumCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }
 
 export const getWelcomeCaption = async (req, res) => {
   initMongoose()
-  WelcomeCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  WelcomeCaption.count({}, function( err, count){
+    c = count
+  })
+  WelcomeCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }
 
 export const getDisclaimerCaption = async (req, res) => {
   initMongoose()
-  DisclaimerCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  DisclaimerCaption.count({}, function( err, count){
+    c = count
+  })
+  DisclaimerCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }

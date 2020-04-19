@@ -20,10 +20,8 @@ import AdminAddGlossary from './Pages/AdminAddGlossary';
 import AdminAddUser from './components/AdminAddUser';
 import AdminEditUser from './components/AdminEditUser';
 
-import AdminContext from './Pages/AdminContext';
-
-
 import AdminCaptions from './Pages/AdminCaptions';
+
 import AdminImages from './Pages/AdminImages';
 
 import PageNotFound from './Pages/PageNotFound';
@@ -56,7 +54,7 @@ const AdminRoute = () => {
 				<Route path={`${url}/user_list`} component={AdminUsers} />
 				<Route path={`${url}/add_user`} component={AdminAddUser} />
 				<Route path={`${url}/edit_user`} component={AdminEditUser} />
-				<Route path={`${url}/context`} component={AdminContext} />
+				<Route path={`${url}/captions`} component={AdminCaptions} />
 			</>
 		)}
 	/>
