@@ -3,7 +3,7 @@ import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewRemedies from '../components/ViewRemedies';
 import Footer from '../components/Footer';
-import Search from '../components/Search'
+import Search from '../components/Search';
 
 const Remedies = (props) => {
 	return (
@@ -36,7 +36,6 @@ const Remedies = (props) => {
 							<h1 className="text-uppercase">Remedies</h1>
 							<br />
 							<Search />
-							<br />
 							<ViewRemedies name={props.match.params.name} />
 							<br />
 							<br />

@@ -46,8 +46,13 @@ export const getImage = async (req, res) => {
 export const getImageList = async (req, res) => {
 	initMongoose()
 	Image.find({}, (err, data) => {
-		var names = data.map(d => [d.name, d.id]);
-		res.status(200).send(names);
+		var names = data.map(d => {
+			return {
+				name: d.name,
+				id: d.id
+			}
+		});
+		res.status(200).json(names);
 	});
 }
 
