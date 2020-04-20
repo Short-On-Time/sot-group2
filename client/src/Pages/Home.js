@@ -126,7 +126,7 @@ const Home = () => {
 
 				<div className="site-half block">
 					<div className="img-bg-1 right shadow p-3 mb-5 bg-white rounded" data-aos="fade">
-						{is3d ? (
+						{(is3d) ? (
 							<Canvas
 								pixelRatio={window.devicePixelRatio}
 								camera={{ position: [0, -3, 18] }}
@@ -159,27 +159,68 @@ const Home = () => {
 								</Suspense>
 							</Canvas>
 						) : (
-								<div style={{ position: 'relative' }}>
+								<div>
 									<ImageMapper
 										src={`${orientation}.jpg`}
-										map={{
-											name: 'map',
-											areas: [
-												{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], fillColor: 'blue' },
-												{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], fillColor: 'pink' },
-												{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
-												{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
-											]
-										}}
-										height={300}
-										imgHeight={500}									// figure out wtf these widths should be
-										onLoad={() => {  }}
-										onClick={() => {  }} 							// redirect to remedy with certain name
+										map={
+											(orientation === 'front') ? {
+												name: orientation,
+												areas: [
+													{ name: 'eye-l', shape: 'poly', coords: [318, 196, 307, 188, 301, 185, 291, 186, 281, 193, 295, 200, 303, 200], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'eye-r', shape: 'poly', coords: [347, 195, 356, 187, 367, 185, 383, 193, 370, 200, 360, 201, 351, 198], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'neck', shape: 'poly', coords: [269, 358, 297, 367, 317, 377, 326, 387, 346, 385, 346, 380, 357, 371, 373, 364, 396, 358, 393, 353, 402, 350, 400, 344, 385, 336, 374, 295, 374, 289, 360, 300, 348, 307, 322, 309, 303, 301, 292, 289, 289, 289, 287, 317, 281, 340, 277, 354, 272, 357], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'head', shape: 'poly', coords: [260, 372, 241, 370, 229, 359, 225, 353, 226, 339, 212, 331, 210, 318, 217, 314, 197, 291, 194, 277, 195, 266, 199, 252, 188, 234, 190, 222, 201, 212, 195, 196, 194, 177, 199, 166, 205, 162, 210, 143, 227, 103, 243, 81, 257, 71, 271, 60, 281, 52, 297, 43, 327, 37, 346, 37, 386, 49, 410, 68, 433, 97, 444, 118, 448, 120, 459, 145, 459, 165, 472, 190, 470, 203, 465, 211, 468, 236, 471, 245, 469, 256, 459, 268, 457, 282, 462, 293, 464, 311, 460, 321, 440, 342, 434, 351, 434, 357, 431, 358, 429, 351, 425, 353, 424, 358, 415, 365, 404, 365, 393, 353, 402, 350, 401, 344, 394, 341, 384, 334, 375, 300, 374, 288, 358, 301, 345, 308, 321, 309, 303, 300, 291, 288, 289, 289, 287, 309, 286, 324, 278, 351, 270, 358, 255, 366], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'arm-l', shape: 'poly', coords: [194, 370, 163, 376, 138, 391, 127, 408, 113, 467, 113, 506, 111, 580, 106, 650, 95, 712, 92, 735, 87, 865, 86, 949, 124, 947, 143, 856, 162, 749, 173, 672, 182, 578, 189, 549, 187, 531, 191, 509, 210, 469, 207, 408, 197, 374, 196, 374], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'arm-r', shape: 'poly', coords: [471, 370, 497, 375, 518, 383, 532, 396, 540, 412, 551, 462, 554, 492, 553, 516, 557, 632, 565, 678, 573, 730, 579, 842, 579, 944, 541, 946, 515, 807, 498, 710, 479, 563, 477, 550, 480, 528, 476, 511, 454, 467, 458, 405, 469, 372], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'stomach', shape: 'poly', coords: [279, 719, 283, 686, 299, 653, 323, 642, 344, 642, 356, 646, 368, 655, 377, 668, 384, 707, 385, 725, 380, 795, 364, 819, 351, 832, 331, 838, 310, 829, 286, 806, 282, 786], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'knee-l', shape: 'poly', coords: [320, 1394, 224, 1397, 227, 1372, 230, 1331, 230, 1302, 226, 1280, 324, 1275, 323, 1301, 317, 1338, 315, 1355, 321, 1384, 324, 1394], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'knee-r', shape: 'poly', coords: [340, 1275, 441, 1274, 434, 1313, 437, 1349, 445, 1396, 342, 1396, 349, 1361, 351, 1345, 345, 1320, 341, 1293], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'foot-l', shape: 'poly', coords: [255, 1654, 311, 1652, 316, 1667, 314, 1687, 314, 1731, 326, 1764, 326, 1784, 328, 1804, 323, 1816, 316, 1821, 303, 1822, 295, 1819, 294, 1816, 287, 1822, 273, 1821, 273, 1816, 265, 1819, 258, 1818, 254, 1811, 248, 1814, 245, 1812, 243, 1809, 241, 1806, 241, 1804, 241, 1800, 236, 1802, 231, 1802, 230, 1799, 230, 1790, 233, 1779, 237, 1764, 243, 1757, 254, 1707, 254, 1701, 252, 1693, 251, 1684, 254, 1668, 255, 1654, 256, 1654], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'foot-r', shape: 'poly', coords: [353, 1652, 409, 1652, 409, 1675, 414, 1682, 409, 1704, 418, 1742, 433, 1777, 436, 1785, 434, 1802, 426, 1802, 423, 1808, 421, 1811, 416, 1814, 409, 1811, 407, 1817, 400, 1819, 393, 1817, 391, 1820, 386, 1823, 376, 1821, 371, 1816, 363, 1821, 353, 1822, 345, 1819, 339, 1817, 336, 1805, 338, 1794, 339, 1777, 338, 1762, 349, 1736, 350, 1687, 347, 1672, 350, 1658, 352, 1653], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'leg-l', shape: 'poly', coords: [168, 843, 227, 893, 288, 955, 317, 976, 322, 1029, 325, 1134, 325, 1251, 325, 1294, 315, 1356, 327, 1404, 325, 1523, 311, 1648, 319, 1681, 313, 1684, 319, 1740, 326, 1770, 327, 1802, 327, 1815, 298, 1822, 295, 1814, 289, 1820, 283, 1820, 271, 1814, 261, 1818, 257, 1810, 258, 1808, 251, 1811, 245, 1811, 242, 1803, 246, 1790, 238, 1802, 233, 1798, 233, 1790, 236, 1776, 243, 1761, 255, 1703, 252, 1695, 253, 1681, 258, 1660, 255, 1643, 243, 1577, 235, 1556, 228, 1529, 223, 1421, 223, 1387, 232, 1337, 231, 1288, 211, 1213, 162, 1024, 148, 940, 160, 853, 167, 843], fillColor: 'rbga(255, 255, 255, 0.2)' },
+													{ name: 'leg-r', shape: 'poly', coords: [341, 1817, 338, 1804, 339, 1782, 339, 1765, 347, 1736, 350, 1686, 348, 1667, 355, 1649, 341, 1515, 340, 1431, 347, 1370, 349, 1346, 341, 1292, 340, 1097, 342, 1034, 349, 990, 347, 981, 402, 932, 417, 915, 497, 844, 500, 843, 510, 885, 514, 908, 515, 956, 512, 985, 508, 1012, 484, 1111, 461, 1194, 444, 1250, 434, 1316, 435, 1345, 439, 1362, 444, 1399, 444, 1455, 439, 1514, 431, 1560, 418, 1603, 409, 1646, 409, 1672, 413, 1684, 412, 1698, 409, 1703, 417, 1741, 429, 1768, 435, 1787, 433, 1802, 430, 1802, 426, 1799, 423, 1810, 419, 1814, 411, 1813, 409, 1812, 408, 1815, 407, 1817, 404, 1819, 400, 1819, 396, 1819, 394, 1816, 392, 1820, 388, 1822, 382, 1822, 377, 1821, 373, 1818, 371, 1815, 366, 1819, 359, 1821, 345, 1818], fillColor: 'rbga(255, 255, 255, 0.2)' }
+													// add acne and ears (likely floating to the side)
+												]
+											} : (orientation === 'side') ? {
+												name: orientation,
+												areas: [
+													{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], fillColor: 'blue' },
+													{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], fillColor: 'pink' },
+													{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
+													{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
+												]
+											} : (orientation === 'back') && {
+												name: orientation,
+												areas: [
+													{ name: '1', shape: 'poly', coords: [25, 33, 27, 300, 128, 240, 128, 94], fillColor: 'blue' },
+													{ name: '2', shape: 'poly', coords: [219, 118, 220, 210, 283, 210, 284, 119], fillColor: 'pink' },
+													{ name: '3', shape: 'poly', coords: [381, 241, 383, 94, 462, 53, 457, 282], fillColor: 'yellow' },
+													{ name: '4', shape: 'poly', coords: [245, 285, 290, 285, 274, 239, 249, 238], fillColor: 'red' }
+												]
+											}}
+										width={
+											(orientation === 'front') ? (
+												100
+											) : (orientation === 'side') ? (
+												100
+											) : (orientation === 'back') && (
+												100
+											)
+										}
+										imgWidth={
+											(orientation === 'front') ? (
+												660
+											) : (orientation === 'side') ? (
+												512
+											) : (orientation === 'back') && 596
+										}
+										onLoad={() => { }}
+										onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
 										onMouseEnter={(area) => setHoveredArea(area)}
 										onMouseLeave={() => setHoveredArea(null)}
-										onMouseMove={() => {  }}						// probably unneeded
-										onImageClick={() => {  }}						// figure out how this is different from onClick
-										onImageMouseMove={() => {  }}					// also probably unneeded
+										onMouseMove={() => { }}							// probably unneeded
+										onImageClick={() => { }}						// figure out how this is different from onClick
+										onImageMouseMove={() => { }}					// also probably unneeded
 									/>
 
 									<ToggleButtonGroup type="radio" name="orientation-controller" size="sm" vertical defaultValue={'front'}
@@ -196,12 +237,12 @@ const Home = () => {
 						<br />
 
 						<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d}
-							onChange={(is3d) => set3d(is3d)}
+							onChange={is3d => set3d(is3d)}
 						>
 							<ToggleButton variant="outline-success" value={false} disabled={isLoading && !is3d}
 								onClick={(!isLoading && is3d) && (() => setLoading(true))}
 							>
-								{isLoading && !is3d ? (
+								{(isLoading && !is3d) ? (
 									<Spinner
 										as="span"
 										animation="border"
@@ -220,7 +261,7 @@ const Home = () => {
 								disabled={isLoading && is3d}
 								onClick={(!isLoading && !is3d) && (() => setLoading(true))}
 							>
-								{isLoading && is3d ? (
+								{(isLoading && is3d) ? (
 									<Spinner
 										as="span"
 										animation="border"
