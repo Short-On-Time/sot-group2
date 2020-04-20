@@ -14,7 +14,6 @@ const ViewRemedy = (props) => {
 		if(remedy.ingredients){
 			const numIngredients = remedy.ingredients.length
 			for(let i=0; i<numIngredients; ++i){
-				console.log(remedy.ingredients[i])
 				ingredientsJSX.push(
 					<ListGroup.Item>{remedy.amounts[i]} {remedy.units[i]} <b>{remedy.ingredients[i]}</b></ListGroup.Item>
 				)

@@ -4,11 +4,13 @@ import axios from 'axios';
 import config from './config.js';
 import ViewGlossaryItem from './ViewGlossaryItem.js';
 import Error from './Error.js';
+import SearchOptions from '../components/SearchOptions';
 
 const ViewGlossary = (props) => {
 	// TODO: find a way to eliminate setGlossaryJSX
 	const [glossary, setGlossary] = useState([]);
 	const [glossaryJSX, setGlossaryJSX] = useState([]);
+	const [filter, setFilter] = useState({});
 
 	let search = useLocation().search;
 	const parseURLQuery = (query) => {
@@ -125,6 +127,7 @@ const ViewGlossary = (props) => {
 				items.sort(compare);
 
 				const filters = parseURLQuery(search);
+				setFilter(filters);
 
 				const lastLetter = { letter: "" }
 				if(search){
@@ -146,7 +149,13 @@ const ViewGlossary = (props) => {
 			});
 	}, []);
 
-	return getItem();
+	return(
+		<div>
+			<SearchOptions filter={filter} path={useLocation().pathname}/>
+			<br />
+			{getItem()}
+		</div>
+	);
 
 };
 

@@ -86,7 +86,7 @@ const LoginButton = () => {
 		<>
 			<ButtonGroup className="mb-2">
     		<Button variant="primary" onClick={handleShow}>Login</Button>
-		    <Button variant="primary" onClick={handleShowRegister}>Register</Button>
+		    <Button variant="secondary" onClick={handleShowRegister}>Register</Button>
   		</ButtonGroup>
 
 			<Form>
