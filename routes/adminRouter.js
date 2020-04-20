@@ -43,4 +43,7 @@ adminRouter.get('/get_user/:id', admin.getUser);
 adminRouter.get('/get_user', admin.getUserList);
 adminRouter.delete('/delete_user/:id', admin.deleteUser);
 
+//DidYouKnow routes
+adminRouter.post('/add_blog', admin.addBlog);
+
 export default adminRouter;

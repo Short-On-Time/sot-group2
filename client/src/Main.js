@@ -7,6 +7,7 @@ import Glossary from './Pages/Glossary';
 import Admin from './Pages/Admin';
 import Forum from './Pages/Forum';
 import ViewPost from './Pages/ViewPost';
+import DidYouKnow from './Pages/DidYouKnow'
 
 import AdminGlossary from './Pages/AdminGlossary';
 
@@ -73,6 +74,8 @@ const Main = () => {
 			<Route exact path='/glossary/:title' component={Glossary} />
 			<Route exact path='/remedies' component={Remedies} />
 			<Route exact path='/remedies/:name' component={Remedies} />
+			<Route exact path='/didyouknow' component={DidYouKnow} />
+			<Route exact path='/didyouknow/:id' component={DidYouKnow} />
 
 
 			{/* <Route exact path='/admin' component={Admin}/> */}
