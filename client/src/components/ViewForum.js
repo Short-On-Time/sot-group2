@@ -3,6 +3,7 @@ import axios from "axios";
 // import config from "../config.js";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
+
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 // import Container from "react-bootstrap/Container";
 import ForumEditPost from "./ForumEditPost";
@@ -11,6 +12,7 @@ import ForumAddPost from "./ForumAddPost";
 
 const ViewForum = (props) => {
 	const [post, setPost] = useState([]);
+	let logged = localStorage.getItem("user_logged");
 
 	useEffect(() => {
 		axios
@@ -19,6 +21,16 @@ const ViewForum = (props) => {
 				setPost(res.data);
 			});
 	}, []);
+
+	const Addpost = () => {
+		return (
+			<div aling="right" class="align-middle"> 
+							Add a Post <ForumAddPost />
+			</div>
+		)
+	}
+
+
 
 
 	return (
@@ -29,12 +41,17 @@ const ViewForum = (props) => {
 
             <div class="ibox-content forum-container">
 
-				{/*Ask how to only let users make posts*/ }
 				{/*Ask how to link to user when post*/ }
 				{/*Ask automatically add userID when they make a post*/ }
-			<div aling="right" class="align-middle">
-							Add a Post <ForumAddPost />
-			</div>
+				{/*See how to present the post*/ }
+				
+			
+
+				{ (logged) ? Addpost() :  <div vertical-align="middle">You need to be logged in to make a post. </div> }
+
+			
+
+	
 
 
 
