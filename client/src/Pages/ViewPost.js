@@ -3,6 +3,8 @@ import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewGlossary from '../components/ViewGlossary';
 import Footer from '../components/Footer';
+import axios from "axios";
+import config from "../config.js";
 
 
 const ViewPost= (props) => {
