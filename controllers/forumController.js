@@ -19,6 +19,18 @@ export const getPostList = async (req, res) => {
 export const getPost = async (req, res) => {
 	initMongoose()
 	const id = req.params.id;
+
+	//grab the post, update its views, and then send again
+	let post = Post.find({_id: id});
+	post.views += 1;
+	post.save(function(err, save_post) {
+		if(err) {
+      return res.status(400).json(err);
+    } else {
+      return res.status(200).json(save_post);
+    }
+	});
+
 	Post.findOne({_id: id}, (err, data) => {
 		if(!data) {
 			res.status(400).json({
@@ -26,25 +38,6 @@ export const getPost = async (req, res) => {
 			});
 		} else {
 			res.status(200).json(data);
-		}
-	});
-}
-
-export const addPost = async (req, res) => {
-	initMongoose()
-	let save_post
-	save_post = new Post({
-		title: req.body.title,
-		body: req.body.body,
-		author_username: req.body.author_username,
-		author_ID: req.body.author_ID,
-	});
-	save_post.save(function (err, save_post) {
-		if(err) {
-			return res.status(400).json(err);
-		} else {
-			console.log("saved =>", save_post);
-			return res.status(200).json(save_post);
 		}
 	});
 }
@@ -68,6 +61,25 @@ export const getComment = async (req, res) => {
 			res.status(200).json(comment);
 		}
 	}
+}
+
+export const addPost = async (req, res) => {
+	initMongoose()
+	let save_post
+	save_post = new Post({
+		title: req.body.title,
+		body: req.body.body,
+		author_username: req.body.author_username,
+		author_ID: req.body.author_ID,
+	});
+	save_post.save(function (err, save_post) {
+		if(err) {
+			return res.status(400).json(err);
+		} else {
+			console.log("saved =>", save_post);
+			return res.status(200).json(save_post);
+		}
+	});
 }
 
 export const editPost = async (req, res) => {

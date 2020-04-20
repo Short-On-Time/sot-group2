@@ -17,7 +17,8 @@ const PostSchema = mongoose.Schema({
 	author_ID: {type: String, required: true},
 	createdAt: { type: Date, default: Date.now()},
 	is_edited: {type: Boolean, default: false, required: true},
-	comments: [CommentSchema] //sub-doc, holds all the comments
+	comments: [CommentSchema], //sub-doc, holds all the comments
+	views: {type: Number, default: 0},
 });
 
 
