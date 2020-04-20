@@ -19,6 +19,7 @@ import PremiumCaption from '../components/PremiumCaption'
 import WelcomeCaption from '../components/WelcomeCaption'
 
 import '../App.css';
+import SocialEmbed from '../components/SocialEmbed'
 
 const Home = () => {
 	const [is3d, set3d] = useState(false)
