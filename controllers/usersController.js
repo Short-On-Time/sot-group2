@@ -14,7 +14,7 @@ function initMongoose() {
 }
 
 function signJWT(payload, res) {
-  jwt.sign(payload, "herbs", { expiresIn: 3600 }, (err, token) => {
+  jwt.sign(payload, "herbs", { expiresIn: 360000 }, (err, token) => {
       if (err) {
         console.log("JWT error signing", err);
         throw err;
