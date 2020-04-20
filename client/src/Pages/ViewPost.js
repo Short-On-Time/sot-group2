@@ -8,17 +8,29 @@ import config from "../config.js";
 
 
 const ViewPost= (props) => {
-	const [post, setPost] = useState([]);
-	const [ID, setID] = useState("");
+	const [post, setPost] = useState({});
+	const [postID, setPostID] = useState('');
 
 	useEffect(() => {
-		setID(props.match.params.id);
 		axios
-			.get(`http://localhost:3001/api/forum/get_post/${ID}`)
+			.get(`http://localhost:3001/api/forum/get_post/${props.match.params.id}`)
 			.then(res => {
 				setPost(res.data);
 			});
 	}, []);
+
+	const showComments = () => {
+		if(post.comments) {
+			return post.comments.map(comment => {
+				return (
+					<div key={comment._id}> 
+						<h4>Comment by {comment.author_username}</h4>
+						<p>{comment.body}</p>
+					</div>
+				);
+			});
+		}
+	};
 	
 	return (
 		<div className="AboutPage">
@@ -52,15 +64,7 @@ const ViewPost= (props) => {
 												<p>{post.body}</p>
 
 												{
-													post.comments.map(comment => {
-														return (
-															<div> 
-																<h2>{comment.title}</h2>
-																<p><i>By: {comment.author_username}</i></p>
-																<p>{comment.body}</p>
-															</div>
-														);
-													})
+													showComments()
 												}
 
 												<br />
