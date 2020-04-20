@@ -73,17 +73,20 @@ export const getComment = async (req, res) => {
 export const editPost = async (req, res) => {
 	initMongoose()
 	const id = req.params.id;
-	req.body.is_edited = true;
-	Post.findOneAndUpdate({_id: id}, req.body, {new: true}, (err, data) => {
+
+	//it has to be done this way to prevent the user from editing other ppl's comments
+	let post = Post.find({_id: id});
+
+	post.is_edited = true;
+	if(req.body.body) post.body = req.body.body;
+	if(req.body.title) post.title = req.body.title;
+
+	post.save(function(err, save_post) {
 		if(err) {
-      res.status(400).json({err});
-      throw err;
-    } else if (!data) {
-      res.status(500).json({
-        message: "Post does not exist!"
-      });
+      return res.status(400).json(err);
     } else {
-      res.status(200).json(data);
+      console.log('updated =>', save_post);
+      return res.status(200).json(save_post);
     }
 	});
 }
