@@ -212,3 +212,11 @@ export const getBlogNewest = async (req, res) => {
 			res.status(200).json(NewestPost);
 	});
 };
+
+export const getBlog = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+			
+			res.status(200).json(data);
+	});
+};
