@@ -12,9 +12,7 @@ const ForumAddPost = () => {
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [author_username, setAuthor_Username] = useState("");
-	const [createdAt, setCreatedAt] = useState(false);
-	const[is_edited, setIs_Edited] = useState(false);
-	const[comments, setComments] = useState("");
+	const [author_ID, author_ID] = useState("");
 
 	const openModal = () => {
 		setModal(true);
@@ -29,13 +27,11 @@ const ForumAddPost = () => {
 			title: title,
 			body: body,
 			author_username: author_username,
-            createdAt: createdAt,
-            is_edited: is_edited,
-            comments: comments
+      author_ID: author_ID
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/admin/add_post`,
+			`http://localhost:${config.server_port}/api/forum/add_post`,
 			data
 		).then(response => {
 			console.log(response);
@@ -95,37 +91,22 @@ const ForumAddPost = () => {
             				</Form.Control.Feedback>
 						</Form.Group>
 
-
-
 						<Form.Group>
-							<Form.Label>Created At</Form.Label>
+							<Form.Label>Author ID</Form.Label>
+
 							<Form.Control
 								required
 								as="textarea"
-								name="createdAt"
+								name="author_ID"
 								rows="2"
-								onChange={event => setCreatedAt(event.target.value)}
+								onChange={event => setAuthor_ID(event.target.value)}
 							/>
+
+							<Form.Control.Feedback type="invalid">
+								Please provide a valid usage.
+            				</Form.Control.Feedback>
 						</Form.Group>
 
-                        <Form.Group>
-							<Form.Label>Comments</Form.Label>
-							<Form.Control
-								required
-								as="textarea"
-								name="createdAt"
-								rows="2"
-								onChange={event => setComments(event.target.value)}
-							/>
-						</Form.Group>
-
-
-						<Form.Check
-							type="checkbox"
-							name="draft"
-							label="Is edited?"
-							onChange={event => setIs_Edited(!event.target.checked)}
-						/>
 					</Modal.Body>
 
 					<Modal.Footer>
