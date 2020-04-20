@@ -32,7 +32,6 @@ const ViewForum = (props) => {
 
 
 
-
 	return (
 		<div class="container">
 			<div class="row">
@@ -48,7 +47,7 @@ const ViewForum = (props) => {
 			
 
 				{ (logged) ? Addpost() :  <div vertical-align="middle">You need to be logged in to make a post. </div> }
-
+				
 			
 
 	
