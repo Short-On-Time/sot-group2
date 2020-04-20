@@ -24,3 +24,36 @@ https://short-on-time.herokuapp.com/
 
 ## Environmental Variables
 <p>Located at source root (.env), with SKIP_PREFLIGHT_CHECK=true, parameter to skip a mismatch of module versions.
+
+# Routes
+## Users
+ - **POST** *users/signup* registers a new account
+ - **POST** *users/signin* attempts to sign user in
+ - **POST** *users/user_premium* TODO
+ - **POST** *users/contact* TODO
+ - **GET** *users/get_remedy_preview/:name* shows only pertinent remedy information
+ - **GET** *users/get_remedy_preview* shows list of remedies
+ - 
+
+## Admin
+<ul>
+  <li>POST users/signup</li>
+  <li>POST users/signin</li>
+	<li>POST users/user_premium</li>
+</ul>
+
+## Stripe
+<ul>
+  <li>POST users/signup</li>
+  <li>POST users/signin</li>
+	<li>POST users/user_premium</li>
+</ul>
+
+## Routes
+<ul>
+  <li>POST users/signup</li>
+  <li>POST users/signin</li>
+	<li>POST users/user_premium</li>
+</ul>
+
+## Forum
