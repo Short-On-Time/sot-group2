@@ -10,7 +10,7 @@ import usersRouter from './routes/usersRouter.js';
 import adminRouter from './routes/adminRouter.js';
 import chargesRouter from './routes/chargesRouter.js';
 import imageRouter from './routes/imageRouter.js';
-//import forumRouter from './routes/forumRouter.js';
+import forumRouter from './routes/forumRouter.js';
 import cors from 'cors';
 import Sentry from '@sentry/node';
 
@@ -55,7 +55,7 @@ app.use('/api/users/', usersRouter);
 app.use('/api/admin/', adminRouter);
 app.use('/api/stripe/', chargesRouter);
 app.use('/api/image/', imageRouter);
-//app.use('/api/forum/', forumRouter);
+app.use('/api/forum/', forumRouter);
 
 app.use(Sentry.Handlers.errorHandler());
 

@@ -9,12 +9,13 @@ const forumRouter = express.Router();
 //the user's data will be in 'req.decoded'
 
 //getters
-forumRouter.get('/get_post', forum.getPostList); //grabs all the threads
+forumRouter.get('/get_post', forum.getPostList); //grabs all the posts
 forumRouter.get('/get_post/:id', forum.getPost); //grabs one thread (which contains the comments)
+forumRouter.get('/get_comment/:post_id/:comment_id', forum.getComment);
 //maybe get individual comment, like reddit does? not too sure how that would work out
 
-//thread functionality
-//threads are the original one
+//Post functionality
+//Post start the conversation
 forumRouter.post('/add_post', forum.addPost);
 forumRouter.put('/edit_post/:id', forum.editPost);
 forumRouter.delete('/delete_post/:id', forum.deletePost);

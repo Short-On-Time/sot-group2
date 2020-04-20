@@ -1,23 +1,26 @@
 import mongoose from 'mongoose';
 
-//post is a comment
+//comment
 const CommentSchema = mongoose.Schema({
 	body: {type: String, required: true}, //content
 	author_username: {type: String, required: true}, //poster
+	author_ID: {type: String, required: true},
 	createdAt: {type: Date, default: Date.now()},
-	is_edited: {type: Boolean, required: false} //in case they edit, want to show that it was changed
+	is_edited: {type: Boolean, default: false, required: true} //in case they edit, want to show that it was changed
 });
 
-//this is the original post, contains extra information
+//this is the original post, contains extra information because of that
 const PostSchema = mongoose.Schema({
   title: { type: String, required: true },
   body: { type: String, required: true},
-  author_username: { type: String, required: true},
+	author_username: { type: String, required: true},
+	author_ID: {type: String, required: true},
 	createdAt: { type: Date, default: Date.now()},
-	is_edited: {type: Boolean, required: false},
+	is_edited: {type: Boolean, default: false, required: true},
 	comments: [CommentSchema] //sub-doc, holds all the comments
 });
 
 
 export default mongoose.model('Post', PostSchema);
-export default mongoose.model('Comment', CommentSchema);
+//export const mongoose.model('Comment', CommentSchema);
+//export default {Post, Comment};

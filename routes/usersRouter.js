@@ -25,7 +25,7 @@ usersRouter.route('/get_glossary').get(/*validateToken,*/ users.getGlossaryList)
 
 //user routes
 /*usersRouter.get('/view_user', users.viewUserList)
-usersRouter.get('/view_user/:username', users.viewUser);
+usersRouter.get('/view_user/:id', users.viewUser);
 usersRouter.route('/view_self').get(validateToken, users.viewSelf);
 usersRouter.route('/edit_self').post(validateToken, users.editSelf);
 usersRouter.route('/delete_self').delete(validateToken, users.deleteSelf);*/
