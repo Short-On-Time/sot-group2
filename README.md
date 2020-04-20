@@ -33,7 +33,10 @@ https://short-on-time.herokuapp.com/
  - **POST** *users/contact* TODO
  - **GET** *users/get_remedy_preview/:name* shows only pertinent remedy information
  - **GET** *users/get_remedy_preview* shows list of remedies
- - 
+ - **GET** *users/get_remedy_full/:name* includes premium information
+ - **GET** *users/get_remedy_full* includes premium information
+ - **GET** *usesrs/get_glossary/:title* shows glossary item
+ - **GET** *users/get_glossary* shows list of glossary items
 
 ## Admin
 <ul>
@@ -49,11 +52,11 @@ https://short-on-time.herokuapp.com/
 	<li>POST users/user_premium</li>
 </ul>
 
-## Routes
-<ul>
-  <li>POST users/signup</li>
-  <li>POST users/signin</li>
-	<li>POST users/user_premium</li>
-</ul>
+## Image
+ - **POST** *image/add_image* adds a image + its name to the database
+ - **GET** *image/get_image/:name* gets the image with the same name
+ - **GET** *image/get_image* gets a list of image names + ids
+ - **DELETE** *image/delete_image/:name* deletes the image with the same name
+ - **GET** *image/load_image/:id* gets the image, or a default one
 
 ## Forum
