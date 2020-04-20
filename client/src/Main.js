@@ -31,12 +31,16 @@ import jwt from 'jsonwebtoken';
 const isAdmin = () => {
 	const token = localStorage.getItem("user-token")
 	if (token) {
-		let decoded = jwt.verify(token, 'herbs');
-		return decoded.user_info.is_admin
+		try {
+			let decoded = jwt.verify(token, 'herbs');
+			return decoded.user_info.is_admin
+		} catch (e) {
+			console.log(e);
+			return false
+		}
 	} else {
 		return false
 	}
-
 }
 
 const AdminRoute = () => {
