@@ -6,6 +6,18 @@ import Footer from '../components/Footer';
 
 
 const ViewPost= (props) => {
+	const [post, setPost] = useState([]);
+	const [ID, setID] = useState("");
+
+	useEffect(() => {
+		setID(url.params.id);
+		axios
+			.get(`http://localhost:3001/api/forum/get_post/${ID}`)
+			.then(res => {
+				setPost(res.data);
+			});
+	}, []);
+	
 	return (
 		<div className="AboutPage">
 				<div id="overlayer"></div>
@@ -33,9 +45,22 @@ const ViewPost= (props) => {
 												<br />
 												<br />
 												<br />
-												<h1 className="text-uppercase">Forum</h1>
-												{/*<ViewForum title = {props.match.params.title}/>*/}
-												<p>HELLO THERE</p>
+												<h1 className="text-uppercase">{post.title}</h1>
+												<p><i>By: {post.author_username}</i></p>
+												<p>{post.body}</p>
+
+												{
+													post.comments.map(comment => {
+														return (
+															<div> 
+																<h2>{comment.title}</h2>
+																<p><i>By: {comment.author_username}</i></p>
+																<p>{comment.body}</p>
+															</div>
+														);
+													})
+												}
+												
 												<br />
 												<br />
 												<br />
