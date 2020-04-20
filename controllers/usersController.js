@@ -198,3 +198,87 @@ export const userPremium = async (req, res) => {
     }
   });
 };
+
+export const viewSelf = async (req, res)=> {
+  initMongoose()
+  const email= req.params.email
+  User.findOne({email:email}, (err,data) =>{
+    console.log(data)
+    if (err){
+      res.status(400).json({err});
+      throw err;
+    }
+    else if(!data){
+      res.status(400).json({
+        message: `Error deleting user: ${err}`
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
+export const updateUser = async (req, res) => {
+  initMongoose()
+  const id = req.params.id;
+
+  //check to see if password was changed
+  if(req.body.password) {
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
+  }
+
+  User.findOneAndUpdate({_id: id}, req.body, {new: true}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data)
+    }
+  });
+};
+export const editSelf = async (req, res) => {
+  initMongoose()
+  const id = req.params.id;
+  
+  if(req.body.password) {
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
+  }
+  User.findOneAndUpdate({_id: id}, req.body, {new: true}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data)
+    }
+  });
+};
+
+export const deleteSelf = async (req, res)=> {
+  initMongoose()
+  const email= req.params.email
+  User.findOneAndDelete({email:email}, (err,data) =>{
+    console.log(data)
+    if (err){
+      res.status(400).json({err});
+      throw err;
+    }
+    else if(!data){
+      res.status(400).json({
+        message: `Error deleting user: ${err}`
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
