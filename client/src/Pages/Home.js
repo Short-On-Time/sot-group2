@@ -256,7 +256,7 @@ const Home = () => {
 													]
 												}
 												}
-												width={100}
+												width={159.4822}
 												imgWidth={660}
 												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
 												onMouseEnter={(area) => setHoveredArea(area)}
@@ -327,7 +327,7 @@ const Home = () => {
 														},
 													]
 												}}
-												width={100}
+												width={123.5862}
 												imgWidth={512}
 												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
 												onMouseEnter={(area) => setHoveredArea(area)}
@@ -342,19 +342,41 @@ const Home = () => {
 													name: 'back',
 													areas: [
 														{
-															name: '',
+															name: 'back',
 															shape: 'poly',
 															coords: [169, 597, 187, 607, 204, 611, 249, 615, 317, 616, 377, 613, 411, 609, 438, 598, 431, 621, 416, 667, 412, 690, 412, 717, 425, 751, 447, 795, 459, 821, 453, 828, 412, 843, 359, 851, 299, 853, 244, 851, 197, 841, 157, 829, 148, 823, 170, 771, 182, 751, 193, 724, 195, 683],
 															fillColor: 'rgba(255, 255, 255, 0.2)'
 														}
 													]
 												}}
-												width={100}
+												width={146.3860}
 												imgWidth={596}
 												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
 												onMouseEnter={(area) => setHoveredArea(area)}
 												onMouseLeave={() => setHoveredArea(null)}
 											/>
+
+											{
+												hoveredArea &&
+												<span
+													style={{
+														position: 'relative',
+														color: '#fff',
+														padding: '10px',
+														background: 'rgba(0, 0, 0, 0.8)',
+														transform: 'translate3d(-50%, -50%, 0)',
+														borderRadius: '5px',
+														pointerEvents: 'none',
+														zIndex: '1000',
+														...{
+															top: `${hoveredArea.center[1]}px`,
+															left: `${hoveredArea.center[0]}px`
+														}
+													}}
+												>
+													{hoveredArea && hoveredArea.name}
+												</span>
+											}
 										</Col>
 									</Row>
 								</Container>
@@ -393,6 +415,7 @@ const Home = () => {
 								<h2 className="site-section-heading text-uppercase text-center font-secondary">Information available for Free users</h2>
 							</div>
 						</div>
+
 						<div className="row">
 							<div className="col-md-12 block-13 nav-direction-white">
 								<div className="nonloop-block-13 owl-carousel">
@@ -404,6 +427,7 @@ const Home = () => {
 											<p><a href="/glossary/Garlic" className="btn btn-primary text-white px-4">Learn More</a></p>
 										</div>
 									</div>
+
 									<div className="media-image">
 										<img src="images/hero_1.jpg" alt="Image" className="img-fluid" />
 										<div className="media-image-body">
@@ -412,6 +436,7 @@ const Home = () => {
 											<p><a href="/glossary/Green%20Tea" className="btn btn-primary text-white px-4">Learn More</a></p>
 										</div>
 									</div>
+
 									<div className="media-image">
 										<img src="images/hero_2.jpg" alt="Image" className="img-fluid" />
 										<div className="media-image-body text-justify">
@@ -432,86 +457,93 @@ const Home = () => {
 							<div className="col-lg-6">
 								<p className="mb-5"><img src="images/hero_2.jpg" alt="Image" className="img-fluid shadow p-3 mb-5 bg-white rounded" /></p>
 							</div>
+
 							<div className="col-lg-5 ml-auto">
 								<h2 className="site-section-heading mb-3 font-secondary text-uppercase">What is premium?</h2>
 								<p className="caption mb-5"><PremiumCaption /></p>
 								{/*
-								<div className="row">
-									<div className="col-lg-6">
-										<div className="counter">
-											<span className="caption">Current products</span>
-											<span className="number" data-number="207">0</span>
+									<div className="row">
+										<div className="col-lg-6">
+											<div className="counter">
+												<span className="caption">Current products</span>
+												<span className="number" data-number="207">0</span>
+											</div>
+										</div>
+										<div className="col-lg-6">
+											<div className="counter">
+												<span className="caption">Number of users</span>
+												<span className="number" data-number="50">0</span>
+											</div>
 										</div>
 									</div>
-									<div className="col-lg-6">
-										<div className="counter">
-											<span className="caption">Number of users</span>
-											<span className="number" data-number="50">0</span>
-										</div>
-									</div>
-								</div>
-*/}
+								*/}
 							</div>
 						</div>
 					</div>
 				</div>
+
 				{/*
-				<div className="site-section block-14 nav-direction-white">
-					<div className="container">
-						<div className="row mb-5">
-							<div className="col-md-12">
-								<h2 className="site-section-heading text-center text-uppercase">Testimonials</h2>
-							</div>
-						</div>
-
-						<div className="nonloop-block-14 owl-carousel">
-							<div className="d-block block-testimony mx-auto text-center">
-								<div className="person w-25 mx-auto mb-4">
-									<img src="images/person_1.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-								</div>
-								<div>
-									<h2 className="h5 mb-4">Katie Johnson</h2>
-									<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+					<div className="site-section block-14 nav-direction-white">
+						<div className="container">
+							<div className="row mb-5">
+								<div className="col-md-12">
+									<h2 className="site-section-heading text-center text-uppercase">Testimonials</h2>
 								</div>
 							</div>
 
-							<div className="d-block block-testimony mx-auto text-center">
-								<div className="person w-25 mx-auto mb-4">
-									<img src="images/person_2.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-								</div>
-								<div>
-									<h2 className="h5 mb-4">Jun Mars</h2>
-									<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-								</div>
-							</div>
+							<div className="nonloop-block-14 owl-carousel">
+								<div className="d-block block-testimony mx-auto text-center">
+									<div className="person w-25 mx-auto mb-4">
+										<img src="images/person_1.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+									</div>
 
-							<div className="d-block block-testimony mx-auto text-center">
-								<div className="person w-25 mx-auto mb-4">
-									<img src="images/person_3.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+									<div>
+										<h2 className="h5 mb-4">Katie Johnson</h2>
+										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate 	aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+									</div>
 								</div>
-								<div>
-									<h2 className="h5 mb-4">Shane Holmes</h2>
-									<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-								</div>
-							</div>
 
-							<div className="d-block block-testimony mx-auto text-center">
-								<div className="person w-25 mx-auto mb-4">
-									<img src="images/person_4.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+								<div className="d-block block-testimony mx-auto text-center">
+									<div className="person w-25 mx-auto mb-4">
+										<img src="images/person_2.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+									</div>
+
+									<div>
+										<h2 className="h5 mb-4">Jun Mars</h2>
+										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+									</div>
 								</div>
-								<div>
-									<h2 className="h5 mb-4">Mark Johnson</h2>
-									<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+
+								<div className="d-block block-testimony mx-auto text-center">
+									<div className="person w-25 mx-auto mb-4">
+										<img src="images/person_3.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+									</div>
+
+									<div>
+										<h2 className="h5 mb-4">Shane Holmes</h2>
+										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+									</div>
+								</div>
+
+								<div className="d-block block-testimony mx-auto text-center">
+									<div className="person w-25 mx-auto mb-4">
+										<img src="images/person_4.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
+									</div>
+
+									<div>
+										<h2 className="h5 mb-4">Mark Johnson</h2>
+										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-*/}
+				*/}
+
 				<Footer />
 			</div>
-		</div >
+		</div>
 	);
 }
 
-export default Home;
+export default Home
