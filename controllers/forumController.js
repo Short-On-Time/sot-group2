@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Post from '../models/ForumModel.js';
+import User from '../models/UserModel.js';
 import config from '../config/config.js';
 
 let db;
@@ -176,4 +177,44 @@ export const deleteComment = async (req, res) => {
       return res.status(200).json(save_post);
     }
 	});
+}
+
+export const viewUserList = async (req, res) => {
+	initMongoose()
+	User.find({}, (err, data) => {
+		let trimmedData = data.map(user => {
+			return {
+				username: user.username,
+				is_premium: user.is_premium,
+				is_admin: user.is_admin,
+				is_moderator: user.is_moderator,
+				is_staff: user.is_glossary_editor || user.is_remedy_editor || user.is_website_editor,
+				number_posts: user.number_posts,
+				number_comments: user.number_comments
+			}
+		});
+		res.status(200).json(trimmedData);
+	});
+}
+
+export const viewUser = async (req, res) => {
+	const id = req.params.id;
+	initMongoose()
+	User.find({_id: id}, (err, data) => {
+		if(!data) {
+			res.status(400).json({
+				messasge: "User not found!"
+			});
+		} else {
+			res.status(200).json({
+				username: data.username,
+				is_premium: data.is_premium,
+				is_admin: data.is_admin,
+				is_moderator: data.is_moderator,
+				is_staff: data.is_glossary_editor || data.is_remedy_editor || data.is_website_editor,
+				number_posts: data.number_posts,
+				number_comments: data.number_comments
+			})
+		}
+	})
 }

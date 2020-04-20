@@ -25,4 +25,9 @@ forumRouter.post('/add_comment/:post_id', forum.addComment);
 forumRouter.put('/edit_comment/:post_id/:comment_id', forum.editComment); //not sure if you can stack them this way...
 forumRouter.delete('/delete_comment/:post_id/:comment_id', forum.deleteComment);
 
+//view users
+//so you can see them and stuff ig
+usersRouter.get('/view_user', forum.viewUserList)
+usersRouter.get('/view_user/:id', forum.viewUser);
+
 export default forumRouter;
