@@ -87,7 +87,7 @@ const ForumAddPost = () => {
 								as="textarea"
 								name="author_username"
 								rows="2"
-								onChange={event => setUsage(event.target.value)}
+								onChange={event => setAuthor_Username(event.target.value)}
 							/>
 
 							<Form.Control.Feedback type="invalid">

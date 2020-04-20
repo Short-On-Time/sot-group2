@@ -57,7 +57,7 @@ const ForumEditPost = props => {
 
 			<Modal show={modal} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Editing: {name}</Modal.Title>
+					<Modal.Title>Editing: {title}</Modal.Title>
 				</Modal.Header>
 				<Form>
 					<Modal.Body>
@@ -138,4 +138,4 @@ const ForumEditPost = props => {
 	);
 };
 
-export default AdminEditRemedies;
+export default ForumEditPost;
