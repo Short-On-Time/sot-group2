@@ -368,10 +368,8 @@ const Home = () => {
 														borderRadius: '5px',
 														pointerEvents: 'none',
 														zIndex: '1000',
-														...{
-															top: `${hoveredArea.center[1]}px`,
-															left: `${hoveredArea.center[0]}px`
-														}
+														top: `${hoveredArea.center[1]}px`,
+														left: `${hoveredArea.center[0]}px`
 													}}
 												>
 													{hoveredArea && hoveredArea.name}
