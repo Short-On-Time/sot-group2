@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import User from '../models/UserModel.js';
 import Newsletter from '../models/NewsletterModel.js';
 import Testimonial from '../models/TestimonialModel.js';
@@ -408,3 +409,23 @@ export const deleteUser = async (req, res) => {
     }
   });
 };
+
+export const addBlog = async (req, res) => {
+	initMongoose()
+	let save_blog;
+	save_blog = new Blog({
+	  title: req.body.title,
+	  createdAt: Date.now(),
+	  text: req.body.text,
+	  socialsrc: req.body.socialsrc,
+	  socialtype: req.body.socialtype
+	});
+	save_blog.save(function (err, save_blog) {
+	  if(err) {
+		return res.status(400).json(err);
+	  } else {
+		console.log('saved =>', save_blog);
+		return res.status(200).json(save_blog);
+	  }
+	});
+  };

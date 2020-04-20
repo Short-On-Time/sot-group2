@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import Remedy from '../models/RemedyModel.js';
 import Contact from '../models/ContactModel.js';
 import config from '../config/config.js';
@@ -197,4 +198,17 @@ export const userPremium = async (req, res) => {
       res.status(200).json(data);
     }
   });
+};
+
+export const getBlogNewest = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+			let NewestPost = {createdAt: new Date(0)};
+			data.forEach( post => {
+				if(post.createdAt > NewestPost.createdAt){
+					NewestPost = post;
+				}
+			})
+			res.status(200).json(NewestPost);
+	});
 };
