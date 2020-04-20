@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewGlossary from '../components/ViewGlossary';
@@ -10,7 +10,7 @@ const ViewPost= (props) => {
 	const [ID, setID] = useState("");
 
 	useEffect(() => {
-		setID(url.params.id);
+		setID(props.match.params.id);
 		axios
 			.get(`http://localhost:3001/api/forum/get_post/${ID}`)
 			.then(res => {
@@ -60,7 +60,7 @@ const ViewPost= (props) => {
 														);
 													})
 												}
-												
+
 												<br />
 												<br />
 												<br />
