@@ -17,9 +17,9 @@ import Model from '../components/Model'
 import Footer from '../components/Footer'
 import PremiumCaption from '../components/PremiumCaption'
 import WelcomeCaption from '../components/WelcomeCaption'
+import SocialEmbed from '../components/SocialEmbed'
 
 import '../App.css';
-import SocialEmbed from '../components/SocialEmbed'
 
 const Home = () => {
 	const [is3d, set3d] = useState(false)
@@ -259,7 +259,11 @@ const Home = () => {
 												}
 												width={159.4822}
 												imgWidth={660}
-												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
+												onClick={(area) => {
+													(area.name.endsWith('-l') || area.name.endsWith('-r'))
+														? document.location = `/remedies?body_part=${area.name.substring(0, area.name.length - 2)}`
+														: document.location = `/remedies?body_part=${area.name}`
+												}}
 												onMouseEnter={(area) => setHoveredArea(area)}
 												onMouseLeave={() => setHoveredArea(null)}
 											/>
@@ -330,7 +334,7 @@ const Home = () => {
 												}}
 												width={123.5862}
 												imgWidth={512}
-												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
+												onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
 												onMouseEnter={(area) => setHoveredArea(area)}
 												onMouseLeave={() => setHoveredArea(null)}
 											/>
@@ -352,7 +356,7 @@ const Home = () => {
 												}}
 												width={146.3860}
 												imgWidth={596}
-												onClick={() => { }} 							// redirect to remedy with certain name (omit -l and -r if exists)
+												onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
 												onMouseEnter={(area) => setHoveredArea(area)}
 												onMouseLeave={() => setHoveredArea(null)}
 											/>
