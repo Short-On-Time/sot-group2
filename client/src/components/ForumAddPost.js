@@ -12,7 +12,7 @@ const ForumAddPost = () => {
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [author_username, setAuthor_Username] = useState("");
-	const [author_ID, author_ID] = useState("");
+	const [author_ID, setAuthor_ID] = useState("");
 
 	const openModal = () => {
 		setModal(true);
