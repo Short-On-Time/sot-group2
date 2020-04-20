@@ -33,7 +33,7 @@ const ViewForum = (props) => {
 
 
 	return (
-		<div class="container">
+		<div class="container" style={{maxWidth : '800px'}}>
 			<div class="row">
    			<div class="col-lg-12">
         	<div class="wrapper wrapper-content animated fadeInRight">
@@ -56,7 +56,7 @@ const ViewForum = (props) => {
 
 
                 <div class="forum-item active">
-				<Table  striped bordered>
+				<Table  striped bordered >
 					<thead>
 						<tr>
 						<th class="aligh-right" width="25">Posts</th>

@@ -5,11 +5,14 @@ import ViewGlossary from '../components/ViewGlossary';
 import Footer from '../components/Footer';
 import axios from "axios";
 import config from "../config.js";
+import ForumAddComment from '../components/ForumAddComment';
+import Table from "react-bootstrap/Table";
 
 
 const ViewPost= (props) => {
 	const [post, setPost] = useState({});
 	const [postID, setPostID] = useState('');
+	let logged = localStorage.getItem("user_logged");
 
 	useEffect(() => {
 		axios
@@ -23,14 +26,42 @@ const ViewPost= (props) => {
 		if(post.comments) {
 			return post.comments.map(comment => {
 				return (
+					<div>
 					<div key={comment._id}> 
-						<h4>Comment by {comment.author_username}</h4>
-						<p>{comment.body}</p>
+						<br></br>
+						<br></br>
+						<table>
+						<tr>
+							<td>Comment by {comment.author_username}</td>
+							<td></td>
+
+						</tr>
+						</table>
+						
+							<body>{comment.body}</body>
+						<td></td>
+  						
+						<br></br>
+						  
+						
+						
+					</div>
+
 					</div>
 				);
 			});
 		}
 	};
+
+
+	
+	const Addcomment = () => {
+		return (
+			<div aling="right" class="align-middle"> 
+							Add a Comment <ForumAddComment />
+			</div>
+		)
+	}
 	
 	return (
 		<div className="AboutPage">
@@ -52,21 +83,25 @@ const ViewPost= (props) => {
 
 						<NavBar page="Forum"/>
 
-						<div className=" inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
+						<div  className=" inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
 								<div className="row align-items-center justify-content-center">
-										<div className="text-center shadow p-3 mb-5 bg-white rounded" data-aos="fade">
+										<div className="text-center shadow p-3 mb-5 bg-white rounded" data-aos="fade" style={{maxWidth : '800px', minWidth:'800px'}}>
 												<br />
 												<br />
 												<br />
 												<br />
 												<h1 className="text-uppercase">{post.title}</h1>
-												<p><i>By: {post.author_username}</i></p>
-												<p>{post.body}</p>
+												<p><i>By: <h2 className="text-lowercase"> {post.author_username}</h2></i></p>
+												
+				
+												<body className="middle">{post.body}</body>
+								
 
+												
 												{
 													showComments()
 												}
-
+												{ (logged) ? Addcomment() :  <div vertical-align="middle">You need to be logged in to make a comment. </div> }
 												<br />
 												<br />
 												<br />
