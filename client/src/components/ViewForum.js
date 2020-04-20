@@ -28,10 +28,9 @@ const ViewForum = (props) => {
 			<Table striped bordered>
 				<thead>
 					<tr>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Ailment</th>
-						<th class="align-middle">Body Part</th>
-						<th class="align-middle">description</th>
+						<th class="align-middle">Title</th>
+						<th class="align-middle">Body</th>
+						<th class="align-middle">Author</th>
 						<th class="align-middle">
 							<ForumAddPost />
 						</th>
@@ -41,8 +40,11 @@ const ViewForum = (props) => {
 					{post.map(post => {
 					
 							return (
-								<tr key={post._id} name={post.name}>
-									<td class="align-middle">{post.body}</td>
+								<tr key={post._id} name={post.title}>
+									<td class="align-middle">
+										<a href={`/post/${post._id}`}>{post.title}</a> {/*delete the link if it messes with the code*/}
+									</td>
+									<td class="align-middle">{post.body.substring(0, 20)}</td>
 									<td class="align-middle">{post.author_username}</td>
 									<td class="align-middle">
 										<ButtonGroup>
