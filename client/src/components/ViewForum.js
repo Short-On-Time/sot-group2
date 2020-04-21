@@ -36,7 +36,7 @@ const ViewForum = (props) => {
 
 		return (
 			<div aling="right" class="align-middle"> 
-						 {author_username} <User id={author_ID}/>
+						 <User id={author_ID} username={author_username}/>
 			</div>
 		)
 

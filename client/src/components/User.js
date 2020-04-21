@@ -25,25 +25,22 @@ const UserButton = (props) => {
 	return (
 		<>
 			<a onClick={handleShow}>
-				<Image src="../logo.svg" roundedCircle />
+				{props.username}
 			</a>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>{profile.username}</Modal.Title>
+					<Modal.Title>{props.username}</Modal.Title>
 				</Modal.Header>
 
 				<Modal.Body>
-					<p>Posts: {profile.number_posts}</p>
-					<p>Comments: {profile.number_comments}</p>
+					<p>Posts: {props.number_posts}</p>
+					<p>Comments: {props.number_comments}</p>
 				</Modal.Body>
 
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Close
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Close 2.0
 					</Button>
 				</Modal.Footer>
 			</Modal>
