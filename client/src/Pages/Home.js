@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import jwt from 'jsonwebtoken'
 
 import RemediesSelector from '../components/RemediesSelector'
 // import Search from '../components/Search'
@@ -12,13 +13,24 @@ import Model3D from '../components/Model3D'
 import Footer from '../components/Footer'
 import PremiumCaption from '../components/PremiumCaption'
 import WelcomeCaption from '../components/WelcomeCaption'
-import SocialEmbed from '../components/SocialEmbed'
+// import SocialEmbed from '../components/SocialEmbed'
 
 import '../App.css';
 
 const Home = () => {
-	const [isEnabled3d, enable3d] = useState(true)
 	const [is3d, set3d] = useState(false)
+
+	const isAdmin = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_admin
+			});
+		} else {
+			return false
+		}
+	}
 
 	return (
 		<div className="App">
@@ -125,7 +137,7 @@ const Home = () => {
 								<span className="caption d-block mb-2 font-secondary font-weight-bold">
 									Human Body{' '}
 									{
-										isEnabled3d && (
+										!!isAdmin() && (
 											<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d} onChange={is3d => set3d(is3d)}>
 												<ToggleButton variant="outline-success" value={false}>2D</ToggleButton>
 												<ToggleButton variant="outline-success" value={true}>3D</ToggleButton>

@@ -125,7 +125,7 @@ const Model2D = () => {
 							]
 						}
 						}
-						width={159.4822}
+						width={448 * 660 / 1854}
 						imgWidth={660}
 						onClick={(area) => {
 							(area.name.endsWith('-l') || area.name.endsWith('-r'))
@@ -208,7 +208,7 @@ const Model2D = () => {
 								},
 							]
 						}}
-						width={123.5862}
+						width={448 * 512 / 1856}
 						imgWidth={512}
 						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
 						onMouseEnter={(area) => setHoveredArea(area)}
@@ -231,7 +231,7 @@ const Model2D = () => {
 								}
 							]
 						}}
-						width={146.3860}
+						width={448 * 596 / 1824}
 						imgWidth={596}
 						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
 						onMouseEnter={(area) => setHoveredArea(area)}
