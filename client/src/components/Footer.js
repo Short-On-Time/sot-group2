@@ -18,7 +18,10 @@ const Footer = () => {
 
 								<ul className="list-unstyled">
 									<li><a href="/">Home</a></li>
+									<li><a href="/didyouknow">Did You Know?</a></li>
 									<li><a href="/glossary">Glossary</a></li>
+									<li><a href="/remedies">Remedies</a></li>
+									<li><a href="/forum">Forum</a></li>
 								</ul>
 							</div>
 						</div>
