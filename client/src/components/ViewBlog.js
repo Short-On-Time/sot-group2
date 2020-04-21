@@ -16,7 +16,6 @@ const ViewBlog = (props) => {
 		if(props.p){
 			axios.get(`http://localhost:${config.server_port}/api/users/get_blog/${props.p}`)
 			.then(res => {
-				console.log(res.data)
 				setPost(res.data);
 			})
 			.catch(function (e) {
@@ -65,10 +64,6 @@ const ViewBlog = (props) => {
 	}, [post])
 
 	const getButtons = () => {
-		
-		console.log("post: " + post._id);
-		console.log("previous: " + previousId);
-		console.log("next: " + nextId);
 		let buttons = [];
 		if(previousId != post._id){
 			buttons.push(<Button variant="light" href={`/didyouknow/${previousId}`} key="previous"> Previous </Button>);

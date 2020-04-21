@@ -18,7 +18,7 @@ const AdminViewRemedies = props => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/admin/get_remedies`)
+			.get(`http://localhost:3001/api/admin/get_remedy`)
 			.then(res => {
 				setRemedies(res.data);
 			});

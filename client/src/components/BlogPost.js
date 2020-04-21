@@ -16,7 +16,7 @@ const BlogPost = (props) => {
 
 	const createBlogPost = (post) => {
 		const JSX = (
-			<Card className="text-justify" style={{ width: 'auto' }}>
+			<Card className="text-justify" style={{ width: 'auto', paddingLeft: "1rem", paddingRight: "1rem" }}>
 			<Card.Title style = {{
 				display: "flex",
 				justifyContent: "center",
