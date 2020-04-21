@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import PremiumWarning from './PremiumWarning'
 import Error from './Error'
 import BlogPost from './BlogPost'
-import Button from "react-bootstrap/button";
+import Button from 'react-bootstrap/Button';
 
 const ViewBlog = (props) => {
 	const [post, setPost] = useState({});
@@ -72,7 +72,7 @@ const ViewBlog = (props) => {
 			buttons.push(<Button variant="light" href={`/didyouknow/${nextId}`} key="next"> Next </Button>);
 		}
 		buttons.push(<Button variant="light" href="/didyouknow" key="newest">Newest</Button>)
-		
+
 		return buttons;
 	}
 
