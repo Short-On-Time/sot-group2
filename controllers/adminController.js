@@ -454,3 +454,35 @@ export const getBlogList = async (req, res) => {
 	  res.status(200).json(data);
 	});
 };
+
+
+export const updateBlog = async (req, res) => {
+	initMongoose()
+	const id = req.params.id;
+	Blog.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
+	  if(err) {
+		res.status(400).json({err});
+		throw err;
+	  } else if (!data) {
+		res.status(500).json({
+		  message: "Blog Post does not exist!"
+		});
+	  } else {
+		res.status(200).json(data);
+	  }
+	});
+};
+
+export const getBlog = async (req, res) => {
+  initMongoose()
+  const id = req.params.id;
+  User.findOne({_id: id}, (err, data) => {
+    if(!data) {
+      res.status(400).json({
+        message: 'Blog Post does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
