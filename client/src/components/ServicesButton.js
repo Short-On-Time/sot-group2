@@ -64,7 +64,7 @@ const ServicesButton = (props) => {
 
 	return (
 		<>
-			<a style={{ cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
+			<a style={{ color: "forestgreen", cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
 			<Modal
 				size="lg"
 				show={lgShow}

@@ -4,9 +4,49 @@ import ImageMapper from 'react-image-mapper'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+
+import jwt from 'jsonwebtoken'
 
 const Model2D = () => {
 	const [hoveredArea, setHoveredArea] = useState(null)
+	const [clickedArea, setClickedArea] = useState(null)
+	const [showSubModal, setShowSubModal] = useState(false)
+
+	const isAdmin = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_admin
+			});
+		} else {
+			return false
+		}
+	}
+
+	const isPremium = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_premium
+			});
+		} else {
+			return false
+		}
+	}
+
+	const handleAreaClick = (area) => {
+		setClickedArea(area)
+		setShowSubModal(true)
+	}
+
+	const handleAreaUnclick = () => {
+		setClickedArea(null)
+		setShowSubModal(false)
+	}
 
 	return (
 		<Container fluid>
@@ -127,12 +167,14 @@ const Model2D = () => {
 						}
 						width={448 * 660 / 1854}
 						imgWidth={660}
-						onClick={(area) => {
-							(area.name.endsWith('-l') || area.name.endsWith('-r'))
-								? document.location = `/remedies?body_part=${area.name.substring(0, area.name.length - 2)}`
-								: document.location = `/remedies?body_part=${area.name}`
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? area.name.endsWith('-l') || area.name.endsWith('-r')
+									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
+									: document.location = `/remedies?body_part=${area.name}`
+								: handleAreaClick(area)
 						}}
-						onMouseEnter={(area) => setHoveredArea(area)}
+						onMouseEnter={area => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
 				</Col>
@@ -210,7 +252,13 @@ const Model2D = () => {
 						}}
 						width={448 * 512 / 1856}
 						imgWidth={512}
-						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? area.name.endsWith('-l') || area.name.endsWith('-r')
+									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
+									: document.location = `/remedies?body_part=${area.name}`
+								: handleAreaClick(area)
+						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
@@ -233,30 +281,54 @@ const Model2D = () => {
 						}}
 						width={448 * 596 / 1824}
 						imgWidth={596}
-						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? area.name.endsWith('-l') || area.name.endsWith('-r')
+									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
+									: document.location = `/remedies?body_part=${area.name}`
+								: handleAreaClick(area)
+						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
+				</Col>
+			</Row>
 
+			<Row>
+				<Col>
 					{
 						hoveredArea &&
-						<span
-							style={{
-								position: 'relative',
-								color: '#fff',
-								padding: '10px',
-								background: 'rgba(0, 0, 0, 0.8)',
-								transform: 'translate3d(-50%, -50%, 0)',
-								borderRadius: '5px',
-								pointerEvents: 'none',
-								zIndex: '1000',
-								top: `${hoveredArea.center[1]}px`,
-								left: `${hoveredArea.center[0]}px`
-							}}
+						<span style={{
+							position: 'absolute',
+							color: '#fff',
+							padding: '10px',
+							background: 'rgba(0, 0, 0, 0.8)',
+							transform: 'translate3d(-50%, -50%, 0)',
+							borderRadius: '5px',
+							top: '50px'
+						}}
 						>
-							{hoveredArea && hoveredArea.name}
+							{
+								hoveredArea.name.endsWith('-l') || hoveredArea.name.endsWith('-r')
+									? hoveredArea.name.substr(0, hoveredArea.name.length - 2)
+									: hoveredArea.name
+							}
 						</span>
 					}
+
+					{/*<Modal show={showSubModal} onHide={handleAreaUnclick()}>
+						<Modal.Header closeButton>
+							<Modal.Title>Subscription needed</Modal.Title>
+						</Modal.Header>
+
+						<Modal.Body>
+							You need a subscription to view remedies for {clickedArea && (clickedArea.name.endsWith('-l') || clickedArea.name.endsWith('-r') ? clickedArea.name.substr(0, clickedArea.name.length - 2) : clickedArea.name)}.
+						</Modal.Body>
+
+						<Modal.Footer>
+							<Button variant="outline-secondary" onClick={handleAreaUnclick()}>Close</Button>
+						</Modal.Footer>
+				</Modal>*/}
 				</Col>
 			</Row>
 		</Container>
