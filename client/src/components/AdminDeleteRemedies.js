@@ -29,7 +29,7 @@ const AdminDeleteRemedies = props => {
 		axios.get(
 			`http://localhost:${config.server_port}/api/admin/get_remedy`
 		).then(res => {
-			props.setRemedy(res.data);
+			props.setRemedies(res.data);
 			window.location.reload(false);
 		});
 

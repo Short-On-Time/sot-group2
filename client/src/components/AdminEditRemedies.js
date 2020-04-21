@@ -41,9 +41,8 @@ const AdminEditRemedies = props => {
 			is_published: isPublished,
 			is_premium: isPremium
 		};
-		console.log("This is data", data);
 		axios.put(
-			`http://localhost:${config.server_port}/api/admin/update_remedy/${data.name}`,
+			`http://localhost:${config.server_port}/api/admin/update_remedy/${data._id}`,
 			data
 		).then(
 			response => {

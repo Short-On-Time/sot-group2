@@ -16,7 +16,7 @@ const AdminAddRemedies = () => {
 	const [amounts, setAmounts] = useState([]);
 	const [units, setUnits] = useState([]);
 	const [description, setDescription] = useState("");
-	const [is_published, setIsPublished] = useState(false);
+	const [is_published, setIsPublished] = useState(true);
 	const [is_premium, setIsPremium] = useState(false);
 	const [createdAt, setCreatedAt] = useState(false);
 
