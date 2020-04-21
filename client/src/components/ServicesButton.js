@@ -69,12 +69,7 @@ const ServicesButton = (props) => {
 
 	return (
 		<>
-<<<<<<< HEAD
-
-			<a style={{ cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
-=======
 			<a style={{ color: props.color, cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
->>>>>>> sprint-2-dev
 			<Modal
 				size="lg"
 				show={lgShow}
