@@ -32,7 +32,7 @@ const AdminAddRemedies = () => {
 			is_published: is_published,
 			is_premium: is_premium,
 			description: description,
-			createdAt: createdAt
+			createdAt: Date.now()
 		};
 		console.log("This is data", data);
 		axios.post(
@@ -101,17 +101,6 @@ const AdminAddRemedies = () => {
 								name="description"
 								rows="2"
 								onChange={event => setDescription(event.target.value)}
-							/>
-						</Form.Group>
-
-						<Form.Group>
-							<Form.Label>Created At</Form.Label>
-							<Form.Control
-								required
-								as="textarea"
-								name="createdAt"
-								rows="2"
-								onChange={event => setCreatedAt(event.target.value)}
 							/>
 						</Form.Group>
 

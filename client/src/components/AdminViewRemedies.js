@@ -18,7 +18,7 @@ const AdminViewRemedies = props => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/admin/get_remedies`)
+			.get(`http://localhost:3001/api/admin/get_remedy`)
 			.then(res => {
 				setRemedies(res.data);
 			});
@@ -54,7 +54,7 @@ const AdminViewRemedies = props => {
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Ailment</th>
 						<th class="align-middle">Body Part</th>
-						<th class="align-middle">description</th>
+						<th class="align-middle">Description</th>
 						<th class="align-middle">
 							<AdminAddRemedies />
 						</th>
@@ -63,13 +63,14 @@ const AdminViewRemedies = props => {
 				<tbody>
 					{remedies.filter(remedies =>
 						remedies.name.toLowerCase().includes(props.query.toLowerCase())
-					).map(remedies => {
-						if (remedies.is_published === !viewDrafts.onlyDrafts) {
+					).map(remedy => {
+						if (remedy.is_published === !viewDrafts.onlyDrafts) {
 							return (
-								<tr key={remedies._id} name={remedies.name}>
-									<td class="align-middle">{remedies.ailment}</td>
-									<td class="align-middle">{remedies.body_part}</td>
-									<td class="align-middle">{remedies.description}</td>
+								<tr key={remedy._id} name={remedy.name}>
+									<td class="align-middle">{remedy.name}</td>
+									<td class="align-middle">{remedy.ailment_type}</td>
+									<td class="align-middle">{remedy.body_part}</td>
+									<td class="align-middle">{remedy.description}</td>
 									<td class="align-middle">
 										<ButtonGroup>
 											<AdminEditRemedies item={remedies} />

@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 import SocialEmbed from './SocialEmbed.js';
 
 const BlogPost = (props) => {
-	const [blogPost, setBlogPost] = useState({});
 
 	const getSocialEmbed = (post) => {
 		if(post.socialsrc && post.socialtype){
@@ -16,32 +15,78 @@ const BlogPost = (props) => {
 	}
 
 	const createBlogPost = (post) => {
-		const JSX = [
-			<h3>{post.title}</h3>,
-			<Card className="text-justify" style={{ width: 'auto' }}>
+		const JSX = (
+			<Card className="text-justify" style={{ width: 'auto', paddingLeft: "1rem", paddingRight: "1rem" }}>
+			<Card.Title style = {{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center"}}>
+
+					<br />
+					{post.title}
+			</Card.Title>
 				<Card.Body>
 					<Card.Text>
 						<p>{post.text}</p>
-						<div>{getSocialEmbed(post)}</div>
+						<br />
+						{getSocialEmbed(post)}
 					</Card.Text>
 				</Card.Body>
 			</Card>
-		];
+		);
 
 		return JSX;
 	}
 
-	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_newest`)
-			.then(res => {
-                const item = res.data;
-				setBlogPost(item);
-			})
-	}, []);
+	const createDate = () => {
+		if(props.post.createdAt){
+			const postDate = props.post.createdAt;
+			/*console.log(postDate)
+			let ampm = "AM";
+			let adjustedHour = postDate.getHours();
+			let adjustedMinutes = "";
+			let adjustedSeconds = "";
+			if(adjustedHour>12){
+				ampm = "PM";
+				adjustedHour -= 12;
+			}
+			else if(adjustedHour === 12){
+				ampm = "PM";
+			}
+			else if(adjustedHour === 0){
+				adjustedHour += 12;
+			}
+
+			if(postDate.getMinutes<10){
+				adjustedMinutes = "0" + postDate.getMinutes();
+			}
+			else{
+				adjustedMinutes = "" + postDate.getMinutes();
+			}
+
+			if(postDate.getSeconds<10){
+				adjustedSeconds = "0" + postDate.getSeconds();
+			}
+			else{
+				adjustedSeconds = "" + postDate.getSeconds();
+			}
+			*/
+			return(
+				<i className="text-secondary">
+					{/*${postDate.getMonth()+1}/${postDate.getDate()}/${postDate.getFullYear()} at 
+					${adjustedHour}:${adjustedMinutes}:${adjustedSeconds} ${ampm}*/}
+					{`Posted on ${postDate}`}</i>
+			);
+		}
+		else{
+			return '';
+		}
+	}
 
 	return (
 		<div className="glossary-item">
-			{createBlogPost(blogPost)}
+			{createBlogPost(props.post)}
+			{createDate()}
 		</div>
 	);
 };

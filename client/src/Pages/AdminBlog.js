@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import AdminViewBlog from "../components/AdminViewBlog";
 import AdminNavBar from "../components/AdminNavBar";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -16,9 +17,9 @@ const AdminBlog = () => {
 	return (
 		<div className="App">
 			<div className="site-wrap">
-				<AdminNavBar isDashboard={false} page=": Did You Know" />
+				<AdminNavBar isDashboard={false} page=": Blog" />
 				<Container>
-					<div class="adglossary-content">
+					<div className="adglossary-content">
 						<InputGroup className="mb-3">
 							<InputGroup.Prepend>
 								<InputGroup.Text>Search</InputGroup.Text>
@@ -29,6 +30,7 @@ const AdminBlog = () => {
 
 						</InputGroup>
 
+						<AdminViewBlog query={query} />
 					</div>
 				</Container>
 			</div>

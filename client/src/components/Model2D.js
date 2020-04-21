@@ -5,8 +5,34 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+import jwt from 'jsonwebtoken'
+
 const Model2D = () => {
 	const [hoveredArea, setHoveredArea] = useState(null)
+
+	const isAdmin = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_admin
+			});
+		} else {
+			return false
+		}
+	}
+
+	const isPremium = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_premium
+			});
+		} else {
+			return false
+		}
+	}
 
 	return (
 		<Container fluid>
@@ -125,14 +151,14 @@ const Model2D = () => {
 							]
 						}
 						}
-						width={159.4822}
+						width={448 * 660 / 1854}
 						imgWidth={660}
-						onClick={(area) => {
-							(area.name.endsWith('-l') || area.name.endsWith('-r'))
-								? document.location = `/remedies?body_part=${area.name.substring(0, area.name.length - 2)}`
-								: document.location = `/remedies?body_part=${area.name}`
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
 						}}
-						onMouseEnter={(area) => setHoveredArea(area)}
+						onMouseEnter={area => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
 				</Col>
@@ -208,9 +234,13 @@ const Model2D = () => {
 								},
 							]
 						}}
-						width={123.5862}
+						width={448 * 512 / 1856}
 						imgWidth={512}
-						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
+						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
@@ -231,30 +261,38 @@ const Model2D = () => {
 								}
 							]
 						}}
-						width={146.3860}
+						width={448 * 596 / 1824}
 						imgWidth={596}
-						onClick={(area) => { document.location = `/remedies?body_part=${area.name}` }}
+						onClick={area => {
+							!!isPremium() || !!isAdmin()
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
+						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
 					/>
+				</Col>
+			</Row>
 
+			<Row>
+				<Col>
 					{
 						hoveredArea &&
-						<span
-							style={{
-								position: 'relative',
-								color: '#fff',
-								padding: '10px',
-								background: 'rgba(0, 0, 0, 0.8)',
-								transform: 'translate3d(-50%, -50%, 0)',
-								borderRadius: '5px',
-								pointerEvents: 'none',
-								zIndex: '1000',
-								top: `${hoveredArea.center[1]}px`,
-								left: `${hoveredArea.center[0]}px`
-							}}
+						<span style={{
+							position: 'absolute',
+							color: '#fff',
+							padding: '10px',
+							background: 'rgba(0, 0, 0, 0.8)',
+							transform: 'translate3d(-50%, -50%, 0)',
+							borderRadius: '5px',
+							top: '50px'
+						}}
 						>
-							{hoveredArea && hoveredArea.name}
+							{
+								hoveredArea.name.endsWith('-l') || hoveredArea.name.endsWith('-r')
+									? hoveredArea.name.substr(0, hoveredArea.name.length - 2)
+									: hoveredArea.name
+							}
 						</span>
 					}
 				</Col>
