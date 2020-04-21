@@ -30,6 +30,7 @@ function signJWT(payload, res) {
 function buildPayload(user) {
   return {
     user_info: {
+			username: username,
       id: user.id,
       email: user.email,
       is_premium: user.is_premium,
