@@ -16,7 +16,7 @@ const AdminBlog = () => {
 	return (
 		<div className="App">
 			<div className="site-wrap">
-				<AdminNavBar isDashboard={false} page=": Glossary" />
+				<AdminNavBar isDashboard={false} page=": Did You Know" />
 				<Container>
 					<div class="adglossary-content">
 						<InputGroup className="mb-3">
