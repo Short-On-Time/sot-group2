@@ -5,12 +5,27 @@ import config from './config.js';
 import ViewRemedy from './ViewRemedy';
 import Error from './Error';
 import SearchOptions from '../components/SearchOptions';
+import jwt from 'jsonwebtoken';
 
 const ViewRemedies = (props) => {
 	//TODO: find a way to eliminate setRemediesJSX
 	const [remedies, setRemedies] = useState([]);
 	const [filter, setFilter] = useState({});
 	const [remediesJSX, setRemediesJSX] = useState([]);
+
+	let logged = localStorage.getItem("user_logged");
+	const token = localStorage.getItem("user-token");
+
+	const UserEmail = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			console.log(decoded);
+			return decoded.user_info.is_premium;
+		} else {
+			return false;
+		}
+	}
 
 	let search = useLocation().search;
 	const parseURLQuery = (query) => {
@@ -147,7 +162,8 @@ const ViewRemedies = (props) => {
 			return (<div><h3>Remedy not found</h3><p>Redirecting..</p></div>);
 		}
 		else {
-			return <ViewRemedy name={props.name} className="glossary-item" />;
+			var is_premium = UserEmail();
+			return <ViewRemedy name={props.name} is_premium={is_premium} className="glossary-item" />;
 		}
 	}
 

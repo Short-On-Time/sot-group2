@@ -40,7 +40,7 @@ const AdminViewRemedies = props => {
 
 	return (
 		<div>
-			<div class="admin-toggle">
+			<div className="admin-toggle">
 				<Form.Check
 					type="switch"
 					id="custom-switch"
@@ -73,9 +73,9 @@ const AdminViewRemedies = props => {
 									<td class="align-middle">{remedy.description}</td>
 									<td class="align-middle">
 										<ButtonGroup>
-											<AdminEditRemedies item={remedies} />
+											<AdminEditRemedies item={remedy} />
 											<AdminDeleteRemedies
-												remedies={remedies}
+												remedies={remedy}
 												setRemedies={setRemedies}
 											/>
 										</ButtonGroup>

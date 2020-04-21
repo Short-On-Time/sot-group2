@@ -26,6 +26,10 @@ const SocialEmbed = (props) => {
 				width="500" height="386" style={{border:"none",overflow:"hidden"}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
 				</iframe>
 			);
+		case "link":
+				return(<a href={props.src}> {props.src}</a>)
+		case "image":
+				return(<img src={props.src} />);
 		default: return ''
 	}
 }

@@ -415,7 +415,7 @@ export const addBlog = async (req, res) => {
 	let save_blog;
 	save_blog = new Blog({
 	  title: req.body.title,
-	  createdAt: Date.now(),
+	  createdAt: req.body.createdAt,
 	  text: req.body.text,
 	  socialsrc: req.body.socialsrc,
 	  socialtype: req.body.socialtype

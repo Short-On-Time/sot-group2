@@ -25,7 +25,7 @@ const AdminAddBlog = () => {
 		let data = {
 			title: title,
 			text: text,
-			createdAt: Date.now(),
+			createdAt: new Date(),
 			socialsrc: socialSrc,
 			socialtype: socialType
 		};
@@ -88,6 +88,7 @@ const AdminAddBlog = () => {
 								<option value="twitter">Tweet</option>
 								<option value="facebook">Facebook Post</option>
 								<option value="instagram">Instagram Post</option>
+								<option value="link">Link</option>
 							</Form.Control>
 							
 						</Form.Group>
