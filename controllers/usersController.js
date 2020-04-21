@@ -217,7 +217,7 @@ export const getBlogNewest = async (req, res) => {
 export const getBlog = async (req, res) => {
 	initMongoose()
 	Blog.find({_id: req.params.id}, (err, data) => {
-		res.status(200).json(data);
+		res.status(200).json(data[0]);
 	});
 };
 

@@ -5,13 +5,86 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import PremiumWarning from './PremiumWarning'
 import Error from './Error'
 import BlogPost from './BlogPost'
+import Button from "react-bootstrap/button";
 
 const ViewBlog = (props) => {
-	
+	const [post, setPost] = useState({});
+	const [previousId, setPreviousId] = useState("");
+	const [nextId, setNextId] = useState("");
+
+	useEffect(() => {
+		if(props.p){
+			axios.get(`http://localhost:${config.server_port}/api/users/get_blog/${props.p}`)
+			.then(res => {
+				console.log(res.data)
+				setPost(res.data);
+			})
+			.catch(function (e) {
+				console.log(e.response)
+				if (e) {
+					return(<Error error={e} returnURL="/" />)
+				}
+			});
+		}
+		else{
+			axios.get(`http://localhost:${config.server_port}/api/users/get_blog_newest`)
+			.then(res => {
+				setPost(res.data);
+			})
+			.catch(function (e) {
+				console.log(e.response)
+				if (e) {
+					return(<Error error={e} returnURL="/" />)
+				}
+			});
+		}
+	}, []);
+
+	useEffect( () => {
+		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_previous/${post._id}`)
+			.then(res => {
+				setPreviousId(res.data._id);
+			})
+			.catch(function (e) {
+				console.log(e.response)
+				if (e) {
+					return(<Error error={e} returnURL="/" />)
+				}
+		});
+
+		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_next/${post._id}`)
+			.then(res => {
+				setNextId(res.data._id);
+			})
+			.catch(function (e) {
+				console.log(e.response)
+				if (e) {
+					return(<Error error={e} returnURL="/" />)
+				}
+		});
+	}, [post])
+
+	const getButtons = () => {
+		
+		console.log("post: " + post._id);
+		console.log("previous: " + previousId);
+		console.log("next: " + nextId);
+		let buttons = [];
+		if(previousId != post._id){
+			buttons.push(<Button variant="light" href={`/didyouknow/${previousId}`} key="previous"> Previous </Button>);
+		}
+		if(nextId != post._id){
+			buttons.push(<Button variant="light" href={`/didyouknow/${nextId}`} key="next"> Next </Button>);
+		}
+		buttons.push(<Button variant="light" href="/didyouknow" key="newest">Newest</Button>)
+		
+		return buttons;
+	}
 
 	return (
 		<div style={{ backgroundColor: "white" }} className="glossary-item">
-			<BlogPost />
+			<BlogPost post={post}/>
+			{getButtons()}
 		</div>
 	);
 

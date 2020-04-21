@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 import SocialEmbed from './SocialEmbed.js';
 
 const BlogPost = (props) => {
-	const [blogPost, setBlogPost] = useState({});
 
 	const getSocialEmbed = (post) => {
 		if(post.socialsrc && post.socialtype){
@@ -16,32 +15,32 @@ const BlogPost = (props) => {
 	}
 
 	const createBlogPost = (post) => {
-		const JSX = [
-			<h3>{post.title}</h3>,
+		const JSX = (
 			<Card className="text-justify" style={{ width: 'auto' }}>
+			<Card.Title style = {{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center"}}>
+
+					<br />
+					{post.title}
+			</Card.Title>
 				<Card.Body>
 					<Card.Text>
 						<p>{post.text}</p>
-						<div>{getSocialEmbed(post)}</div>
+						<br />
+						{getSocialEmbed(post)}
 					</Card.Text>
 				</Card.Body>
 			</Card>
-		];
+		);
 
 		return JSX;
 	}
 
-	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_newest`)
-			.then(res => {
-                const item = res.data;
-				setBlogPost(item);
-			})
-	}, []);
-
 	return (
 		<div className="glossary-item">
-			{createBlogPost(blogPost)}
+			{createBlogPost(props.post)}
 		</div>
 	);
 };

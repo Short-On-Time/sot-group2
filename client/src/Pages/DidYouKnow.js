@@ -33,7 +33,7 @@ const DidYouKnow = (props) => {
                             <br />
                             <br />
                             <h1 className="text-uppercase">Did You Know</h1>
-                            <ViewBlog />
+                            <ViewBlog p={props.match.params.id}/>
                             <br />
                             <br />
                             <br />
