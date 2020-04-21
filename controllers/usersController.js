@@ -216,8 +216,56 @@ export const getBlogNewest = async (req, res) => {
 
 export const getBlog = async (req, res) => {
 	initMongoose()
-	Blog.find({}, (err, data) => {
+	Blog.find({_id: req.params.id}, (err, data) => {
+		res.status(200).json(data);
+	});
+};
+
+export const getBlogPrevious = async (req, res) => {
+	initMongoose()
+	let currentPost;
+	let prevPost = {createdAt: new Date(0)};
+	Blog.find({_id: req.params.id}, (err, data) => {
+		currentPost = data[0];
+		Blog.find({}, (err, data) => {
+			data.forEach( post => {
+				if(post.createdAt > prevPost.createdAt && post.createdAt < currentPost.createdAt){
+					prevPost = post
+				}
+			})
 			
-			res.status(200).json(data);
+
+			if(prevPost.createdAt > new Date(0)){
+				res.status(200).json(prevPost);
+			}
+			else{
+				res.status(200).json(currentPost);
+			}
+		});
+	});
+};
+
+export const getBlogNext = async (req, res) => {
+	initMongoose()
+	let currentPost;
+	let nextPost = {createdAt: new Date(8640000000000000)};
+	Blog.find({_id: req.params.id}, (err, data) => {
+		currentPost = data[0];
+		
+		Blog.find({}, (err, data) => {
+			data.forEach( post => {
+				if(post.createdAt < nextPost.createdAt && post.createdAt > currentPost.createdAt){
+					nextPost = post;
+				}
+			})
+			
+			if(nextPost.createdAt < new Date(8640000000000000)){
+				res.status(200).json(nextPost);
+			}
+			else{
+				res.status(200).json(currentPost);
+			}
+		});
+
 	});
 };

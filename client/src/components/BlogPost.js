@@ -32,7 +32,7 @@ const BlogPost = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_post`)
+		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_newest`)
 			.then(res => {
                 const item = res.data;
 				setBlogPost(item);

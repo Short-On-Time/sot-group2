@@ -24,8 +24,10 @@ usersRouter.route('/get_glossary/:title').get(/*validateToken,*/ users.getGlossa
 usersRouter.route('/get_glossary').get(/*validateToken,*/ users.getGlossaryList);
 
 //DidYouKnow routes
-usersRouter.route('/get_blog_post').get(/*validateToken,*/ users.getBlogNewest);
-usersRouter.route('/get_blog_post/:id').get(/*validateToken,*/ users.getBlog);
+usersRouter.route('/get_blog_newest').get(/*validateToken,*/ users.getBlogNewest);
+usersRouter.route('/get_blog/:id').get(/*validateToken,*/ users.getBlog);
+usersRouter.route('/get_blog_previous/:id').get(/*validateToken,*/ users.getBlogPrevious);
+usersRouter.route('/get_blog_next/:id').get(/*validateToken,*/ users.getBlogNext);
 
 
 //user self-management routes

@@ -7,7 +7,7 @@ import Glossary from './Pages/Glossary';
 import Admin from './Pages/Admin';
 import Forum from './Pages/Forum';
 import ViewPost from './Pages/ViewPost';
-import DidYouKnow from './Pages/DidYouKnow'
+import DidYouKnow from './Pages/DidYouKnow';
 
 import AdminGlossary from './Pages/AdminGlossary';
 
@@ -25,6 +25,8 @@ import AdminEditUser from './components/AdminEditUser';
 import AdminCaptions from './Pages/AdminCaptions';
 
 import AdminImages from './Pages/AdminImages';
+
+import AdminBlog from './Pages/AdminBlog';
 
 import PageNotFound from './Pages/PageNotFound';
 import Remedies from './Pages/Remedies';
@@ -57,6 +59,7 @@ const AdminRoute = () => {
 				<Route path={`${url}/add_user`} component={AdminAddUser} />
 				<Route path={`${url}/edit_user`} component={AdminEditUser} />
 				<Route path={`${url}/captions`} component={AdminCaptions} />
+				<Route path={`${url}/didyouknow`} component={AdminBlog} />
 			</>
 		)}
 	/>

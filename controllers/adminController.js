@@ -428,4 +428,29 @@ export const addBlog = async (req, res) => {
 		return res.status(200).json(save_blog);
 	  }
 	});
-  };
+};
+
+export const deleteBlog = async (req, res) => {
+	initMongoose()
+	const id = req.params.id;
+	Blog.findOneAndDelete({_id: id}, (err, data) => {
+	  if(err) {
+		res.status(400).json({err});
+		throw err;
+	  } else if(!data) {
+		res.status(400).json({
+		  message: 'Blog Post does not exist!',
+		});
+	  } else {
+		res.status(200).json(data);
+	  }
+	});
+};
+
+
+export const getBlogList = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+	  res.status(200).json(data);
+	});
+};

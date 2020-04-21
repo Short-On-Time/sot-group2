@@ -54,10 +54,10 @@ const Admin = () => {
 						/>
 
 						<AdminPanelCard
-							title="Placeholder"
-							image="images/img_6.jpg"
-							description="See and manage users."
-							link="#"
+							title="Did You Know"
+							image="images/img_1.jpg"
+							description="Add, edit, and delete blog posts."
+							link="/admin/didyouknow"
 						/>
 					</CardDeck>
 				</Container>
