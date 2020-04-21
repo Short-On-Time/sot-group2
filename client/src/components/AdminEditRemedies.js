@@ -41,9 +41,8 @@ const AdminEditRemedies = props => {
 			is_published: isPublished,
 			is_premium: isPremium
 		};
-		console.log("This is data", data);
 		axios.put(
-			`http://localhost:${config.server_port}/api/admin/update_remedy/${data.name}`,
+			`http://localhost:${config.server_port}/api/admin/update_remedy/${data._id}`,
 			data
 		).then(
 			response => {
@@ -152,8 +151,8 @@ const AdminEditRemedies = props => {
 							type="checkbox"
 							name="draft"
 							label="Premium?"
-							defaultChecked={!isPremium}
-							onChange={event => setIsPremium(!event.target.checked)}
+							defaultChecked={isPremium}
+							onChange={event => setIsPremium(event.target.checked)}
 						/>
 
 						<Form.Check
@@ -161,7 +160,7 @@ const AdminEditRemedies = props => {
 							name="draft"
 							label="Save as Draft"
 							defaultChecked={!isPublished}
-							onChange={event => setIsPublished(!event.target.checked)}
+							onChange={event => {setIsPublished(!event.target.checked)}}
 						/>
 					</Modal.Body>
 					<Modal.Footer>
