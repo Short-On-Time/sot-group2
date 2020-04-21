@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import Remedy from '../models/RemedyModel.js';
 import Contact from '../models/ContactModel.js';
 import config from '../config/config.js';
@@ -29,6 +30,7 @@ function signJWT(payload, res) {
 function buildPayload(user) {
   return {
     user_info: {
+			username: user.username,
       id: user.id,
       email: user.email,
       is_premium: user.is_premium,
@@ -197,4 +199,73 @@ export const userPremium = async (req, res) => {
       res.status(200).json(data);
     }
   });
+};
+
+export const getBlogNewest = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+			let NewestPost = {createdAt: new Date(0)};
+			data.forEach( post => {
+				if(post.createdAt > NewestPost.createdAt){
+					NewestPost = post;
+				}
+			})
+			res.status(200).json(NewestPost);
+	});
+};
+
+export const getBlog = async (req, res) => {
+	initMongoose()
+	Blog.find({_id: req.params.id}, (err, data) => {
+		res.status(200).json(data[0]);
+	});
+};
+
+export const getBlogPrevious = async (req, res) => {
+	initMongoose()
+	let currentPost;
+	let prevPost = {createdAt: new Date(0)};
+	Blog.find({_id: req.params.id}, (err, data) => {
+		currentPost = data[0];
+		Blog.find({}, (err, data) => {
+			data.forEach( post => {
+				if(post.createdAt > prevPost.createdAt && post.createdAt < currentPost.createdAt){
+					prevPost = post
+				}
+			})
+			
+
+			if(prevPost.createdAt > new Date(0)){
+				res.status(200).json(prevPost);
+			}
+			else{
+				res.status(200).json(currentPost);
+			}
+		});
+	});
+};
+
+export const getBlogNext = async (req, res) => {
+	initMongoose()
+	let currentPost;
+	let nextPost = {createdAt: new Date(8640000000000000)};
+	Blog.find({_id: req.params.id}, (err, data) => {
+		currentPost = data[0];
+		
+		Blog.find({}, (err, data) => {
+			data.forEach( post => {
+				if(post.createdAt < nextPost.createdAt && post.createdAt > currentPost.createdAt){
+					nextPost = post;
+				}
+			})
+			
+			if(nextPost.createdAt < new Date(8640000000000000)){
+				res.status(200).json(nextPost);
+			}
+			else{
+				res.status(200).json(currentPost);
+			}
+		});
+
+	});
 };

@@ -20,23 +20,19 @@ export const getPostList = async (req, res) => {
 export const getPost = async (req, res) => {
 	initMongoose()
 	const id = req.params.id;
+	let views = 0;
 
 	//grab the post, update its views, and then send again
-	let post = Post.find({_id: id});
-	post.views += 1;
-	post.save(function(err, save_post) {
-		if(err) {
-      return res.status(400).json(err);
-    } else {
-      return res.status(200).json(save_post);
-    }
+	await Post.findOne({_id: id}, (err, data) => {
+		if(!data) res.status(400).json({message: "Post not found!"});
+		else {
+			views = data.views + 1;
+		}
 	});
-
-	Post.findOne({_id: id}, (err, data) => {
-		if(!data) {
-			res.status(400).json({
-				message: "Post does not exist!"
-			});
+	Post.findOneAndUpdate({_id: id}, {views: views}, {new: true}, (err, data) => {
+		if(err) {
+			res.status(400).json({err});
+			throw err;
 		} else {
 			res.status(200).json(data);
 		}
@@ -88,19 +84,18 @@ export const editPost = async (req, res) => {
 	const id = req.params.id;
 
 	//it has to be done this way to prevent the user from editing other ppl's comments
-	let post = Post.find({_id: id});
+	let toUpdate = {};
+	toUpdate.is_edited = true;
+	if(req.body.body) toUpdate.body = req.body.body;
+	if(req.body.title) toUpdate.title = req.body.title;
 
-	post.is_edited = true;
-	if(req.body.body) post.body = req.body.body;
-	if(req.body.title) post.title = req.body.title;
-
-	post.save(function(err, save_post) {
+	Post.findOneAndUpdate({_id: id}, toUpdate, {new: true}, function(err, save_post) {
 		if(err) {
       return res.status(400).json(err);
     } else {
       console.log('updated =>', save_post);
       return res.status(200).json(save_post);
-    }
+		}
 	});
 }
 

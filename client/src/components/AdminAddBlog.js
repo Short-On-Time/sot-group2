@@ -6,15 +6,12 @@ import axios from "axios";
 import config from "../config.js";
 import { TiDocumentAdd } from "react-icons/ti";
 
-
-const ForumAddPost = (props) => {
+const AdminAddBlog = () => {
 	const [modal, setModal] = useState(false);
 	const [title, setTitle] = useState("");
-	const [body, setBody] = useState("");
-
-
-
-
+	const [text, setText] = useState("");
+	const [socialType, setSocialType] = useState("");
+	const [socialSrc, setSocialSrc] = useState("");
 
 	const openModal = () => {
 		setModal(true);
@@ -27,13 +24,14 @@ const ForumAddPost = (props) => {
 	const handleSubmit = event => {
 		let data = {
 			title: title,
-			body: body,
-			author_username: props.username,
-      		author_ID: props.id
+			text: text,
+			createdAt: Date.now(),
+			socialsrc: socialSrc,
+			socialtype: socialType
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_post`,
+			`http://localhost:${config.server_port}/api/admin/add_blog`,
 			data
 		).then(response => {
 			console.log(response);
@@ -51,7 +49,7 @@ const ForumAddPost = (props) => {
 
 			<Modal show={modal} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Add Post</Modal.Title>
+					<Modal.Title>New Post</Modal.Title>
 				</Modal.Header>
 
 				<Form validate>
@@ -67,16 +65,43 @@ const ForumAddPost = (props) => {
 						</Form.Group>
 
 						<Form.Group>
-							<Form.Label>Body</Form.Label>
+							<Form.Label>Text</Form.Label>
 							<Form.Control
 								required
 								as="textarea"
-								name="body"
-								rows="2"
-								onChange={event => setBody(event.target.value)}
+								name="text"
+								rows="5"
+								onChange={event => setText(event.target.value)}
 							/>
 						</Form.Group>
-						
+
+						<Form.Group>
+							<Form.Label>Social Media Type (optional)</Form.Label>
+
+							<Form.Control
+								required
+								as="select"
+								name="socialType"
+								onChange={event => setSocialType(event.target.value)}>
+								<option value=""></option>
+								<option value="youtube">YouTube Video</option>
+								<option value="twitter">Tweet</option>
+								<option value="facebook">Facebook Post</option>
+								<option value="instagram">Instagram Post</option>
+							</Form.Control>
+							
+						</Form.Group>
+
+						<Form.Group>
+							<Form.Label>Social Media URL (optional)</Form.Label>
+							<Form.Control
+								required
+								name="socialSrc"
+								type="text"
+								onChange={event => setSocialSrc(event.target.value)}
+							/>
+						</Form.Group>
+
 					</Modal.Body>
 
 					<Modal.Footer>
@@ -94,4 +119,4 @@ const ForumAddPost = (props) => {
 	);
 };
 
-export default ForumAddPost;
+export default AdminAddBlog;

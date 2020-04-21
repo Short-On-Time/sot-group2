@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import User from '../models/UserModel.js';
 import Newsletter from '../models/NewsletterModel.js';
 import Testimonial from '../models/TestimonialModel.js';
@@ -402,6 +403,83 @@ export const deleteUser = async (req, res) => {
     } else if(!data) {
       res.status(400).json({
         message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
+export const addBlog = async (req, res) => {
+	initMongoose()
+	let save_blog;
+	save_blog = new Blog({
+	  title: req.body.title,
+	  createdAt: Date.now(),
+	  text: req.body.text,
+	  socialsrc: req.body.socialsrc,
+	  socialtype: req.body.socialtype
+	});
+	save_blog.save(function (err, save_blog) {
+	  if(err) {
+		return res.status(400).json(err);
+	  } else {
+		console.log('saved =>', save_blog);
+		return res.status(200).json(save_blog);
+	  }
+	});
+};
+
+export const deleteBlog = async (req, res) => {
+	initMongoose()
+	const id = req.params.id;
+	Blog.findOneAndDelete({_id: id}, (err, data) => {
+	  if(err) {
+		res.status(400).json({err});
+		throw err;
+	  } else if(!data) {
+		res.status(400).json({
+		  message: 'Blog Post does not exist!',
+		});
+	  } else {
+		res.status(200).json(data);
+	  }
+	});
+};
+
+
+export const getBlogList = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+	  res.status(200).json(data);
+	});
+};
+
+
+export const updateBlog = async (req, res) => {
+	initMongoose()
+	const id = req.params.id;
+	Blog.findOneAndUpdate({_id: id}, req.body, {new: true} ,(err, data) => {
+	  if(err) {
+		res.status(400).json({err});
+		throw err;
+	  } else if (!data) {
+		res.status(500).json({
+		  message: "Blog Post does not exist!"
+		});
+	  } else {
+		res.status(200).json(data);
+	  }
+	});
+};
+
+export const getBlog = async (req, res) => {
+  initMongoose()
+  const id = req.params.id;
+  User.findOne({_id: id}, (err, data) => {
+    if(!data) {
+      res.status(400).json({
+        message: 'Blog Post does not exist!',
       });
     } else {
       res.status(200).json(data);
