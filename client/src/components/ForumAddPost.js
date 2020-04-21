@@ -85,7 +85,7 @@ const ForumAddPost = (props) => {
             			</Button>
 
 						<Button variant="primary" onClick={handleSubmit}>
-							Save Item
+							Save Post
             			</Button>
 					</Modal.Footer>
 				</Form>
