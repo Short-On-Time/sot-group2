@@ -2,6 +2,10 @@
   max-width: 100%;
 }
 
+.site-navbar {
+  width: 110% !important
+}
+
 .App {
   text-align: center;
 }
@@ -76,7 +80,7 @@
 }
 
 .hover-card {
-  border: 1px solid rgba(0, 0, 0, 0.125) !important; 
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
   transition: box-shadow 0.3s;
 }
 .hover-card:hover {
@@ -154,7 +158,7 @@
   }
 }
 
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
     .glossary {
         column-count: 5;
         opacity: 0.95;

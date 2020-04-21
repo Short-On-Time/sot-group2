@@ -41,7 +41,7 @@ export const charge = async (req, res) => {
   try {
     stripe.charges.create({
       source: req.body.token.id,
-      amount: req.body.amount * 100,
+      amount: req.body.amount,
       currency: "usd"
     })
     .then(() => res.send({code: 200}))
@@ -100,5 +100,5 @@ export const getChargeType = async (req, res) => {
       res.status(200).json(data);
     }
   });
-  db.close();
+  // db.close();
 };

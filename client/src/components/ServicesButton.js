@@ -14,10 +14,10 @@ const ServicesButton = (props) => {
 	const [lgShow, setLgShow] = useState(false);
 	const stripePromise = loadStripe(config.stripe.test.publishable);
 
-	const [one_month, setOneMonth] = useState(0);
-	const [three_month, setThreeMonth] = useState(0);
-	const [one_session, setOneSession] = useState(0);
-	const [five_session, setFiveSession] = useState(0);
+	const [one_month, setOneMonth] = useState(2000);
+	const [three_month, setThreeMonth] = useState(2000);
+	const [one_session, setOneSession] = useState(2000);
+	const [five_session, setFiveSession] = useState(2000);
 
 	const UserInfo = () => {
 		const token = localStorage.getItem("user-token")
@@ -29,20 +29,25 @@ const ServicesButton = (props) => {
 
 	let logged = localStorage.getItem("user_logged");
 
-	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
-		setOneMonth(res.data.amount)
-	});
 
-	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-3-month`).then(res => {
-		setThreeMonth(res.data.amount)
-	});
+	const getAmount = () => {
+		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
+			setOneMonth(res.data.amount)
+		});
 
-	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-1-session`).then(res => {
-		setOneSession(res.data.amount)
-	});
-	axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-5-session`).then(res => {
-		setFiveSession(res.data.amount)
-	});
+		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-3-month`).then(res => {
+			setThreeMonth(res.data.amount)
+		});
+
+		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-1-session`).then(res => {
+			setOneSession(res.data.amount)
+		});
+		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-5-session`).then(res => {
+			setFiveSession(res.data.amount)
+		});
+	}
+
+	if (logged) getAmount()
 
 	const subscriptionButtons = () => {
 		return (
@@ -64,6 +69,7 @@ const ServicesButton = (props) => {
 
 	return (
 		<>
+
 			<a style={{ cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
 			<Modal
 				size="lg"

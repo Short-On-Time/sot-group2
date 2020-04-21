@@ -105,7 +105,6 @@ const LoginButton = () => {
 							<Form.Label>Password</Form.Label>
 							<Form.Control type="password" placeholder="Password" id="pwinput" onChange={(event) => setPw(event.target.value)} />
 						</Form.Group>
-						<hr />
 
 					</Modal.Body>
 

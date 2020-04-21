@@ -22,6 +22,7 @@ const LoginButton = () => {
 		console.log("email: ", data);
 		axios.post(`http://localhost:${config.server_port}/api/admin/add_email_newsleter`, data).then(res => {
 			setMessage(`Your e-mail (${email}) is now registered. Thank you!`)
+			// setEmail('')
 		}).catch(function (error) {
 			setMessage(`Error: Your e-mail (${email}) is already registered. Try a different e-mail.`)
 		});

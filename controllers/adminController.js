@@ -77,7 +77,7 @@ export const getPremiumCaption = async (req, res) => {
   PremiumCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
     res.status(200).json(captions[c-1])
   });
-  db.close();
+  // db.close();
 }
 
 export const getWelcomeCaption = async (req, res) => {
@@ -89,7 +89,7 @@ export const getWelcomeCaption = async (req, res) => {
   WelcomeCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
     res.status(200).json(captions[c-1])
   });
-  db.close();
+  // db.close();
 }
 
 export const getDisclaimerCaption = async (req, res) => {
@@ -101,7 +101,7 @@ export const getDisclaimerCaption = async (req, res) => {
   DisclaimerCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
     res.status(200).json(captions[c-1])
   });
-  db.close();
+  // db.close();
 }
 
 export const addTestimonial = async (req, res) => {

@@ -42,6 +42,7 @@ const Footer = () => {
 						<p>
 							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Project made with <i className="icon-heart text-danger" aria-hidden="true"></i> by Short On Time.
             			</p>
+							{/* Template: https://colorlib.com/wp/template/neos/ */}
 					</div>
 				</div>
 			</div>
