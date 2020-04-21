@@ -152,8 +152,8 @@ const AdminEditRemedies = props => {
 							type="checkbox"
 							name="draft"
 							label="Premium?"
-							defaultChecked={!isPremium}
-							onChange={event => setIsPremium(!event.target.checked)}
+							defaultChecked={isPremium}
+							onChange={event => setIsPremium(event.target.checked)}
 						/>
 
 						<Form.Check
@@ -161,7 +161,7 @@ const AdminEditRemedies = props => {
 							name="draft"
 							label="Save as Draft"
 							defaultChecked={!isPublished}
-							onChange={event => setIsPublished(!event.target.checked)}
+							onChange={event => {setIsPublished(!event.target.checked)}}
 						/>
 					</Modal.Body>
 					<Modal.Footer>

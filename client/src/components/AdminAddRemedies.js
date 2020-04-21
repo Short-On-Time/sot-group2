@@ -47,7 +47,7 @@ const AdminAddRemedies = () => {
 	const handleSubmit = event => {
 		let data = {
 			name: name,
-			ailment: ailment,
+			ailment_type: ailment,
 			body_part: body_part,
 			is_published: is_published,
 			is_premium: is_premium,
@@ -152,7 +152,7 @@ const AdminAddRemedies = () => {
 							type="checkbox"
 							name="Premium"
 							label="Save as Premium"
-							onChange={event => setIsPremium(!event.target.checked)}
+							onChange={event => setIsPremium(event.target.checked)}
 						/>
 
 
