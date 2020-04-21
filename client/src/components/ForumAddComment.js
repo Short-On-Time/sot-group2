@@ -28,7 +28,7 @@ const ForumAddComment = () => {
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_comment`,
+			`http://localhost:${config.server_port}/api/forum/add_comment/:post_id`,
 			data
 		).then(response => {
 			console.log(response);

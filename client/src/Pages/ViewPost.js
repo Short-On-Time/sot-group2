@@ -24,24 +24,23 @@ const ViewPost= (props) => {
 
 	const showComments = () => {
 		if(post.comments) {
+			
 			return post.comments.map(comment => {
 				return (
+					
 					<div>
-					<div key={comment._id}> 
-						<br></br>
-						<br></br>
-						<table>
-						<tr>
-							<td>Comment by {comment.author_username}</td>
-							<td></td>
+					<div key={comment._id}>
 
-						</tr>
-						</table>
-						
-							<body>{comment.body}</body>
-						<td></td>
-  						
+					<br></br>
+					<br></br>
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-success ">Comment by {comment.author_username}</li>
+						<li class="list-group-item disabled">{comment.body}</li>
+					</ul>
+
+
 						<br></br>
+		
 						  
 						
 						
@@ -90,11 +89,16 @@ const ViewPost= (props) => {
 												<br />
 												<br />
 												<br />
-												<h1 className="text-uppercase">{post.title}</h1>
-												<p><i>By: <h2 className="text-lowercase"> {post.author_username}</h2></i></p>
 												
-				
-												<body className="middle">{post.body}</body>
+												
+												<h1 className="text-uppercase">{post.title}</h1>
+												<p><i>By: <h2 className="text-lowercase"> {post.author_username}</h2></i></p>	
+
+												<ul class="list-group list-group-flush">
+												<li class="list-group-item">{post.body}</li>
+												
+												</ul>
+												
 								
 
 												
