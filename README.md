@@ -118,6 +118,7 @@ The Amazon platform is much more complex to deploy and manage than Heroku's. How
 Offering the same level (or very close) of detail as AWS, the Google App Engine is great for deploying simpler apps that could require a sophisticated approach. Deploying on GAE can also give you a flexible pricing (usually cheaper than Heroku), and still offering tons of Google resources, such as analytics and even Machine Learning modules one click away of being installed in your app. However, deploying on GAE is not as simple as deploying on Heroku, but offers a competitive edge when compared to AWS.
 
 # Price estimations
+Note: both services offer free tiers, so you would be able to test the PaaS first.
 ## GAE
 
 ![Addons](./images_md/gae.png)
@@ -125,3 +126,13 @@ Offering the same level (or very close) of detail as AWS, the Google App Engine 
 ## AWS
 
 ![Addons](./images_md/amazon.png)
+
+# Development and deploys
+
+We have custom scripts that helped us in the development of the app and are essential to the deployment on Heroku. Running *npm run +*:
+
+- **start** *starts the application on current context (if at the root folder, starts the backend; if at the client folder, starts the frontend)*
+- **heroku-postbuild** *runs automatically on Heroku*
+- **start-dev** *starts the entire web app, both frontend and backend*
+- **prepDB** *laods glossary and remedies into the application*
+- **install-all** *install all dependencies (both backend and frontend)*
