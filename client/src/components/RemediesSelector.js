@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Form from "react-bootstrap/form";
-import Button from "react-bootstrap/button";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import config from './config.js';
 
