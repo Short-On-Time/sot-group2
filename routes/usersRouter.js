@@ -31,9 +31,9 @@ usersRouter.route('/get_blog_next/:id').get(/*validateToken,*/ users.getBlogNext
 
 
 //user self-management routes
-//usersRouter.route('/view_self').get(/*validateToken,*/ users.viewSelf);
-//usersRouter.route('/edit_self').post(/*validateToken,*/ users.editSelf);
-//usersRouter.route('/delete_self').delete(/*validateToken,*/ users.deleteSelf);
+usersRouter.route('/view_self').get(/*validateToken,*/ users.viewSelf);
+usersRouter.route('/edit_self').post(/*validateToken,*/ users.editSelf);
+usersRouter.route('/delete_self').delete(/*validateToken,*/ users.deleteSelf);
 
 
 export default usersRouter;
