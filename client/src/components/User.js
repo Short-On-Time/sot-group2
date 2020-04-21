@@ -7,20 +7,18 @@ import Modal from 'react-bootstrap/Modal';
 
 // Please rename this file to something that reflects its purpose.
 
-const UserButton = () => {
+const UserButton = (props) => {
 	const [show, setShow] = useState(false);
-	const [ID, setID] = useState("");
 	const [profile, setProfile] = useState({});
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
 	useEffect(() => {
-		setID(props.id);
 		axios
-			.get(`http://localhost:3001/api/forum/view_user/${ID}`)
+			.get(`http://localhost:3001/api/forum/view_user/${props.id}`)
 			.then(res => {
-				setPost(res.data);
+				setProfile(res.data);
 			});
 	}, []);
 
