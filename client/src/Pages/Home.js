@@ -167,7 +167,7 @@ const Home = () => {
 							<div className="col-md-12 block-13 nav-direction-white">
 								<div className="nonloop-block-13 owl-carousel">
 									<div className="media-image">
-										<img src="images/hero_2.jpg" alt="garlic" className="img-fluid" />
+										<img src="images/Pictures/thumbnail_IMG_0715.jpg" alt="garlic" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Garlic</h2>
 											<p>Currently, garlic is used as a dietary supplement for many purposes, including high blood cholesterol and other diseases.</p>
@@ -176,7 +176,7 @@ const Home = () => {
 									</div>
 
 									<div className="media-image">
-										<img src="images/hero_1.jpg" alt="green tea" className="img-fluid" />
+										<img src="images/Pictures/thumbnail_IMG_4407.jpg" alt="green tea" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Green Tea</h2>
 											<p>To produce green tea, fresh leaves from the plant are lightly steamed.</p>
@@ -185,7 +185,7 @@ const Home = () => {
 									</div>
 
 									<div className="media-image">
-										<img src="images/hero_2.jpg" alt="neroli oil" className="img-fluid" />
+										<img src="images/Pictures/thumbnail_IMG_5520.jpg" alt="neroli oil" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Neroli Oil</h2>
 											<p>Lowers inflammation &amp; pain, reduces stress and improve symptoms of menopause, decreases blood pressure levels.</p>
