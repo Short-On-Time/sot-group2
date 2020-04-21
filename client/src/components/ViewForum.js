@@ -32,11 +32,11 @@ const ViewForum = (props) => {
 		)
 	}
 
-	const ViewUser = () =>{
+	const ViewUser = (author_ID, author_username) =>{
 
 		return (
 			<div aling="right" class="align-middle"> 
-						 <User />
+						 {author_username} <User id={author_ID}/>
 			</div>
 		)
 
@@ -86,7 +86,7 @@ const ViewForum = (props) => {
 					<tbody>
 						<tr key={post._id} name={post.title}>
 							<td class="col-md-9">
-									<a href={`/post/${post._id}` } class="forum-item-title">{post.title} </a> by  <a href={`/forum/view_user/${post._ID}` } class="forum-item-title"> {post.author_username} </a>  {/*delete the link if it messes with the code*/}
+									<a href={`/post/${post._id}` } class="forum-item-title">{post.title} </a> by  {ViewUser(post.author_ID, post.author_username)}
 									<div class="forum-sub-title"> <small> {post.body.substring(0, 70)}</small></div>
 							</td>
 							
