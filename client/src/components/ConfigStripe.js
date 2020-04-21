@@ -10,8 +10,8 @@ const stripeBtn = (props) => {
 		console.log(token);
 		const body = {
 			amount: props.amount,
-			name: "me",
-			email: "a@b.com",
+			name: "user",
+			email: props.info.email,
 			token: token
 		};
 
@@ -19,15 +19,15 @@ const stripeBtn = (props) => {
 			console.log(response);
 			alert("Payment Success");
 
-			axios.post(`localhost:${config.server_port}/api/users/user_premium`, { email: "q@a.com" }).then(response => {
-				console.log(response);
-			}).catch(error => {
-				console.log("Setting user to premium error: ", error);
-				alert("Setting user to premium error");
+			axios.post(`localhost:${config.server_port}/api/users/user_premium`, { email: props.info.email }).then(response_premium => {
+				console.log(response_premium);
+			}).catch(error_premium => {
+				console.log("Setting user to premium error: ", error_premium);
+				alert("Setting user to premium error.");
 			});
 		}).catch(error => {
 			console.log("Payment Error: ", error);
-			alert("Payment Error");
+			alert("Payment error, contact support.");
 		});
 	};
 
@@ -37,7 +37,7 @@ const stripeBtn = (props) => {
 			name="ConsiderHerbs"				// Modal Header
 			description="Upgrade to a premium account today."
 			panelLabel={props.text}				// Submit button in modal
-			amount={props.amount}				// Amount in cents $9.99
+			amount={props.amount}				// Amount in cents
 			token={onToken}
 			stripeKey={publishableKey}
 			image={logosmall} //Pop-in header image

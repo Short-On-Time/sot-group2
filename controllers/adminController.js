@@ -2,12 +2,13 @@
 import mongoose from 'mongoose';
 import Remedy from '../models/RemedyModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import User from '../models/UserModel.js';
 import Newsletter from '../models/NewsletterModel.js';
 import Testimonial from '../models/TestimonialModel.js';
 import PremiumCaption from '../models/PremiumCaptionModel.js';
 import WelcomeCaption from '../models/WelcomeCaptionModel.js';
-import DisclaimerCaption from '../models/WelcomeCaptionModel.js';
+import DisclaimerCaption from '../models/DisclaimerCaptionModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -69,24 +70,36 @@ export const changeDisclaimerCaption = async (req, res) => {
 
 export const getPremiumCaption = async (req, res) => {
   initMongoose()
-  PremiumCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  PremiumCaption.count({}, function( err, count){
+    c = count
+  })
+  PremiumCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }
 
 export const getWelcomeCaption = async (req, res) => {
   initMongoose()
-  WelcomeCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  WelcomeCaption.count({}, function( err, count){
+    c = count
+  })
+  WelcomeCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }
 
 export const getDisclaimerCaption = async (req, res) => {
   initMongoose()
-  DisclaimerCaption.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, caption) {
-    res.status(200).json(caption)
+  let c = 0;
+  DisclaimerCaption.count({}, function( err, count){
+    c = count
+  })
+  DisclaimerCaption.find({}).sort({date: 'desc'}).exec(function(err, captions) {
+    res.status(200).json(captions[c-1])
   });
   db.close();
 }
@@ -396,3 +409,23 @@ export const deleteUser = async (req, res) => {
     }
   });
 };
+
+export const addBlog = async (req, res) => {
+	initMongoose()
+	let save_blog;
+	save_blog = new Blog({
+	  title: req.body.title,
+	  createdAt: Date.now(),
+	  text: req.body.text,
+	  socialsrc: req.body.socialsrc,
+	  socialtype: req.body.socialtype
+	});
+	save_blog.save(function (err, save_blog) {
+	  if(err) {
+		return res.status(400).json(err);
+	  } else {
+		console.log('saved =>', save_blog);
+		return res.status(200).json(save_blog);
+	  }
+	});
+  };

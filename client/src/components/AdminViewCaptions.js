@@ -65,7 +65,10 @@ const AdminViewCaptions = (props) => {
             <td class="align-middle">Welcome</td>
             <td class="align-middle">{welcomeCaption.content}</td>
             <td class="align-middle">
-              <AdminEditCaption caption={welcomeCaption} changeCaption={updateWelcome} captionName="Welcome Caption"
+              <AdminEditCaption
+                caption={welcomeCaption}
+                changeCaption={updateWelcome}
+                captionName="Welcome Caption"
                 captionRoute="change_welcome_caption"/>
             </td>
           </tr>

@@ -1,6 +1,7 @@
 import * as admin from '../controllers/adminController.js';
 import express from 'express'; //refers to Express the middleware helper for Node.js
 const adminRouter = express.Router();
+import validateAdmin from '../utils/auth_admin.js';
 
 //remedy routes
 adminRouter.post('/add_remedy', admin.addRemedy);
@@ -41,5 +42,8 @@ adminRouter.put('/update_user/:id', admin.updateUser);
 adminRouter.get('/get_user/:id', admin.getUser);
 adminRouter.get('/get_user', admin.getUserList);
 adminRouter.delete('/delete_user/:id', admin.deleteUser);
+
+//DidYouKnow routes
+adminRouter.post('/add_blog', admin.addBlog);
 
 export default adminRouter;

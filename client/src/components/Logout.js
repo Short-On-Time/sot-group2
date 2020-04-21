@@ -2,8 +2,11 @@ import React from "react";
 import "../App.css";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import { MdExitToApp } from "react-icons/md";
+import jwt from 'jsonwebtoken';
+import { useLocation } from 'react-router-dom'
 
 class Logout extends React.Component {
+
 	state = {
 		nav: false
 	}
@@ -14,6 +17,8 @@ class Logout extends React.Component {
 		this.setState({ nav: true })
 	}
 
+
+
 	render() {
 		const { nav } = this.state;
 
@@ -22,11 +27,7 @@ class Logout extends React.Component {
 			this.props.loginData()
 		}
 
-		if (nav) {
-			return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></ListGroupItem>
-		} else {
-			return <ListGroupItem action href="/"  onClick={this.logout}>Logout  <MdExitToApp size={20} /></ListGroupItem>
-		}
+		return <ListGroupItem action href="/" onClick={this.logout}>Logout  <MdExitToApp size={20} /></ListGroupItem>
 
 	}
 }

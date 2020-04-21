@@ -12,6 +12,9 @@ const UserSchema = mongoose.Schema({
 	is_remedy_editor: { type: Boolean, required: true, default: false }, //can add/edit/delete remedies (except premiums)
 	is_website_editor: { type: Boolean, required: true, default: false }, //can change text/images on website
 
+	number_posts: {type: Number, default: 0},
+	number_comments: {type: Number, default: 0},
+
   createdAt: { type: Date, default: Date.now()}
 });
 

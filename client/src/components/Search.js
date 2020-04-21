@@ -8,7 +8,7 @@ const SearchField = () => {
 	url = url.split("/")[3];
 	let page = url.split("?")[0];
 	console.log(url)
-	if (page === "products" || page === "glossary" || page === "remedies") {
+	if (page === "products" || page === "glossary" || page === "remedies" || page === "didyouknow") {
 		return (
 			<Form action={url} id="search-bar">
 				<Form.Control type="text" placeholder={`Search ${page}`} value={searchText} onChange={(val) => { setSearchText(val.target.value) }} name="search_term"/>

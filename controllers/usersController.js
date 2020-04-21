@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import Glossary from '../models/GlossaryModel.js';
+import Blog from '../models/BlogModel.js';
 import Remedy from '../models/RemedyModel.js';
+import Contact from '../models/ContactModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -162,6 +164,26 @@ export const getGlossaryList = async (req, res) => {
   });
 };
 
+export const contact = async (req, res) => {
+  initMongoose()
+  let save_contact
+  save_contact = new Contact({
+    email: req.body.email,
+    body: req.body.body
+  });
+
+  save_contact.save(function (err, save_contact) {
+    if (!err) {
+      console.log('saved =>', save_contact);
+      res.status(200).json(save_contact);
+    } else {
+      console.log('err =>', err);
+      res.status(400).json(err)
+    }
+  });
+
+};
+
 export const userPremium = async (req, res) => {
   initMongoose()
   const email = req.params.email;
@@ -176,4 +198,25 @@ export const userPremium = async (req, res) => {
       res.status(200).json(data);
     }
   });
+};
+
+export const getBlogNewest = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+			let NewestPost = {createdAt: new Date(0)};
+			data.forEach( post => {
+				if(post.createdAt > NewestPost.createdAt){
+					NewestPost = post;
+				}
+			})
+			res.status(200).json(NewestPost);
+	});
+};
+
+export const getBlog = async (req, res) => {
+	initMongoose()
+	Blog.find({}, (err, data) => {
+			
+			res.status(200).json(data);
+	});
 };

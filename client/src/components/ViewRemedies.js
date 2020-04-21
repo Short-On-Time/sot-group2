@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import config from './config.js';
-import ViewRemedy from './ViewRemedy'
-import Error from './Error'
+import ViewRemedy from './ViewRemedy';
+import Error from './Error';
+import SearchOptions from '../components/SearchOptions';
 
 const ViewRemedies = (props) => {
 	//TODO: find a way to eliminate setRemediesJSX
 	const [remedies, setRemedies] = useState([]);
+	const [filter, setFilter] = useState({});
 	const [remediesJSX, setRemediesJSX] = useState([]);
 
 	let search = useLocation().search;
@@ -49,33 +51,33 @@ const ViewRemedies = (props) => {
 	}
 
 	//TODO fix this logic
-	const matchesQuery = (remedy, filter) => {
+	const matchesQuery = (remedy, filt) => {
 		let matchesFilter = true;
-		if(filter.body_part){
+		if(filt.body_part){
 			if(remedy.body_part){
-				matchesFilter = matchesFilter && remedy.body_part.toLowerCase() === filter.body_part.toLowerCase();
+				matchesFilter = matchesFilter && remedy.body_part.toLowerCase() === filt.body_part.toLowerCase();
 			}
 			else{
 				matchesFilter = false;
 			}
 		}
-		if(filter.ailment_type){
+		if(filt.ailment_type){
 			if(remedy.ailment_type){
-				matchesFilter = matchesFilter && remedy.ailment_type.toLowerCase() === filter.ailment_type.toLowerCase();
+				matchesFilter = matchesFilter && remedy.ailment_type.toLowerCase() === filt.ailment_type.toLowerCase();
 			}
 			else{
 				matchesFilter = false;
 			}
 		}
-		if(filter.search_term){
+		if(filt.search_term){
 			if(remedy.name){
-				matchesFilter = matchesFilter && remedy.name.toLowerCase().includes(filter.search_term.toLowerCase());
+				matchesFilter = matchesFilter && remedy.name.toLowerCase().includes(filt.search_term.toLowerCase());
 			}
 			else{
 				matchesFilter = false;
 			}
 		}
-		if(filter.free_only){
+		if(filt.free_only){
 			if(remedy.is_premium && !remedy.is_free_trial){
 				matchesFilter = false;
 			}
@@ -168,6 +170,7 @@ const ViewRemedies = (props) => {
 
 				
 				const filters = parseURLQuery(search);
+				setFilter(filters);
 
 				const lastLetter = { letter: "" }
 				if(search){
@@ -189,7 +192,13 @@ const ViewRemedies = (props) => {
 			});
 	}, []);
 
-	return getRemedy();
+	return (
+		<div>
+			<SearchOptions filter={filter} path={useLocation().pathname}/>
+			<br />
+			{getRemedy()}
+		</div>
+	);
 
 };
 export default ViewRemedies;
