@@ -177,7 +177,7 @@ const Home = () => {
 
 									<div className="media-image">
 										<img src="images/hero_1.jpg" alt="green tea" className="img-fluid" />
-										<div className="media-image-body">
+										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Green Tea</h2>
 											<p>To produce green tea, fresh leaves from the plant are lightly steamed.</p>
 											<p><a href="/glossary/Green%20Tea" className="btn btn-primary text-white px-4">Learn More</a></p>
