@@ -10,11 +10,25 @@ import ForumEditPost from "./ForumEditPost";
 import ForumDeletePost from "./ForumDeletePost";
 import ForumAddPost from "./ForumAddPost";
 import User from '../components/User';
+import jwt from 'jsonwebtoken';
 
 
 const ViewForum = (props) => {
 	const [post, setPost] = useState([]);
+
 	let logged = localStorage.getItem("user_logged");
+	const token = localStorage.getItem("user-token");
+
+	const UserEmail = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			console.log(decoded);
+			return [decoded.user_info.username, decoded.user_info.id]
+		}
+	}
+
+
 
 	useEffect(() => {
 		axios
@@ -22,12 +36,18 @@ const ViewForum = (props) => {
 			.then(res => {
 				setPost(res.data);
 			});
+
+		
+
 	}, []);
 
+	
+
 	const Addpost = () => {
+		var userinfo = UserEmail();
 		return (
 			<div aling="right" class="align-middle"> 
-							Add a Post <ForumAddPost />
+							Add a Post <ForumAddPost username={userinfo[0]} id={userinfo[1]} />
 			</div>
 		)
 	}

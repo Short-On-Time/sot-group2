@@ -7,12 +7,14 @@ import config from "../config.js";
 import { TiDocumentAdd } from "react-icons/ti";
 
 
-const ForumAddPost = () => {
+const ForumAddPost = (props) => {
 	const [modal, setModal] = useState(false);
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
-	const [author_username, setAuthor_Username] = useState("");
-	const [author_ID, setAuthor_ID] = useState("");
+
+
+
+
 
 	const openModal = () => {
 		setModal(true);
@@ -26,8 +28,8 @@ const ForumAddPost = () => {
 		let data = {
 			title: title,
 			body: body,
-			author_username: author_username,
-      author_ID: author_ID
+			author_username: props.username,
+      		author_ID: props.id
 		};
 		console.log("This is data", data);
 		axios.post(
@@ -74,39 +76,7 @@ const ForumAddPost = () => {
 								onChange={event => setBody(event.target.value)}
 							/>
 						</Form.Group>
-
-						<Form.Group>
-							<Form.Label>Author Username</Form.Label>
-
-							<Form.Control
-								required
-								as="textarea"
-								name="author_username"
-								rows="2"
-								onChange={event => setAuthor_Username(event.target.value)}
-							/>
-
-							<Form.Control.Feedback type="invalid">
-								Please provide a valid usage.
-            				</Form.Control.Feedback>
-						</Form.Group>
-
-						<Form.Group>
-							<Form.Label>Author ID</Form.Label>
-
-							<Form.Control
-								required
-								as="textarea"
-								name="author_ID"
-								rows="2"
-								onChange={event => setAuthor_ID(event.target.value)}
-							/>
-
-							<Form.Control.Feedback type="invalid">
-								Please provide a valid usage.
-            				</Form.Control.Feedback>
-						</Form.Group>
-
+						
 					</Modal.Body>
 
 					<Modal.Footer>

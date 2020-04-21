@@ -34,8 +34,8 @@ const UserButton = (props) => {
 				</Modal.Header>
 
 				<Modal.Body>
-					<p>Posts: {props.number_posts}</p>
-					<p>Comments: {props.number_comments}</p>
+					<p>Posts: {profile.number_posts}</p>
+					<p>Comments: {profile.number_comments}</p>
 				</Modal.Body>
 
 				<Modal.Footer>
