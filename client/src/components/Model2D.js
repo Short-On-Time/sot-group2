@@ -4,15 +4,11 @@ import ImageMapper from 'react-image-mapper'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 
 import jwt from 'jsonwebtoken'
 
 const Model2D = () => {
 	const [hoveredArea, setHoveredArea] = useState(null)
-	const [clickedArea, setClickedArea] = useState(null)
-	const [showSubModal, setShowSubModal] = useState(false)
 
 	const isAdmin = () => {
 		const token = localStorage.getItem('user-token')
@@ -36,16 +32,6 @@ const Model2D = () => {
 		} else {
 			return false
 		}
-	}
-
-	const handleAreaClick = (area) => {
-		setClickedArea(area)
-		setShowSubModal(true)
-	}
-
-	const handleAreaUnclick = () => {
-		setClickedArea(null)
-		setShowSubModal(false)
 	}
 
 	return (
@@ -169,10 +155,8 @@ const Model2D = () => {
 						imgWidth={660}
 						onClick={area => {
 							!!isPremium() || !!isAdmin()
-								? area.name.endsWith('-l') || area.name.endsWith('-r')
-									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
-									: document.location = `/remedies?body_part=${area.name}`
-								: handleAreaClick(area)
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
 						}}
 						onMouseEnter={area => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
@@ -254,10 +238,8 @@ const Model2D = () => {
 						imgWidth={512}
 						onClick={area => {
 							!!isPremium() || !!isAdmin()
-								? area.name.endsWith('-l') || area.name.endsWith('-r')
-									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
-									: document.location = `/remedies?body_part=${area.name}`
-								: handleAreaClick(area)
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
 						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
@@ -283,10 +265,8 @@ const Model2D = () => {
 						imgWidth={596}
 						onClick={area => {
 							!!isPremium() || !!isAdmin()
-								? area.name.endsWith('-l') || area.name.endsWith('-r')
-									? document.location = `/remedies?body_part=${area.name.substr(0, area.name.length - 2)}`
-									: document.location = `/remedies?body_part=${area.name}`
-								: handleAreaClick(area)
+								? document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}`
+								: document.location = `/remedies?body_part=${area.name.endsWith('-l') || area.name.endsWith('-r') ? area.name.substr(0, area.name.length - 2) : area.name}&ailment_type=&free_only=on`
 						}}
 						onMouseEnter={(area) => setHoveredArea(area)}
 						onMouseLeave={() => setHoveredArea(null)}
@@ -315,20 +295,6 @@ const Model2D = () => {
 							}
 						</span>
 					}
-
-					{/*<Modal show={showSubModal} onHide={handleAreaUnclick()}>
-						<Modal.Header closeButton>
-							<Modal.Title>Subscription needed</Modal.Title>
-						</Modal.Header>
-
-						<Modal.Body>
-							You need a subscription to view remedies for {clickedArea && (clickedArea.name.endsWith('-l') || clickedArea.name.endsWith('-r') ? clickedArea.name.substr(0, clickedArea.name.length - 2) : clickedArea.name)}.
-						</Modal.Body>
-
-						<Modal.Footer>
-							<Button variant="outline-secondary" onClick={handleAreaUnclick()}>Close</Button>
-						</Modal.Footer>
-				</Modal>*/}
 				</Col>
 			</Row>
 		</Container>
