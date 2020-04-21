@@ -23,6 +23,13 @@ usersRouter.route('/get_remedy_full').get(/*validateToken,*/ users.getRemedyFull
 usersRouter.route('/get_glossary/:title').get(/*validateToken,*/ users.getGlossary);
 usersRouter.route('/get_glossary').get(/*validateToken,*/ users.getGlossaryList);
 
+//DidYouKnow routes
+usersRouter.route('/get_blog_newest').get(/*validateToken,*/ users.getBlogNewest);
+usersRouter.route('/get_blog/:id').get(/*validateToken,*/ users.getBlog);
+usersRouter.route('/get_blog_previous/:id').get(/*validateToken,*/ users.getBlogPrevious);
+usersRouter.route('/get_blog_next/:id').get(/*validateToken,*/ users.getBlogNext);
+
+
 //user self-management routes
 //usersRouter.route('/view_self').get(/*validateToken,*/ users.viewSelf);
 //usersRouter.route('/edit_self').post(/*validateToken,*/ users.editSelf);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
-// import AdminViewCaptions from "../components/AdminViewCaptions";
+import AdminViewImages from "../components/AdminViewImages";
 import AdminNavBar from "../components/AdminNavBar";
 import Container from "react-bootstrap/Container";
 
@@ -14,7 +14,7 @@ const AdminImages = () => {
 				<AdminNavBar isDashboard={false} page=": Images" />
 				<Container>
 					<div class="adglossary-content">
-						{/* <AdminViewCaptions query={query}/>						 */}
+						<AdminViewImages query={query}/>						
 					</div>
 				</Container>
 			</div>

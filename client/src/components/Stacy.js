@@ -4,7 +4,7 @@ import { useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import lerp from 'lerp'
 
-const Model = ({ mouse, ...props }) => {
+const Stacy = ({ mouse, ...props }) => {
 	const moveJoint = (mouse, joint, degreeLimit = 40) => {
 		let degrees = {
 			x: degreeLimit * (2 * mouse.current.x / window.innerWidth - 1),
@@ -25,19 +25,13 @@ const Model = ({ mouse, ...props }) => {
 		actions.current = { idle: mixer.clipAction(animations[8], group.current) }
 		actions.current.idle.play()
 		return (() => (animations.forEach(clip => mixer.uncacheClip(clip))))
-	})
+	}, [animations, mixer])
 
 	useFrame((state, delta) => {
 		mixer.update(delta)
 		moveJoint(mouse, nodes.mixamorigNeck)
 		moveJoint(mouse, nodes.mixamorigSpine)
 	})
-
-	/* 
-	 * const redirect = (url) => {
-	 * 	   document.location = '/remedies'
-	 * }
-	 */
 
 	return (
 		<group ref={group} {...props} dispose={null}>
@@ -56,4 +50,4 @@ const Model = ({ mouse, ...props }) => {
 	)
 }
 
-export default Model
+export default Stacy

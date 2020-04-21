@@ -31,7 +31,7 @@ const AdminEditRemedies = props => {
 			ailment: ailment,
 			body_part: body_part,
 			description: description,
-			createdAt: createdAt,
+			createdAt: props.item.createdAt,
 			is_published: isPublished,
 			is_premium: isPremium
 		};
@@ -73,9 +73,8 @@ const AdminEditRemedies = props => {
 						<Form.Group>
 							<Form.Label>Ailment</Form.Label>
 							<Form.Control
-								as="textarea"
 								name="Ailment"
-								rows="2"
+								type="text"
 								defaultValue={ailment}
 								onChange={event => setAilment(event.target.value)}
 							/>
@@ -83,9 +82,8 @@ const AdminEditRemedies = props => {
 						<Form.Group>
 							<Form.Label>Body Part</Form.Label>
 							<Form.Control
-								as="textarea"
 								name="Body Part"
-								rows="2"
+								type="text"
 								defaultValue={body_part}
 								onChange={event => setBody_Part(event.target.value)}
 							/>
@@ -99,17 +97,6 @@ const AdminEditRemedies = props => {
 								rows="2"
 								defaultValue={description}
 								onChange={event => setDescription(event.target.value)}
-							/>
-						</Form.Group>
-
-						<Form.Group>
-							<Form.Label>Created At</Form.Label>
-							<Form.Control
-								as="textarea"
-								name="Created at"
-								rows="2"
-								defaultValue={createdAt}
-								onChange={event => setCreatedAt(event.target.value)}
 							/>
 						</Form.Group>
 

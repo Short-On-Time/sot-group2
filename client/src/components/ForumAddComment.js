@@ -4,18 +4,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import config from "../config.js";
-import { TiDocumentAdd } from "react-icons/ti";
+import { TiPlusOutline } from "react-icons/ti";
 
 
-const ForumAddPost = (props) => {
+const ForumAddComment = (props) => {
 	const [modal, setModal] = useState(false);
-	const [title, setTitle] = useState("");
-	const [body, setBody] = useState("");
-
-
-
-
-
+    const [body, setBody] = useState("");
+    const [author_username,setAuthor_Username]= useState("");
+    const [ author_ID, set_Author_ID]= useState("");
+    
+	
 	const openModal = () => {
 		setModal(true);
 	};
@@ -26,14 +24,13 @@ const ForumAddPost = (props) => {
 
 	const handleSubmit = event => {
 		let data = {
-			title: title,
 			body: body,
-			author_username: props.username,
-      		author_ID: props.id
+			author_username: author_username,
+			author_ID: author_ID
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_post`,
+			`http://localhost:${config.server_port}/api/forum/add_comment/${props.post_id}`,
 			data
 		).then(response => {
 			console.log(response);
@@ -46,28 +43,20 @@ const ForumAddPost = (props) => {
 	return (
 		<>
 			<Button variant="light" onClick={openModal}>
-				<TiDocumentAdd size={32} />
+				<TiPlusOutline size={32} />
 			</Button>
 
 			<Modal show={modal} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Add Post</Modal.Title>
+					<Modal.Title>Add Comment</Modal.Title>
 				</Modal.Header>
 
 				<Form validate>
 					<Modal.Body>
-						<Form.Group>
-							<Form.Label>Title</Form.Label>
-							<Form.Control
-								required
-								name="title"
-								type="text"
-								onChange={event => setTitle(event.target.value)}
-							/>
-						</Form.Group>
+					
 
 						<Form.Group>
-							<Form.Label>Body</Form.Label>
+							<Form.Label>What do you want to comment?</Form.Label>
 							<Form.Control
 								required
 								as="textarea"
@@ -76,7 +65,31 @@ const ForumAddPost = (props) => {
 								onChange={event => setBody(event.target.value)}
 							/>
 						</Form.Group>
-						
+
+
+                        <Form.Group>
+							<Form.Label>Username</Form.Label>
+							<Form.Control
+								required
+								as="textarea"
+								name="body"
+								rows="2"
+								onChange={event => setAuthor_Username(event.target.value)}
+							/>
+						</Form.Group>
+
+
+                        <Form.Group>
+							<Form.Label>ID</Form.Label>
+							<Form.Control
+								required
+								as="textarea"
+								name="body"
+								rows="2"
+								onChange={event => set_Author_ID(event.target.value)}
+							/>
+						</Form.Group>
+
 					</Modal.Body>
 
 					<Modal.Footer>
@@ -85,7 +98,7 @@ const ForumAddPost = (props) => {
             			</Button>
 
 						<Button variant="primary" onClick={handleSubmit}>
-							Save Item
+							Post Comment
             			</Button>
 					</Modal.Footer>
 				</Form>
@@ -94,4 +107,4 @@ const ForumAddPost = (props) => {
 	);
 };
 
-export default ForumAddPost;
+export default ForumAddComment;
