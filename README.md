@@ -1,4 +1,6 @@
 # Short On Time
+
+![Home](./images_md/home.png)
 ## Website:
 https://short-on-time.herokuapp.com/
 
@@ -15,10 +17,10 @@ https://short-on-time.herokuapp.com/
 ## Config File
 <p>Backend: at config/config.js, with the Heroku URL to the MongoDB service.
 <p>Frontend: at client/src/components/config.js, with Stripe key and localhost port (for development purposes).
-<p>Stripe Key (located at client/src/components/config.js, line 6 for LIVE key, line 10 for TEST key): pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK
+<p>Stripe Key (located at client/src/components/config.js, line 6 for LIVE key, line 10 for TEST key): *pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK*
 
 ## Admin login credentials
-<p>admin2@admin2.com, password: 123
+<p>**admin2@admin2.com, password: 123**
 <p>All other newly registered users will be is_premium:false, is_admin: false
 
 ## Environmental Variables
