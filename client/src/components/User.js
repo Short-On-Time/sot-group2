@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import config from "../config.js";
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -8,9 +9,20 @@ import Modal from 'react-bootstrap/Modal';
 
 const UserButton = () => {
 	const [show, setShow] = useState(false);
+	const [ID, setID] = useState("");
+	const [profile, setProfile] = useState({});
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	useEffect(() => {
+		setID(props.id);
+		axios
+			.get(`http://localhost:3001/api/forum/view_user/${ID}`)
+			.then(res => {
+				setPost(res.data);
+			});
+	}, []);
 
 	return (
 		<>
@@ -20,10 +32,10 @@ const UserButton = () => {
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>User Info Stuff</Modal.Title>
+					<Modal.Title>profile.username</Modal.Title>
 				</Modal.Header>
 
-				<Modal.Body>It's the body of stuff.</Modal.Body>
+				<Modal.Body>Posts: {profile.posts}\nComments: {profile.comments}</Modal.Body>
 
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
