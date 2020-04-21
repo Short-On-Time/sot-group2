@@ -101,7 +101,7 @@ const Home = () => {
 								<div className="text-center">
 									<span className="flaticon-box display-4 d-block mb-3 text-primary"></span>
 									<h3 className="text-uppercase h4 mb-3">Quality content</h3>
-									<p>Premium users have access to personal and curated content. <br /><Services text={"Try it now!"} /></p>
+									<p>Premium users have access to personal and curated content. <br /><Services text={"Try it now!"} color="forestgreen" /></p>
 								</div>
 							</div>
 						</div>

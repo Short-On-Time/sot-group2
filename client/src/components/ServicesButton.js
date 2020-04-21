@@ -47,8 +47,8 @@ const ServicesButton = (props) => {
 	const subscriptionButtons = () => {
 		return (
 			<>
-				<StripePay amount={one_session} info={UserInfo()} text={`One session, $${one_session/100} for 30 minutes`} /><br /><br />
-				<StripePay amount={five_session} info={UserInfo()} text={`Five sessions for $${five_session/100}`} />
+				<StripePay amount={one_session} info={UserInfo()} text={`One session, $${one_session / 100} for 30 minutes`} /><br /><br />
+				<StripePay amount={five_session} info={UserInfo()} text={`Five sessions for $${five_session / 100}`} />
 			</>
 		)
 	}
@@ -56,15 +56,15 @@ const ServicesButton = (props) => {
 	const consultingButtons = () => {
 		return (
 			<>
-				<StripePay amount={one_month} info={UserInfo()} text={`One month for $${one_month/100}`} /><br /><br />
-				<StripePay amount={three_month} info={UserInfo()} text={`Three months for $${three_month/100}`} />
+				<StripePay amount={one_month} info={UserInfo()} text={`One month for $${one_month / 100}`} /><br /><br />
+				<StripePay amount={three_month} info={UserInfo()} text={`Three months for $${three_month / 100}`} />
 			</>
 		)
 	}
 
 	return (
 		<>
-			<a style={{ color: "forestgreen", cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
+			<a style={{ color: props.color, cursor: "pointer" }} onClick={() => setLgShow(true)}>{props.text}</a>
 			<Modal
 				size="lg"
 				show={lgShow}
@@ -87,7 +87,7 @@ const ServicesButton = (props) => {
 							<Card.Text>
 								Personal consulting with Herbalist Dee at scheduled time.
             				</Card.Text>
-								{ (logged) ? subscriptionButtons() : <b>You need to login before purchasing.</b> }
+							{(logged) ? subscriptionButtons() : <b>You need to login before purchasing.</b>}
 						</Card.Body>
 					</Card>
 					<hr />
@@ -99,7 +99,7 @@ const ServicesButton = (props) => {
 								In order to unlock herbal recipes for all body symptoms and premium services.
             	</Card.Text>
 							<div>
-								{ (logged) ? consultingButtons() : <b>You need to login before purchasing.</b> }
+								{(logged) ? consultingButtons() : <b>You need to login before purchasing.</b>}
 							</div>
 						</Card.Body>
 					</Card>
