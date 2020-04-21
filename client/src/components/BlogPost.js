@@ -27,7 +27,7 @@ const BlogPost = (props) => {
 			</Card.Title>
 				<Card.Body>
 					<Card.Text>
-						<p>{post.text}</p>
+						<p style={{whiteSpace: "pre-line"}}>{post.text}</p>
 						<br />
 						{getSocialEmbed(post)}
 					</Card.Text>

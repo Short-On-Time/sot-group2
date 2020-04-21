@@ -5,15 +5,19 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import config from "../config.js";
 import { TiDocumentAdd } from "react-icons/ti";
+import AdminAddRemediesIngredient from "./AdminAddRemediesIngredient.js";
 
 const AdminAddRemedies = () => {
 	const [modal, setModal] = useState(false);
 	const [name, setName] = useState("");
 	const [ailment, setAilment] = useState("");
 	const [body_part, setBody_Part] = useState("");
+	const [ingredients, setIngredients] = useState([]);
+	const [amounts, setAmounts] = useState([]);
+	const [units, setUnits] = useState([]);
+	const [description, setDescription] = useState("");
 	const [is_published, setIsPublished] = useState(false);
 	const [is_premium, setIsPremium] = useState(false);
-	const [description, setDescription] = useState(false);
 	const [createdAt, setCreatedAt] = useState(false);
 
 	const openModal = () => {
@@ -24,6 +28,22 @@ const AdminAddRemedies = () => {
 		setModal(false);
 	};
 
+	const parseIngredients = (text) => {
+		let ing = [];
+		let amnt = [];
+		let unit = [];
+		const allIngredients = text.split("\n");
+		allIngredients.forEach( ingredient => {
+			let fields = ingredient.split(",");
+			ing.push(fields[0])
+			amnt.push(fields[1])
+			unit.push(fields[2]);
+		});
+		setIngredients(ing);
+		setAmounts(amnt);
+		setUnits(unit);
+	}
+
 	const handleSubmit = event => {
 		let data = {
 			name: name,
@@ -31,6 +51,9 @@ const AdminAddRemedies = () => {
 			body_part: body_part,
 			is_published: is_published,
 			is_premium: is_premium,
+			ingredients: ingredients,
+			amounts: amounts,
+			units: units,
 			description: description,
 			createdAt: Date.now()
 		};
@@ -104,6 +127,20 @@ const AdminAddRemedies = () => {
 							/>
 						</Form.Group>
 
+						
+						<Form.Group>
+							<Form.Label>Ingredients</Form.Label>
+							<div>Enter each ingredient on a new line in this format:</div>
+							<div>Water,3,oz</div>
+							<Form.Control
+								required
+								as="textarea"
+								name="ailment"
+								rows="5"
+								onChange={event => parseIngredients(event.target.value)}
+							/>
+						</Form.Group>
+
 						<Form.Check
 							type="checkbox"
 							name="draft"
@@ -117,6 +154,8 @@ const AdminAddRemedies = () => {
 							label="Save as Premium"
 							onChange={event => setIsPremium(!event.target.checked)}
 						/>
+
+
 					</Modal.Body>
 
 					<Modal.Footer>
