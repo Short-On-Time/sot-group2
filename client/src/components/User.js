@@ -30,10 +30,13 @@ const UserButton = (props) => {
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>profile.username</Modal.Title>
+					<Modal.Title>{profile.username}</Modal.Title>
 				</Modal.Header>
 
-				<Modal.Body>Posts: {profile.posts}\nComments: {profile.comments}</Modal.Body>
+				<Modal.Body>
+					<p>Posts: {profile.number_posts}</p>
+					<p>Comments: {profile.number_comments}</p>
+				</Modal.Body>
 
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
