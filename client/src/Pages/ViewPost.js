@@ -7,10 +7,22 @@ import axios from "axios";
 import config from "../config.js";
 import ForumAddComment from '../components/ForumAddComment';
 import Table from "react-bootstrap/Table";
+import jwt from 'jsonwebtoken';
 
 const ViewPost= (props) => {
 	const [post, setPost] = useState({});
 	let logged = localStorage.getItem("user_logged");
+
+	const token = localStorage.getItem("user-token");
+
+	const UserEmail = () => {
+		const token = localStorage.getItem("user-token")
+		if (token) {
+			let decoded = jwt.verify(token, 'herbs');
+			console.log(decoded);
+			return [decoded.user_info.username, decoded.user_info.id]
+		}
+	}
 
 	useEffect(() => {
 		axios
@@ -53,9 +65,10 @@ const ViewPost= (props) => {
 
 	
 	const Addcomment = () => {
+		var userinfo = UserEmail();
 		return (
 			<div aling="right" class="align-middle"> 
-							Add a Comment <ForumAddComment post_id={props.match.params.id}/>
+							Add a Comment <ForumAddComment post_id={props.match.params.id} username={userinfo[0]} id={userinfo[1]}/>
 			</div>
 		)
 	}

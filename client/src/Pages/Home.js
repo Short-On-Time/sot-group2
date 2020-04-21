@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import jwt from 'jsonwebtoken'
 
 import RemediesSelector from '../components/RemediesSelector'
 // import Search from '../components/Search'
@@ -12,13 +13,24 @@ import Model3D from '../components/Model3D'
 import Footer from '../components/Footer'
 import PremiumCaption from '../components/PremiumCaption'
 import WelcomeCaption from '../components/WelcomeCaption'
-import SocialEmbed from '../components/SocialEmbed'
+// import SocialEmbed from '../components/SocialEmbed'
 
 import '../App.css';
 
 const Home = () => {
-	const [isEnabled3d, enable3d] = useState(true)
 	const [is3d, set3d] = useState(false)
+
+	const isAdmin = () => {
+		const token = localStorage.getItem('user-token')
+
+		if (token) {
+			jwt.verify(token, 'herbs', (_e, decoded) => {
+				return decoded.user_info.is_admin
+			});
+		} else {
+			return false
+		}
+	}
 
 	return (
 		<div className="App">
@@ -89,7 +101,7 @@ const Home = () => {
 								<div className="text-center">
 									<span className="flaticon-box display-4 d-block mb-3 text-primary"></span>
 									<h3 className="text-uppercase h4 mb-3">Quality content</h3>
-									<p>Premium users have access to personal and curated content. <br /><a style={{ color: "forestgreen" }}><Services text={"Try it now!"} /></a></p>
+									<p>Premium users have access to personal and curated content. <br /><Services text={"Try it now!"} color="forestgreen" /></p>
 								</div>
 							</div>
 						</div>
@@ -125,7 +137,7 @@ const Home = () => {
 								<span className="caption d-block mb-2 font-secondary font-weight-bold">
 									Human Body{' '}
 									{
-										isEnabled3d && (
+										!!isAdmin() && (
 											<ToggleButtonGroup type="radio" name="3d-controller" size="sm" defaultValue={is3d} onChange={is3d => set3d(is3d)}>
 												<ToggleButton variant="outline-success" value={false}>2D</ToggleButton>
 												<ToggleButton variant="outline-success" value={true}>3D</ToggleButton>
@@ -155,7 +167,7 @@ const Home = () => {
 							<div className="col-md-12 block-13 nav-direction-white">
 								<div className="nonloop-block-13 owl-carousel">
 									<div className="media-image">
-										<img src="images/hero_2.jpg" alt="Image" className="img-fluid" />
+										<img src="images/hero_2.jpg" alt="garlic" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Garlic</h2>
 											<p>Currently, garlic is used as a dietary supplement for many purposes, including high blood cholesterol and other diseases.</p>
@@ -164,7 +176,7 @@ const Home = () => {
 									</div>
 
 									<div className="media-image">
-										<img src="images/hero_1.jpg" alt="Image" className="img-fluid" />
+										<img src="images/hero_1.jpg" alt="green tea" className="img-fluid" />
 										<div className="media-image-body">
 											<h2 className="font-secondary text-uppercase">Green Tea</h2>
 											<p>To produce green tea, fresh leaves from the plant are lightly steamed.</p>
@@ -173,7 +185,7 @@ const Home = () => {
 									</div>
 
 									<div className="media-image">
-										<img src="images/hero_2.jpg" alt="Image" className="img-fluid" />
+										<img src="images/hero_2.jpg" alt="neroli oil" className="img-fluid" />
 										<div className="media-image-body text-justify">
 											<h2 className="font-secondary text-uppercase">Neroli Oil</h2>
 											<p>Lowers inflammation &amp; pain, reduces stress and improve symptoms of menopause, decreases blood pressure levels.</p>
@@ -190,7 +202,7 @@ const Home = () => {
 					<div className="container">
 						<div className="row">
 							<div className="col-lg-6">
-								<p className="mb-5"><img src="images/hero_2.jpg" alt="Image" className="img-fluid shadow p-3 mb-5 bg-white rounded" /></p>
+								<p className="mb-5"><img src="images/hero_2.jpg" alt="filler" className="img-fluid shadow p-3 mb-5 bg-white rounded" /></p>
 							</div>
 
 							<div className="col-lg-5 ml-auto">

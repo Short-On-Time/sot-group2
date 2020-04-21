@@ -9,10 +9,7 @@ import { TiPlusOutline } from "react-icons/ti";
 
 const ForumAddComment = (props) => {
 	const [modal, setModal] = useState(false);
-    const [body, setBody] = useState("");
-    const [author_username,setAuthor_Username]= useState("");
-    const [ author_ID, set_Author_ID]= useState("");
-    
+	const [body, setBody] = useState("");
 	
 	const openModal = () => {
 		setModal(true);
@@ -25,8 +22,8 @@ const ForumAddComment = (props) => {
 	const handleSubmit = event => {
 		let data = {
 			body: body,
-			author_username: author_username,
-			author_ID: author_ID
+			author_username: props.username,
+			author_ID: props.id
 		};
 		console.log("This is data", data);
 		axios.post(
@@ -63,30 +60,6 @@ const ForumAddComment = (props) => {
 								name="body"
 								rows="2"
 								onChange={event => setBody(event.target.value)}
-							/>
-						</Form.Group>
-
-
-                        <Form.Group>
-							<Form.Label>Username</Form.Label>
-							<Form.Control
-								required
-								as="textarea"
-								name="body"
-								rows="2"
-								onChange={event => setAuthor_Username(event.target.value)}
-							/>
-						</Form.Group>
-
-
-                        <Form.Group>
-							<Form.Label>ID</Form.Label>
-							<Form.Control
-								required
-								as="textarea"
-								name="body"
-								rows="2"
-								onChange={event => set_Author_ID(event.target.value)}
 							/>
 						</Form.Group>
 

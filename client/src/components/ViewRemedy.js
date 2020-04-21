@@ -23,7 +23,7 @@ const ViewRemedy = (props) => {
 	}
 
 	const createRemedy = (remedy) => {
-		if(isForbidden){
+		if((!props.is_premium && remedy.is_premium) || isForbidden){
 			return <PremiumWarning return="/remedies" page={remedy.name}/>;
 		}
 		const JSX = [

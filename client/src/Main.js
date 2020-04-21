@@ -64,6 +64,7 @@ const AdminRoute = () => {
 				<Route path={`${url}/add_user`} component={AdminAddUser} />
 				<Route path={`${url}/edit_user`} component={AdminEditUser} />
 				<Route path={`${url}/captions`} component={AdminCaptions} />
+				<Route path={`${url}/images`} component={AdminImages} />
 				<Route path={`${url}/didyouknow`} component={AdminBlog} />
 			</>
 		)}

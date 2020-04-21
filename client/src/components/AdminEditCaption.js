@@ -10,8 +10,7 @@ const AdminEditCaption = (props) => {
   const [modal, setModal] = useState(false);
   const [content, setContent] = useState(props.caption);
 
-  const openModal = () => {
-      
+  const openModal = () => {      
     setModal(true);
   };
 
