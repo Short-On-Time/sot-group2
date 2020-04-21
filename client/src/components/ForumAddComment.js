@@ -24,7 +24,9 @@ const ForumAddComment = (props) => {
 
 	const handleSubmit = event => {
 		let data = {
-			body: body
+			body: body,
+			author_username: author_username,
+			author_ID: author_ID
 		};
 		console.log("This is data", data);
 		axios.post(
