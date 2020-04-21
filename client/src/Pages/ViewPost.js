@@ -8,7 +8,6 @@ import config from "../config.js";
 import ForumAddComment from '../components/ForumAddComment';
 import Table from "react-bootstrap/Table";
 
-
 const ViewPost= (props) => {
 	const [post, setPost] = useState({});
 	let logged = localStorage.getItem("user_logged");

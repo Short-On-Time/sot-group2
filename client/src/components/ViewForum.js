@@ -9,6 +9,8 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ForumEditPost from "./ForumEditPost";
 import ForumDeletePost from "./ForumDeletePost";
 import ForumAddPost from "./ForumAddPost";
+import User from '../components/User';
+
 
 const ViewForum = (props) => {
 	const [post, setPost] = useState([]);
@@ -28,6 +30,18 @@ const ViewForum = (props) => {
 							Add a Post <ForumAddPost />
 			</div>
 		)
+	}
+
+	const ViewUser = () =>{
+
+		return (
+			<div aling="right" class="align-middle"> 
+						 <User />
+			</div>
+		)
+
+
+
 	}
 
 
@@ -72,7 +86,7 @@ const ViewForum = (props) => {
 					<tbody>
 						<tr key={post._id} name={post.title}>
 							<td class="col-md-9">
-									<a href={`/post/${post._id}` } class="forum-item-title">{post.title} </a> by  <a href={`/user/${post.Author_ID}` } class="forum-item-title"> {post.author_username} </a>  {/*delete the link if it messes with the code*/}
+									<a href={`/post/${post._id}` } class="forum-item-title">{post.title} </a> by  <a href={`/forum/view_user/${post._ID}` } class="forum-item-title"> {post.author_username} </a>  {/*delete the link if it messes with the code*/}
 									<div class="forum-sub-title"> <small> {post.body.substring(0, 70)}</small></div>
 							</td>
 							
