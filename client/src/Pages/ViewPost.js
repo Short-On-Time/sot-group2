@@ -11,7 +11,6 @@ import Table from "react-bootstrap/Table";
 
 const ViewPost= (props) => {
 	const [post, setPost] = useState({});
-	const [postID, setPostID] = useState('');
 	let logged = localStorage.getItem("user_logged");
 
 	useEffect(() => {
@@ -57,7 +56,7 @@ const ViewPost= (props) => {
 	const Addcomment = () => {
 		return (
 			<div aling="right" class="align-middle"> 
-							Add a Comment <ForumAddComment />
+							Add a Comment <ForumAddComment post_id={props.match.params.id}/>
 			</div>
 		)
 	}

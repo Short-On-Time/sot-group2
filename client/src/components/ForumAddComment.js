@@ -7,7 +7,7 @@ import config from "../config.js";
 import { TiPlusOutline } from "react-icons/ti";
 
 
-const ForumAddComment = () => {
+const ForumAddComment = (props) => {
 	const [modal, setModal] = useState(false);
     const [body, setBody] = useState("");
     const [author_username,setAuthor_Username]= useState("");
@@ -28,7 +28,7 @@ const ForumAddComment = () => {
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_comment/:post_id`,
+			`http://localhost:${config.server_port}/api/forum/add_comment/${props.post_id}`,
 			data
 		).then(response => {
 			console.log(response);
