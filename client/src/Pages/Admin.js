@@ -15,21 +15,21 @@ const Admin = () => {
 					<CardDeck>
 						<AdminPanelCard
 							title="Glossary"
-							image="images/img_2.jpg"
+							image="images/Pictures/thumbnail_IMG_6305.jpg"
 							description="Add, edit, and delete glossary items."
 							link="/admin/glossary_list"
 						/>
 
 						<AdminPanelCard
 							title="Remedy List"
-							image="images/img_4.jpg"
+							image="images/Pictures/thumbnail_IMG_0969.jpg"
 							description="Add, edit, and delete remedies."
 							link="/admin/remedies_list"
 						/>
 
 						<AdminPanelCard
 							title="Manage Users"
-							image="images/img_3.jpg"
+							image="images/Pictures/thumbnail_IMG_5534.jpg"
 							description="Manage users and permissions."
 							link="/admin/user_list"
 						/>
@@ -41,21 +41,21 @@ const Admin = () => {
 					<CardDeck>
 						<AdminPanelCard
 							title="Manage Captions"
-							image="images/img_5.jpg"
+							image="images/Pictures/thumbnail_IMG_0715.jpg"
 							description="Manage captions across the site."
 							link="/admin/captions"
 						/>
 
 						<AdminPanelCard
 							title="Images"
-							image="images/img_6.jpg"
+							image="images/Pictures/thumbnail_IMG_4407.jpg"
 							description="Manage images across the site."
 							link="/admin/images"
 						/>
 
 						<AdminPanelCard
 							title="Did You Know"
-							image="images/img_1.jpg"
+							image="images/Pictures/thumbnail_IMG_5520.jpg"
 							description="Add, edit, and delete blog posts."
 							link="/admin/didyouknow"
 						/>

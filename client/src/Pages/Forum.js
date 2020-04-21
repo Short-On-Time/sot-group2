@@ -26,7 +26,7 @@ const Forum = (props) => {
 
                 <NavBar page="Forum"/>
 
-                <div className=" inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
+                <div className=" inner-page overlay" style={{backgroundImage: "url('images/Pictures/must-have-picture-2.jpg')", backgroundSize: "cover"}} data-aos="fade" data-stellar-background-ratio="0.5">
                     <div className="row align-items-center justify-content-center">
                         <div className="text-center shadow p-3 mb-5 bg-white rounded" data-aos="fade">
                             <br />

@@ -54,7 +54,7 @@ const Home = () => {
 				<NavBar page="Home" />
 
 				<div className="slide-one-item home-slider owl-carousel">
-					<div className="site-blocks-cover inner-page overlay" style={{ backgroundImage: "url('images/hero_2.jpg')" }} data-aos="fade" data-stellar-background-ratio="0.5">
+					<div className="site-blocks-cover inner-page overlay" style={{ backgroundImage: "url('images/Pictures/must-have-picture-1.jpg')" }} data-aos="fade" data-stellar-background-ratio="0.5">
 						<div className="container">
 							<div className="row align-items-center justify-content-center">
 								<div className="col-md-6 text-center" data-aos="fade">
@@ -109,7 +109,7 @@ const Home = () => {
 				</div>
 
 				<div className="site-half">
-					<div className="img-bg-1 shadow p-3 mb-5 bg-white rounded" style={{ backgroundImage: "url('images/hero_2.jpg')" }} data-aos="fade"></div>
+					<div className="img-bg-1 shadow p-3 mb-5 bg-white rounded" style={{ backgroundImage: "url('images/Pictures/thumbnail_FAA516A2-A969-47E6-BA69-72A43F8916F7.jpg')" }} data-aos="fade"></div>
 					<div className="container">
 						<div className="row no-gutters align-items-stretch">
 							<div className="col-lg-5 ml-lg-auto py-5 text-justify">
