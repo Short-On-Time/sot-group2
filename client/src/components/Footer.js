@@ -1,6 +1,6 @@
 import React from 'react';
 import Newsletter from './NewsletterEmailField'
-import Disclaimer from './DisclaimerCaption'
+import DisclaimerCaption from './DisclaimerCaption'
 
 const Footer = () => {
 	return (
@@ -9,7 +9,7 @@ const Footer = () => {
 				<div className="row">
 					<div className="col-md-4 mb-4 mb-md-0 text-justify">
 						<h3 className="footer-heading mb-4 text-white">Disclaimer</h3>
-						<p><Disclaimer /></p>
+						<p><DisclaimerCaption /></p>
 					</div>
 					<div className="col-md-5 mb-4 mb-md-0 ml-auto">
 						<div className="row mb-4">
