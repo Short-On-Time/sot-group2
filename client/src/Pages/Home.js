@@ -54,7 +54,7 @@ const Home = () => {
 				<NavBar page="Home" />
 
 				<div className="slide-one-item home-slider owl-carousel">
-					<div className="site-blocks-cover inner-page overlay" style={{ backgroundImage: "url('images/Pictures/must-have-picture-1.jpg')" }} data-aos="fade" data-stellar-background-ratio="0.5">
+					<div className="site-blocks-cover inner-page overlay" style={{ backgroundImage: "url('images/Pictures/home1.jpg')" }} data-aos="fade" data-stellar-background-ratio="0.5">
 						<div className="container">
 							<div className="row align-items-center justify-content-center">
 								<div className="col-md-6 text-center" data-aos="fade">

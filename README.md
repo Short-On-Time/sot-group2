@@ -38,13 +38,13 @@ https://short-on-time.herokuapp.com/
  - **GET** *users/get_remedy_full* includes premium information
  - **GET** *usesrs/get_glossary/:title* shows glossary item
  - **GET** *users/get_glossary* shows list of glossary items
- - **GET** */get_blog_newest'*
- - **GET** */get_blog/:id'*
- - **GET** */get_blog_previous/:id'*
- - **GET** */get_blog_next/:id'*
- - **GET** */view_self'*
- - **POST** */edit_self'*
- - **DELETE** */delete_self'*
+ - **GET** */get_blog_newest*
+ - **GET** */get_blog/:id*
+ - **GET** */get_blog_previous/:id*
+ - **GET** */get_blog_next/:id*
+ - **GET** */view_self*
+ - **POST** */edit_self*
+ - **DELETE** */delete_self*
 
 ## Admin (/api/admin)
  - **POST** */add_remedy*
@@ -57,51 +57,51 @@ https://short-on-time.herokuapp.com/
  - **POST** */add_email_newsleter*
  - **POST** */change_premium_caption*
  - **GET** */get_premium_caption*
- - **POST** */change_welcome_caption'*
- - **GET** */get_welcome_caption'*
- - **POST** */change_disclaimer_caption'*
- - **GET** */get_disclaimer_caption'*
- - **POST** */add_glossary'*
- - **PUT** */update_glossary/:id'*
- - **GET** */get_glossary/:id'*
- - **GET** */get_glossary'*
- - **DELETE** */delete_glossary/:id'*
- - **POST** */add_user'*
- - **PUT** */update_user/:id'*
- - **GET** */get_user/:id'*
- - **GET** */get_user'*
- - **DELETE** */delete_user/:id'*
- - **POST** */add_blog'*
- - **PUT** */update_blog/:id'*
- - **GET** */get_blog/:id'*
- - **GET** */get_blog'*
- - **DELETE** *'/delete_blog/:id'*
+ - **POST** */change_welcome_caption*
+ - **GET** */get_welcome_caption*
+ - **POST** */change_disclaimer_caption*
+ - **GET** */get_disclaimer_caption*
+ - **POST** */add_glossary*
+ - **PUT** */update_glossary/:id*
+ - **GET** */get_glossary/:id*
+ - **GET** */get_glossary*
+ - **DELETE** */delete_glossary/:id*
+ - **POST** */add_user*
+ - **PUT** */update_user/:id*
+ - **GET** */get_user/:id*
+ - **GET** */get_user*
+ - **DELETE** */delete_user/:id*
+ - **POST** */add_blog*
+ - **PUT** */update_blog/:id*
+ - **GET** */get_blog/:id*
+ - **GET** */get_blog*
+ - **DELETE** *'/delete_blog/:id*
 
-## Stripe
- - **POST** */charges'*
- - **POST** */charges_type'*
- - **POST** */change_charges_type'*
- - **GET** */get_charges_type/:type'*
+## Stripe (/api/stripe)
+ - **POST** */charges*
+ - **POST** */charges_type*
+ - **POST** */change_charges_type*
+ - **GET** */get_charges_type/:type*
 
-## Image
+## Image (/api/image)
  - **POST** *image/add_image* adds a image + its name to the database
  - **GET** *image/get_image/:name* gets the image with the same name
  - **GET** *image/get_image* gets a list of image names + ids
  - **DELETE** *image/delete_image/:name* deletes the image with the same name
  - **GET** *image/load_image/:id* gets the image, or a default one
 
-## Forum
- - **GET** */get_post'*
- - **GET** */get_post/:id'*
- - **GET** */get_comment/:post_id/:comment_id'*
- - **POST** */add_post'*
- - **PUT** */edit_post/:id'*
- - **DELETE** */delete_post/:id'*
- - **POST** */add_comment/:post_id'*
- - **PUT** */edit_comment/:post_id/:comment_id'*
- - **DELETE** */delete_comment/:post_id/:comment_id'*
- - **GET** */view_user'*
- - **GET** */view_user/:id'*
+## Forum (/api/forum)
+ - **GET** */get_post*
+ - **GET** */get_post/:id*
+ - **GET** */get_comment/:post_id/:comment_id*
+ - **POST** */add_post*
+ - **PUT** */edit_post/:id*
+ - **DELETE** */delete_post/:id*
+ - **POST** */add_comment/:post_id*
+ - **PUT** */edit_comment/:post_id/:comment_id*
+ - **DELETE** */delete_comment/:post_id/:comment_id*
+ - **GET** */view_user*
+ - **GET** */view_user/:id*
 
 # Project Handoff Guidelines - Suggestions beyond Heroku
 
