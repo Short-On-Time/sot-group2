@@ -115,7 +115,6 @@ const Home = () => {
 							<div className="col-lg-5 ml-lg-auto py-5 text-justify">
 								<span className="caption d-block mb-2 font-secondary font-weight-bold">Welcome to my site</span>
 								<h2 className="site-section-heading text-uppercase font-secondary mb-5">Information in a fun, inviting, and easily digestible format</h2>
-								{/*<p>My intentions are to present the information in a fun, inviting, and easily digestible format&mdash;one that will reignite that natural, innate desire to return to a more holistic earth-based approach to our health and wellbeing. Do you remember your first introduction? Some people started with an oil, others with teas or fresh herb in a dish. I remember how a few sniffs of a peppermint oil suggested by a friend relieved a headache almost instantly. I was hooked, and the desire and passion was born to learn, share, and help people experience the joy of listening to our body and healing with nature.</p>*/}
 								<RemediesSelector />
 							</div>
 						</div>
@@ -208,84 +207,10 @@ const Home = () => {
 							<div className="col-lg-5 ml-auto">
 								<h2 className="site-section-heading mb-3 font-secondary text-uppercase">What is premium?</h2>
 								<p className="caption mb-5"><PremiumCaption /></p>
-								{/*
-									<div className="row">
-										<div className="col-lg-6">
-											<div className="counter">
-												<span className="caption">Current products</span>
-												<span className="number" data-number="207">0</span>
-											</div>
-										</div>
-										<div className="col-lg-6">
-											<div className="counter">
-												<span className="caption">Number of users</span>
-												<span className="number" data-number="50">0</span>
-											</div>
-										</div>
-									</div>
-								*/}
 							</div>
 						</div>
 					</div>
 				</div>
-
-				{/*
-					<div className="site-section block-14 nav-direction-white">
-						<div className="container">
-							<div className="row mb-5">
-								<div className="col-md-12">
-									<h2 className="site-section-heading text-center text-uppercase">Testimonials</h2>
-								</div>
-							</div>
-
-							<div className="nonloop-block-14 owl-carousel">
-								<div className="d-block block-testimony mx-auto text-center">
-									<div className="person w-25 mx-auto mb-4">
-										<img src="images/person_1.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-									</div>
-
-									<div>
-										<h2 className="h5 mb-4">Katie Johnson</h2>
-										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate 	aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-									</div>
-								</div>
-
-								<div className="d-block block-testimony mx-auto text-center">
-									<div className="person w-25 mx-auto mb-4">
-										<img src="images/person_2.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-									</div>
-
-									<div>
-										<h2 className="h5 mb-4">Jun Mars</h2>
-										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-									</div>
-								</div>
-
-								<div className="d-block block-testimony mx-auto text-center">
-									<div className="person w-25 mx-auto mb-4">
-										<img src="images/person_3.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-									</div>
-
-									<div>
-										<h2 className="h5 mb-4">Shane Holmes</h2>
-										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-									</div>
-								</div>
-
-								<div className="d-block block-testimony mx-auto text-center">
-									<div className="person w-25 mx-auto mb-4">
-										<img src="images/person_4.jpg" alt="Image" className="img-fluid rounded-circle w-25 mx-auto" />
-									</div>
-
-									<div>
-										<h2 className="h5 mb-4">Mark Johnson</h2>
-										<blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias accusantium qui optio, possimus necessitatibus voluptate aliquam velit nostrum tempora ipsam!&rdquo;</blockquote>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				*/}
 
 				<Footer />
 			</div>
