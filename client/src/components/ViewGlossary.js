@@ -111,7 +111,7 @@ const ViewGlossary = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_glossary`)
+		axios.get(`/api/users/get_glossary`)
 			.then(res => {
 				const items = res.data;
 				const compare = (a, b) => {
@@ -133,9 +133,9 @@ const ViewGlossary = (props) => {
 				if(search){
 					setGlossary(items.filter( item => matchesQuery(item, filters)));
 					setGlossaryJSX(items.filter( item => matchesQuery(item, filters)).map(item => glossaryItem(item, lastLetter)));
-					
+
 				}
-				else{	
+				else{
 					setGlossary(items);
 					setGlossaryJSX(items.map(item => glossaryItem(item, lastLetter)));
 				}
