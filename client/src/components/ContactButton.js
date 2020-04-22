@@ -30,7 +30,7 @@ const ContactButton = () => {
 			body: body,
 			email: UserEmail()
 		}
-		axios.post(`http://localhost:${config.server_port}/api/users/contact`, data).then(res => {
+		axios.post(`/api/users/contact`, data).then(res => {
 			if (res.status === 200) {
 				alert('Message sent!')
 				setShow(false)

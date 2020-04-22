@@ -16,7 +16,7 @@ const UserButton = (props) => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/forum/view_user/${props.id}`)
+			.get(`/api/forum/view_user/${props.id}`)
 			.then(res => {
 				setProfile(res.data);
 			});

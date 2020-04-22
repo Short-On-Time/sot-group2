@@ -7,7 +7,7 @@ const AdminViewImages = (props) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/image/get_image`).then((res) => {
+    axios.get(`/api/image/get_image`).then((res) => {
       setImages(res.data);
     });
   }, []);
@@ -27,7 +27,7 @@ const AdminViewImages = (props) => {
               <tr>
                 <td class="align-middle">{image[0]}</td>
                 <td class="align-middle"><AdminGetImage name={image[0]}/></td>
-                <td class="align-middle">                  
+                <td class="align-middle">
                 </td>
               </tr>
             );

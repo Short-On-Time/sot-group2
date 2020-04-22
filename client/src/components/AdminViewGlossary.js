@@ -16,7 +16,7 @@ const AdminViewGlossary = props => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/admin/get_glossary`)
+			.get(`/api/admin/get_glossary`)
 			.then(res => {
 				setGlossary(res.data);
 			});

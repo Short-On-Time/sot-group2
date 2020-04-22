@@ -42,7 +42,7 @@ const AdminEditRemedies = props => {
 			is_premium: isPremium
 		};
 		axios.put(
-			`http://localhost:${config.server_port}/api/admin/update_remedy/${data._id}`,
+			`/api/admin/update_remedy/${data._id}`,
 			data
 		).then(
 			response => {
@@ -54,7 +54,7 @@ const AdminEditRemedies = props => {
 		setModal(false);
 	};
 
-	
+
 	const ingredientsDefault = () => {
 		let value = "";
 		for(let i=0; i<ingredients.length; ++i){
@@ -132,7 +132,7 @@ const AdminEditRemedies = props => {
 								onChange={event => setDescription(event.target.value)}
 							/>
 						</Form.Group>
-						
+
 						<Form.Group>
 							<Form.Label>Ingredients</Form.Label>
 							<div>Enter each ingredient on a new line in this format:</div>

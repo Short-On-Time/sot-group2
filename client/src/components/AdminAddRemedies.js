@@ -59,7 +59,7 @@ const AdminAddRemedies = () => {
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/admin/add_remedy`,
+			`/api/admin/add_remedy`,
 			data
 		).then(response => {
 			console.log(response);
@@ -127,7 +127,7 @@ const AdminAddRemedies = () => {
 							/>
 						</Form.Group>
 
-						
+
 						<Form.Group>
 							<Form.Label>Ingredients</Form.Label>
 							<div>Enter each ingredient on a new line in this format:</div>

@@ -6,7 +6,7 @@ const WelcomeCaption = () => {
 
 	const [welcome_caption, setWelcome_caption] = useState('');
 
-	axios.get(`http://localhost:${config.server_port}/api/admin/get_welcome_caption`).then(res => {
+	axios.get(`/api/admin/get_welcome_caption`).then(res => {
 		setWelcome_caption(res.data.content)
 	}).catch(function (error) {
 		setWelcome_caption('You can change this text')

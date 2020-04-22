@@ -23,7 +23,7 @@ const ViewGlossaryItem = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_glossary/${props.title}`)
+		axios.get(`/api/users/get_glossary/${props.title}`)
 			.then(res => {
                 const item = res.data;
                 console.log(item)

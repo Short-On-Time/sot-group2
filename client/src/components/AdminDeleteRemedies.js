@@ -21,13 +21,13 @@ const AdminDeleteRemedies = props => {
 		const id = props.remedies._id;
 
 		axios.delete(
-			`http://localhost:${config.server_port}/api/admin/delete_remedy/${id}`
+			`/api/admin/delete_remedy/${id}`
 		).then(res => {
 			console.log(`Deleted ${id}!`);
 		});
 
 		axios.get(
-			`http://localhost:${config.server_port}/api/admin/get_remedy`
+			`/api/admin/get_remedy`
 		).then(res => {
 			props.setRemedies(res.data);
 			window.location.reload(false);

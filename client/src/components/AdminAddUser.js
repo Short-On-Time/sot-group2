@@ -34,7 +34,7 @@ const AdminAddUser = (props) => {
     console.log("This is data", data);
     if (data.username && data.email && data.password) {
       axios
-        .post(`http://localhost:${config.server_port}/api/admin/add_user`, data)
+        .post(`/api/admin/add_user`, data)
         .then((response) => {
           console.log(response);
           window.location.reload(false);

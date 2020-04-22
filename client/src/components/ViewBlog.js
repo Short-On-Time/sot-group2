@@ -14,7 +14,7 @@ const ViewBlog = (props) => {
 
 	useEffect(() => {
 		if(props.p){
-			axios.get(`http://localhost:${config.server_port}/api/users/get_blog/${props.p}`)
+			axios.get(`/api/users/get_blog/${props.p}`)
 			.then(res => {
 				setPost(res.data);
 			})
@@ -26,7 +26,7 @@ const ViewBlog = (props) => {
 			});
 		}
 		else{
-			axios.get(`http://localhost:${config.server_port}/api/users/get_blog_newest`)
+			axios.get(`/api/users/get_blog_newest`)
 			.then(res => {
 				setPost(res.data);
 			})
@@ -40,7 +40,7 @@ const ViewBlog = (props) => {
 	}, []);
 
 	useEffect( () => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_previous/${post._id}`)
+		axios.get(`/api/users/get_blog_previous/${post._id}`)
 			.then(res => {
 				setPreviousId(res.data._id);
 			})
@@ -51,7 +51,7 @@ const ViewBlog = (props) => {
 				}
 		});
 
-		axios.get(`http://localhost:${config.server_port}/api/users/get_blog_next/${post._id}`)
+		axios.get(`/api/users/get_blog_next/${post._id}`)
 			.then(res => {
 				setNextId(res.data._id);
 			})

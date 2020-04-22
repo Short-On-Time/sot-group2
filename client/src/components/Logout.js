@@ -23,7 +23,6 @@ class Logout extends React.Component {
 		const { nav } = this.state;
 
 		if (this.props.loginData) {
-			console.log("LOGIN DATA ====");
 			this.props.loginData()
 		}
 

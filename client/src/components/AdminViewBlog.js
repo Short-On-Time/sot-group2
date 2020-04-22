@@ -12,7 +12,7 @@ const AdminViewBlog = props => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/admin/get_blog`)
+			.get(`/api/admin/get_blog`)
 			.then(res => {
 				setBlog(res.data);
 			});

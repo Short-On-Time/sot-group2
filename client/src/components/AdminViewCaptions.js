@@ -22,17 +22,17 @@ const AdminViewCaptions = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/admin/get_premium_caption`)
+      .get(`/api/admin/get_premium_caption`)
       .then((res) => {
         setPremiumCaption(res.data);
       });
     axios
-      .get(`http://localhost:3001/api/admin/get_welcome_caption`)
+      .get(`/api/admin/get_welcome_caption`)
       .then((res) => {
         setWelcomeCaption(res.data);
       });
     axios
-      .get(`http://localhost:3001/api/admin/get_disclaimer_caption`)
+      .get(`/api/admin/get_disclaimer_caption`)
       .then((res) => {
         setDisclaimerCaption(res.data);
       });

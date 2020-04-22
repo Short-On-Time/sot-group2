@@ -20,7 +20,7 @@ const LoginButton = () => {
 			"email": email
 		}
 		console.log("email: ", data);
-		axios.post(`http://localhost:${config.server_port}/api/admin/add_email_newsleter`, data).then(res => {
+		axios.post(`/api/admin/add_email_newsleter`, data).then(res => {
 			setMessage(`Your e-mail (${email}) is now registered. Thank you!`)
 			// setEmail('')
 		}).catch(function (error) {

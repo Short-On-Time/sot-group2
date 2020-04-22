@@ -10,7 +10,7 @@ import { TiPlusOutline } from "react-icons/ti";
 const ForumAddComment = (props) => {
 	const [modal, setModal] = useState(false);
 	const [body, setBody] = useState("");
-	
+
 	const openModal = () => {
 		setModal(true);
 	};
@@ -25,9 +25,8 @@ const ForumAddComment = (props) => {
 			author_username: props.username,
 			author_ID: props.id
 		};
-		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_comment/${props.post_id}`,
+			`/api/forum/add_comment/${props.post_id}`,
 			data
 		).then(response => {
 			console.log(response);
@@ -50,7 +49,7 @@ const ForumAddComment = (props) => {
 
 				<Form validate>
 					<Modal.Body>
-					
+
 
 						<Form.Group>
 							<Form.Label>What do you want to comment?</Form.Label>

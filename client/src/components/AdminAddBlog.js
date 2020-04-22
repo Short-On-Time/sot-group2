@@ -31,7 +31,7 @@ const AdminAddBlog = () => {
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/admin/add_blog`,
+			`/api/admin/add_blog`,
 			data
 		).then(response => {
 			console.log(response);
@@ -90,7 +90,7 @@ const AdminAddBlog = () => {
 								<option value="instagram">Instagram Post</option>
 								<option value="link">Link</option>
 							</Form.Control>
-							
+
 						</Form.Group>
 
 						<Form.Group>

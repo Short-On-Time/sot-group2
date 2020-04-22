@@ -20,7 +20,7 @@ const RemediesSelector = (props) => {
 	}
 
 	useEffect(() => {
-		axios.get(`http://localhost:${config.server_port}/api/users/get_remedy_preview`)
+		axios.get(`/api/users/get_remedy_preview`)
 			.then(res => {
 				let remedies = res.data;
 

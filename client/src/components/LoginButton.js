@@ -41,7 +41,7 @@ const LoginButton = () => {
 			"is_premium": false,
 			"is_admin": false
 		}
-		axios.post(`http://localhost:${config.server_port}/api/users/signin`, data).then(res => {
+		axios.post(`/api/users/signin`, data).then(res => {
 			const token = res.data.token;
 			jwt.verify(token, 'herbs', function (err, decodedd) {
 				console.log(decodedd.user_info);
@@ -68,7 +68,7 @@ const LoginButton = () => {
 			"is_admin": false
 		}
 		console.log(data);
-		if (username && pw && email) axios.post(`http://localhost:${config.server_port}/api/users/signup`, data).then(res => {
+		if (username && pw && email) axios.post(`/api/users/signup`, data).then(res => {
 			const token = res.data.token;
 			if (res.status === 200) {
 				registrationOk();

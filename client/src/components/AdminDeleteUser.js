@@ -20,11 +20,11 @@ const AdminDeleteUser = props => {
 	const deleteGloss = e => {
 		const id = props.user._id;
 
-		axios.delete(`http://localhost:3001/api/admin/delete_user/${id}`).then(res => {
+		axios.delete(`/api/admin/delete_user/${id}`).then(res => {
 			console.log(`Deleted ${id}!`);
 		});
 
-		axios.get(`http://localhost:3001/api/admin/get_user`).then(res => {
+		axios.get(`/api/admin/get_user`).then(res => {
 			props.setUsers(res.data);
 			window.location.reload(false);
 		});

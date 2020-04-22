@@ -6,7 +6,7 @@ const PremiumCaption = () => {
 
 	const [premium_caption, setPremium_caption] = useState('');
 
-	axios.get(`http://localhost:${config.server_port}/api/admin/get_premium_caption`).then(res => {
+	axios.get(`/api/admin/get_premium_caption`).then(res => {
 		setPremium_caption(res.data.content)
 	}).catch(function (error) {
 		setPremium_caption('Premium caption')

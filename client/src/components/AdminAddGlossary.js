@@ -30,7 +30,7 @@ const AdminAddGlossary = () => {
 		};
 		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/admin/add_glossary`,
+			`/api/admin/add_glossary`,
 			data
 		).then(response => {
 			console.log(response);

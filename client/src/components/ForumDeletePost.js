@@ -21,13 +21,13 @@ const ForumDeletePost = props => {
 		const id = props.post._id;
 
 		axios.delete(
-			`http://localhost:${config.server_port}/api/users/forum/delete_post/${id}`
+			`/api/users/forum/delete_post/${id}`
 		).then(res => {
 			console.log(`Deleted ${id}!`);
 		});
 
 		axios.get(
-			`http://localhost:${config.server_port}/api/users/forum/get_post`
+			`/api/users/forum/get_post`
 		).then(res => {
 			props.setPost(res.data);
 			window.location.reload(false);

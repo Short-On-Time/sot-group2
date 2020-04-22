@@ -30,7 +30,7 @@ const AdminEditBlog = props => {
 			socialtype: socialType
 		};
 		axios.put(
-			`http://localhost:3001/api/admin/update_blog/${data._id}`,
+			`/api/admin/update_blog/${data._id}`,
 			data
 		).then(
 			response => {
@@ -94,7 +94,7 @@ const AdminEditBlog = props => {
 								<option value="facebook">Facebook Post</option>
 								<option value="instagram">Instagram Post</option>
 							</Form.Control>
-							
+
 						</Form.Group>
 
 						<Form.Group>
@@ -104,7 +104,7 @@ const AdminEditBlog = props => {
 								name="socialSrc"
 								type="text"
 								onChange={event => setSocialSrc(event.target.value)}
-								defaultValue={socialSrc} 
+								defaultValue={socialSrc}
 							/>
 						</Form.Group>
 

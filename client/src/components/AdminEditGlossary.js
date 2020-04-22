@@ -29,7 +29,7 @@ const AdminEditGlossary = props => {
 			is_published: isPublished
 		};
 		axios.put(
-			`http://localhost:3001/api/admin/update_glossary/${data._id}`,
+			`/api/admin/update_glossary/${data._id}`,
 			data
 		).then(
 			response => {

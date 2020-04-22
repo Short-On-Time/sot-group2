@@ -31,9 +31,8 @@ const ForumAddPost = (props) => {
 			author_username: props.username,
       		author_ID: props.id
 		};
-		console.log("This is data", data);
 		axios.post(
-			`http://localhost:${config.server_port}/api/forum/add_post`,
+			`/api/forum/add_post`,
 			data
 		).then(response => {
 			console.log(response);
@@ -76,7 +75,7 @@ const ForumAddPost = (props) => {
 								onChange={event => setBody(event.target.value)}
 							/>
 						</Form.Group>
-						
+
 					</Modal.Body>
 
 					<Modal.Footer>

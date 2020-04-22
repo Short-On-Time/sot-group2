@@ -27,7 +27,7 @@ const ForumEditPost = props => {
 		};
 		console.log("This is data", data);
 		axios.put(
-			`http://localhost:${config.server_port}/api/users/update_post/${data._id}`,
+			`/api/users/update_post/${data._id}`,
 			data
 		).then(
 			response => {

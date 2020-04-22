@@ -21,13 +21,13 @@ const AdminDeleteGlossary = props => {
 		const id = props.glossary._id;
 
 		axios.delete(
-			`http://localhost:${config.server_port}/api/admin/delete_glossary/${id}`
+			`/api/admin/delete_glossary/${id}`
 		).then(res => {
 			console.log(`Deleted ${id}!`);
 		});
 
 		axios.get(
-			`http://localhost:${config.server_port}/api/admin/get_glossary`
+			`/api/admin/get_glossary`
 		).then(res => {
 			props.setGlossary(res.data);
 			window.location.reload(false);

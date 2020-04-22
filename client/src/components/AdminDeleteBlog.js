@@ -21,13 +21,13 @@ const AdminDeleteBlog = props => {
 		const id = props.post._id;
 
 		axios.delete(
-			`http://localhost:${config.server_port}/api/admin/delete_blog/${id}`
+			`/api/admin/delete_blog/${id}`
 		).then(res => {
 			console.log(`Deleted ${id}!`);
 		});
 
 		axios.get(
-			`http://localhost:${config.server_port}/api/admin/get_blog`
+			`/api/admin/get_blog`
 		).then(res => {
 			props.setBlog(res.data);
 			window.location.reload(false);

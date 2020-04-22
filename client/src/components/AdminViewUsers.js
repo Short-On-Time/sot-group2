@@ -11,7 +11,7 @@ const AdminViewUsers = (props) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/admin/get_user`).then((res) => {
+    axios.get(`/api/admin/get_user`).then((res) => {
       setUsers(res.data);
     });
   }, []);
@@ -65,7 +65,7 @@ const AdminViewUsers = (props) => {
 											/>
 										</ButtonGroup>
                 </td>
-               
+
               </tr>
             );
           })}

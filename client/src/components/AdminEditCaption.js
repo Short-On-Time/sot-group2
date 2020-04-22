@@ -10,21 +10,21 @@ const AdminEditCaption = (props) => {
   const [modal, setModal] = useState(false);
   const [content, setContent] = useState(props.caption);
 
-  const openModal = () => {      
+  const openModal = () => {
     setModal(true);
   };
 
   const handleClose = () => {
     setModal(false);
-    
+
   };
 
   const handleSubmit = (event) => {
     let data = {content: props.caption.content}
-    
+
       axios
         .post(
-          `http://localhost:${config.server_port}/api/admin/${props.captionRoute}`,
+          `/api/admin/${props.captionRoute}`,
           data
         )
         .then((response) => {
@@ -33,7 +33,7 @@ const AdminEditCaption = (props) => {
         });
 
       handleClose();
-    
+
   };
 
   return (
@@ -49,7 +49,7 @@ const AdminEditCaption = (props) => {
 
         <form>
           <Modal.Body>
-		  
+
             <div class="form-group">
               <input
                 type="texarea"
@@ -59,15 +59,15 @@ const AdminEditCaption = (props) => {
                 onChange={(event) => props.changeCaption(event.target.value)}
                 required
               />
-            </div>            
-            
+            </div>
+
           </Modal.Body>
           <Modal.Footer>
 		  <Button variant="secondary" onClick={handleClose}>
 							Cancel
             			</Button>
             <Button
-              variant="primary"              
+              variant="primary"
               onClick={handleSubmit}
             >Save</Button>
           </Modal.Footer>

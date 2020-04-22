@@ -31,18 +31,18 @@ const ServicesButton = (props) => {
 
 
 	const getAmount = () => {
-		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-1-month`).then(res => {
+		axios.get(`/api/stripe/get_charges_type/subscription-1-month`).then(res => {
 			setOneMonth(res.data.amount)
 		});
 
-		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/subscription-3-month`).then(res => {
+		axios.get(`/api/stripe/get_charges_type/subscription-3-month`).then(res => {
 			setThreeMonth(res.data.amount)
 		});
 
-		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-1-session`).then(res => {
+		axios.get(`/api/stripe/get_charges_type/consulting-1-session`).then(res => {
 			setOneSession(res.data.amount)
 		});
-		axios.get(`http://localhost:${config.server_port}/api/stripe/get_charges_type/consulting-5-session`).then(res => {
+		axios.get(`/api/stripe/get_charges_type/consulting-5-session`).then(res => {
 			setFiveSession(res.data.amount)
 		});
 	}

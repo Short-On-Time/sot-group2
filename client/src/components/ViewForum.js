@@ -30,7 +30,7 @@ const ViewForum = (props) => {
 
 	useEffect(() => {
 		axios
-		.get(`http://localhost:3001/api/forum/get_post`)
+		.get(`/api/forum/get_post`)
 		.then(res => {
 			setPost(res.data);
 		});

@@ -34,7 +34,7 @@ const AdminEditUser = (props) => {
     if (data.username && data.email && data.password) {
       axios
         .put(
-          `http://localhost:${config.server_port}/api/admin/update_user/${data._id}`,
+          `/api/admin/update_user/${data._id}`,
           data
         )
         .then((response) => {
@@ -59,7 +59,7 @@ const AdminEditUser = (props) => {
 
         <form>
           <Modal.Body>
-		  
+
             <div class="form-group">
               <label for="email">Email: </label>
               <input
@@ -106,14 +106,14 @@ const AdminEditUser = (props) => {
                 />
                 <label class="form-check-label" for="is_premium">Premium</label>
               </div>
-            
+
           </Modal.Body>
           <Modal.Footer>
 		  <Button variant="secondary" onClick={handleClose}>
 							Cancel
             			</Button>
             <Button
-              variant="primary"              
+              variant="primary"
               onClick={handleSubmit}
             >Save</Button>
           </Modal.Footer>
