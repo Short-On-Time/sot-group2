@@ -28,8 +28,8 @@ https://short-on-time.herokuapp.com/
 
 ## Features
 
-● 2D body
-○ Ability to click on a specific body part and get remedy
+- 2D body
+- - Ability to click on a specific body part and get remedy
 information
 ● Searchable glossary
 ● Searchable remedies
@@ -184,6 +184,6 @@ We have custom scripts that helped us in the development of the app and are esse
 - Make sure you have Heroku CLI installed: https://devcenter.heroku.com/articles/heroku-cli
 - Track remote Heroku git repository: `heroku git:remote -a short-on-time`
 - If any changes are performed, and you would like those change to be reflected on the live app, run:
-⋅⋅⋅ `git add .`
-⋅⋅⋅ `git commit -m "my changes"`
+- `git add .`
+- `git commit -m "my changes"`
 - Finally, to deploy to Heroku, run: `git push heroku master`
