@@ -23,6 +23,7 @@ Stripe Key (located at `client/src/components/config.js`, line 6 for LIVE key, l
 
 ## Admin login credentials
 **admin2@admin2.com, password: 123**
+
 All other newly registered users will be `is_premium:false`, `is_admin: false`
 
 ## Environmental Variables
@@ -96,19 +97,19 @@ information
  - **GET** */get_welcome_caption*
  - **POST** */change_disclaimer_caption*
  - **GET** */get_disclaimer_caption*
-### Glossary routes** (CRUD)
+### Glossary routes (CRUD)
  - **POST** */add_glossary*
  - **PUT** */update_glossary/:id*
  - **GET** */get_glossary/:id*
  - **GET** */get_glossary*
  - **DELETE** */delete_glossary/:id*
-### User routes** (CRUD)
+### User routes (CRUD)
  - **POST** */add_user*
  - **PUT** */update_user/:id*
  - **GET** */get_user/:id*
  - **GET** */get_user*
  - **DELETE** */delete_user/:id*
-### Blog routes** (CRUD)
+### Blog routes (CRUD)
  - **POST** */add_blog*
  - **PUT** */update_blog/:id*
  - **GET** */get_blog/:id*
@@ -147,11 +148,11 @@ information
 
 We have successfully added three additional add-ons on top of MongoDB on Heroku. Those add-ons (Sentry and Sqreen) are extremely useful for debugging and finding potential leaks in the app. The Papertrail add-on is also useful to save and check the server logs of the application. With that said, the first suggestion would be to find similar add-ons support if the app gets moved to another PaaS, such as Amazon Web Services (AWS), Microsoft Azure or Google App Engine (GAE).
 
-## AWS (https://aws.amazon.com)
+## AWS ([More info about AWS](https://aws.amazon.com))
 
 The Amazon platform is much more complex to deploy and manage than Heroku's. However, AWS can give you greater detail and flexibility in terms of pricing, what is going to be charged (usually you will pay only what you use, in terms of server resources), and provides you a greater uptime than the other options. If you decide to go with AWS, keep in mind that you will possibly have to hire a DevOps engineer to take care of the infrastructure, in case the app gets more complex.
 
-## GAE (https://cloud.google.com/appengine)
+## GAE ([More info about GAE](https://cloud.google.com/appengine))
 
 Offering the same level (or very close) of detail as AWS, the Google App Engine is great for deploying simpler apps that could require a sophisticated approach. Deploying on GAE can also give you a flexible pricing (usually cheaper than Heroku), and still offering tons of Google resources, such as analytics and even Machine Learning modules one click away of being installed in your app. However, deploying on GAE is not as simple as deploying on Heroku, but offers a competitive edge when compared to AWS.
 
@@ -183,9 +184,9 @@ We have custom scripts that helped us in the development of the app and are esse
 ## How to deploy
 
 - Make sure you are inside the root folder of the app
-- Make sure you have Heroku CLI installed: https://devcenter.heroku.com/articles/heroku-cli
+- [Make sure you have Heroku CLI installed. Click here to install](https://devcenter.heroku.com/articles/heroku-cli)
 - Track remote Heroku git repository: `heroku git:remote -a short-on-time`
 - If any changes are performed, and you would like those change to be reflected on the live app, run:
-- `git add .`
-- `git commit -m "my changes"`
+- - `git add .`
+- - `git commit -m "my changes"`
 - Finally, to deploy to Heroku, run: `git push heroku master`
