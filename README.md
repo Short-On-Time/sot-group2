@@ -47,14 +47,14 @@ https://short-on-time.herokuapp.com/
  - **DELETE** */delete_self* delete logged user
 
 ## Admin (/api/admin)
-# **Remedy routes**
+### Remedy routes
  - **POST** */add_remedy*
  - **PUT** */update_remedy/:id*
  - **GET** */get_remedy/:id*
  - **GET** */get_remedy*
  - **DELETE** */delete_remedy/:id*
  - **PUT** */free_trial*
- # **Testimonial routes**
+### **Testimonial routes**
  - **POST** */add_testimonial*
  **Newsletter routes**
  - **POST** */add_email_newsleter*
