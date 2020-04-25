@@ -15,16 +15,16 @@ https://short-on-time.herokuapp.com/
 <p>Invite Link to Trello: https://trello.com/invite/b/KGSu3zQH/95c28553101326c62bacbd52fafd02ea/user-stories
 
 ## Config File
-<p>Backend: at `config/config.js`, with the Heroku URL to the MongoDB service.
-<p>Frontend: at `client/src/components/config.js`, with Stripe key and localhost port (for development purposes).
-<p>Stripe Key (located at `client/src/components/config.js`, line 6 for LIVE key, line 10 for TEST key): `pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK`
+Backend: at `config/config.js`, with the Heroku URL to the MongoDB service.
+Frontend: at `client/src/components/config.js`, with Stripe key and localhost port (for development purposes).
+Stripe Key (located at `client/src/components/config.js`, line 6 for LIVE key, line 10 for TEST key): `pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK`
 
 ## Admin login credentials
 **admin2@admin2.com, password: 123**
-<p>All other newly registered users will be `is_premium:false`, `is_admin: false`
+All other newly registered users will be `is_premium:false`, `is_admin: false`
 
 ## Environmental Variables
-<p>Located at source root (.env), with `SKIP_PREFLIGHT_CHECK=true`, parameter to skip a mismatch of module versions.
+Located at source root (.env), with `SKIP_PREFLIGHT_CHECK=true`, parameter to skip a mismatch of module versions.
 
 ## Features
 
@@ -49,7 +49,7 @@ information
 - - Instagram, Facebook, YouTube, Twitter API
 - Dynamic payments ○ Stripe API
 - Dynamic premium items
-- - I.e. only available to premium users
+- - i.e. Only available to premium users
 - Drafting items
 - - Useful for teams working on the same item
 - Loading screen (UX)
