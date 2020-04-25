@@ -20,7 +20,7 @@ https://short-on-time.herokuapp.com/
 <p>Stripe Key (located at client/src/components/config.js, line 6 for LIVE key, line 10 for TEST key): *pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK*
 
 ## Admin login credentials
-<p>**admin2@admin2.com, password: 123**
+**admin2@admin2.com, password: 123**
 <p>All other newly registered users will be is_premium:false, is_admin: false
 
 ## Environmental Variables
@@ -38,39 +38,46 @@ https://short-on-time.herokuapp.com/
  - **GET** *users/get_remedy_full* includes premium information
  - **GET** *usesrs/get_glossary/:title* shows glossary item
  - **GET** *users/get_glossary* shows list of glossary items
- - **GET** */get_blog_newest*
- - **GET** */get_blog/:id*
- - **GET** */get_blog_previous/:id*
- - **GET** */get_blog_next/:id*
- - **GET** */view_self*
- - **POST** */edit_self*
- - **DELETE** */delete_self*
+ - **GET** */get_blog_newest* gets newest blog post
+ - **GET** */get_blog/:id* gets specific blog post, by ID
+ - **GET** */get_blog_previous/:id* gets specific blog post, by ID
+ - **GET** */get_blog_next/:id* gets specific blog post, by ID
+ - **GET** */view_self* views logged user info
+ - **POST** */edit_self* edit logged user info
+ - **DELETE** */delete_self* delete logged user
 
 ## Admin (/api/admin)
+**Remedy routes**
  - **POST** */add_remedy*
  - **PUT** */update_remedy/:id*
  - **GET** */get_remedy/:id*
  - **GET** */get_remedy*
  - **DELETE** */delete_remedy/:id*
  - **PUT** */free_trial*
+ **Testimonial routes**
  - **POST** */add_testimonial*
+ **Newsletter routes**
  - **POST** */add_email_newsleter*
+ **Home caption routes**
  - **POST** */change_premium_caption*
  - **GET** */get_premium_caption*
  - **POST** */change_welcome_caption*
  - **GET** */get_welcome_caption*
  - **POST** */change_disclaimer_caption*
  - **GET** */get_disclaimer_caption*
+ **Glossary routes**
  - **POST** */add_glossary*
  - **PUT** */update_glossary/:id*
  - **GET** */get_glossary/:id*
  - **GET** */get_glossary*
  - **DELETE** */delete_glossary/:id*
+ **User routes**
  - **POST** */add_user*
  - **PUT** */update_user/:id*
  - **GET** */get_user/:id*
  - **GET** */get_user*
  - **DELETE** */delete_user/:id*
+ **Blog routes**
  - **POST** */add_blog*
  - **PUT** */update_blog/:id*
  - **GET** */get_blog/:id*
