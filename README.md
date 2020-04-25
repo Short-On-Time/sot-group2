@@ -15,16 +15,16 @@ https://short-on-time.herokuapp.com/
 <p>Invite Link to Trello: https://trello.com/invite/b/KGSu3zQH/95c28553101326c62bacbd52fafd02ea/user-stories
 
 ## Config File
-<p>Backend: at config/config.js, with the Heroku URL to the MongoDB service.
-<p>Frontend: at client/src/components/config.js, with Stripe key and localhost port (for development purposes).
-<p>Stripe Key (located at client/src/components/config.js, line 6 for LIVE key, line 10 for TEST key): *pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK*
+<p>Backend: at `config/config.js`, with the Heroku URL to the MongoDB service.
+<p>Frontend: at `client/src/components/config.js`, with Stripe key and localhost port (for development purposes).
+<p>Stripe Key (located at `client/src/components/config.js`, line 6 for LIVE key, line 10 for TEST key): `pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK`
 
 ## Admin login credentials
 **admin2@admin2.com, password: 123**
-<p>All other newly registered users will be is_premium:false, is_admin: false
+<p>All other newly registered users will be `is_premium:false`, `is_admin: false`
 
 ## Environmental Variables
-<p>Located at source root (.env), with SKIP_PREFLIGHT_CHECK=true, parameter to skip a mismatch of module versions.
+<p>Located at source root (.env), with `SKIP_PREFLIGHT_CHECK=true`, parameter to skip a mismatch of module versions.
 
 ## Features
 
@@ -56,7 +56,7 @@ information
 - User tiers
 
 # Routes
-## Users (/api/users)
+## Users `/api/users`
  - **POST** *users/signup* registers a new account
  - **POST** *users/signin* attempts to sign user in
  - **POST** *users/user_premium* makes regular user premium
@@ -75,7 +75,7 @@ information
  - **POST** */edit_self* edit logged user info
  - **DELETE** */delete_self* delete logged user
 
-## Admin (/api/admin)
+## Admin `/api/admin`
 ### Remedy routes (CRUD)
  - **POST** */add_remedy*
  - **PUT** */update_remedy/:id*
@@ -113,20 +113,20 @@ information
  - **GET** */get_blog*
  - **DELETE** *'/delete_blog/:id*
 
-## Stripe (/api/stripe) (routes for changing dynamic prices: consulting and premium subscription)
+## Stripe `/api/stripe` (routes for changing dynamic prices: consulting and premium subscription)
  - **POST** */charges*
  - **POST** */charges_type*
  - **POST** */change_charges_type*
  - **GET** */get_charges_type/:type*
 
-## Image (/api/image) (CRUD)
+## Image `/api/image` (CRUD)
  - **POST** *image/add_image* adds a image + its name to the database
  - **GET** *image/get_image/:name* gets the image with the same name
  - **GET** *image/get_image* gets a list of image names + ids
  - **DELETE** *image/delete_image/:name* deletes the image with the same name
  - **GET** *image/load_image/:id* gets the image, or a default one
 
-## Forum (/api/forum)
+## Forum `/api/forum`
  - **GET** */get_post*
  - **GET** */get_post/:id*
  - **GET** */get_comment/:post_id/:comment_id*
