@@ -31,29 +31,29 @@ https://short-on-time.herokuapp.com/
 - 2D body
 - - Ability to click on a specific body part and get remedy
 information
-● Searchable glossary
-● Searchable remedies
-● Dynamic search based on body part and ailment
-● Forum
-○ Posts and comments
-● Admin panel
-○ Change website captions (welcome, health disclaimer and premium captions)
-○ Edit remedies and glossary
-○ Moderate the forum
-○ Post to the DidYouKnow blog
-● Login/register
-○ User levels: free, premium and admin
-● Payment system
-○ Routes ready to change price dynamically
-● Blog (DYK)
-○ Instagram, Facebook, YouTube, Twitter API
-● Dynamic payments ○ Stripe API
-● Dynamic premium items
-○ I.e. only available to premium users
-● Drafting items
-○ Useful for teams working on the same item
-● Loading screen (UX)
-● User tiers
+- Searchable glossary
+- Searchable remedies
+- Dynamic search based on body part and ailment
+- Forum
+- - Posts and comments
+- Admin panel
+- - Change website captions (welcome, health disclaimer and premium captions)
+- - Edit remedies and glossary
+- - Moderate the forum
+- - Post to the DidYouKnow blog
+- Login/register
+- - User levels: free, premium and admin
+- Payment system
+- - Routes ready to change price dynamically
+- Blog (DYK)
+- - Instagram, Facebook, YouTube, Twitter API
+- Dynamic payments ○ Stripe API
+- Dynamic premium items
+- - I.e. only available to premium users
+- Drafting items
+- - Useful for teams working on the same item
+- Loading screen (UX)
+- User tiers
 
 # Routes
 ## Users (/api/users)
