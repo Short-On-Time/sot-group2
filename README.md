@@ -26,6 +26,35 @@ https://short-on-time.herokuapp.com/
 ## Environmental Variables
 <p>Located at source root (.env), with SKIP_PREFLIGHT_CHECK=true, parameter to skip a mismatch of module versions.
 
+## Features
+
+● 2D body
+○ Ability to click on a specific body part and get remedy
+information
+● Searchable glossary
+● Searchable remedies
+● Dynamic search based on body part and ailment
+● Forum
+○ Posts and comments
+● Admin panel
+○ Change website captions (welcome, health disclaimer and premium captions)
+○ Edit remedies and glossary
+○ Moderate the forum
+○ Post to the DidYouKnow blog
+● Login/register
+○ User levels: free, premium and admin
+● Payment system
+○ Routes ready to change price dynamically
+● Blog (DYK)
+○ Instagram, Facebook, YouTube, Twitter API
+● Dynamic payments ○ Stripe API
+● Dynamic premium items
+○ I.e. only available to premium users
+● Drafting items
+○ Useful for teams working on the same item
+● Loading screen (UX)
+● User tiers
+
 # Routes
 ## Users (/api/users)
  - **POST** *users/signup* registers a new account
@@ -47,50 +76,50 @@ https://short-on-time.herokuapp.com/
  - **DELETE** */delete_self* delete logged user
 
 ## Admin (/api/admin)
-### Remedy routes
+### Remedy routes (CRUD)
  - **POST** */add_remedy*
  - **PUT** */update_remedy/:id*
  - **GET** */get_remedy/:id*
  - **GET** */get_remedy*
  - **DELETE** */delete_remedy/:id*
  - **PUT** */free_trial*
-### **Testimonial routes**
- - **POST** */add_testimonial*
- **Newsletter routes**
- - **POST** */add_email_newsleter*
- **Home caption routes**
+### Testimonial routes
+ - **POST** */add_testimonial* adds new testimonal
+### Newsletter routes
+ - **POST** */add_email_newsleter* adds new email
+### Home caption routes (add and change home captions)
  - **POST** */change_premium_caption*
  - **GET** */get_premium_caption*
  - **POST** */change_welcome_caption*
  - **GET** */get_welcome_caption*
  - **POST** */change_disclaimer_caption*
  - **GET** */get_disclaimer_caption*
- **Glossary routes**
+### Glossary routes** (CRUD)
  - **POST** */add_glossary*
  - **PUT** */update_glossary/:id*
  - **GET** */get_glossary/:id*
  - **GET** */get_glossary*
  - **DELETE** */delete_glossary/:id*
- **User routes**
+### User routes** (CRUD)
  - **POST** */add_user*
  - **PUT** */update_user/:id*
  - **GET** */get_user/:id*
  - **GET** */get_user*
  - **DELETE** */delete_user/:id*
- **Blog routes**
+### Blog routes** (CRUD)
  - **POST** */add_blog*
  - **PUT** */update_blog/:id*
  - **GET** */get_blog/:id*
  - **GET** */get_blog*
  - **DELETE** *'/delete_blog/:id*
 
-## Stripe (/api/stripe)
+## Stripe (/api/stripe) (routes for changing dynamic prices: consulting and premium subscription)
  - **POST** */charges*
  - **POST** */charges_type*
  - **POST** */change_charges_type*
  - **GET** */get_charges_type/:type*
 
-## Image (/api/image)
+## Image (/api/image) (CRUD)
  - **POST** *image/add_image* adds a image + its name to the database
  - **GET** *image/get_image/:name* gets the image with the same name
  - **GET** *image/get_image* gets a list of image names + ids
@@ -136,10 +165,25 @@ Note: both services offer free tiers, so you would be able to test the PaaS firs
 
 # Development and deploys
 
-We have custom scripts that helped us in the development of the app and are essential to the deployment on Heroku. Running *npm run +*:
+We have custom scripts that helped us in the development of the app and are essential to the deployment on Heroku. Running `npm run +`:
 
 - **start** *starts the application on current context (if at the root folder, starts the backend; if at the client folder, starts the frontend)*
 - **heroku-postbuild** *runs automatically on Heroku*
 - **start-dev** *starts the entire web app, both frontend and backend*
 - **prepDB** *laods glossary and remedies into the application*
 - **install-all** *install all dependencies (both backend and frontend)*
+
+## Examples
+- To run locally (backend and frontend): `npm run start-dev`
+- To run backend: go to root folder and run: `npm start`
+- To run frontend: go to /client folder and run: `npm start`
+
+## How to deploy
+
+- Make sure you are inside the root folder of the app
+- Make sure you have Heroku CLI installed: https://devcenter.heroku.com/articles/heroku-cli
+- Track remote Heroku git repository: `heroku git:remote -a short-on-time`
+- If any changes are performed, and you would like those change to be reflected on the live app, run:
+⋅⋅⋅ `git add .`
+⋅⋅⋅ `git commit -m "my changes"`
+- Finally, to deploy to Heroku, run: `git push heroku master`
