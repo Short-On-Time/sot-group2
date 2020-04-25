@@ -16,7 +16,9 @@ https://short-on-time.herokuapp.com/
 
 ## Config File
 Backend: at `config/config.js`, with the Heroku URL to the MongoDB service.
+
 Frontend: at `client/src/components/config.js`, with Stripe key and localhost port (for development purposes).
+
 Stripe Key (located at `client/src/components/config.js`, line 6 for LIVE key, line 10 for TEST key): `pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK`
 
 ## Admin login credentials
