@@ -177,6 +177,9 @@ We have custom scripts that helped us in the development of the app and are esse
 - **install-all** *install all dependencies (both backend and frontend)*
 
 ## Examples
+
+Make sure you have all dependencies installed by running `npm run install-all` at the root folder.
+
 - To run locally (backend and frontend): `npm run start-dev`
 - To run backend: go to root folder and run: `npm start`
 - To run frontend: go to /client folder and run: `npm start`
